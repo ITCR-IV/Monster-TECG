@@ -10,6 +10,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MenuController {
+
     @FXML
     public void host_game(ActionEvent actionEvent) throws Exception {
         Stage stage = new Stage();
@@ -19,6 +20,23 @@ public class MenuController {
         stage.setTitle("Host window");
 
         Parent root = FXMLLoader.load(getClass().getResource("connectors/hostWindow.fxml"));
+
+        //setup scene
+        Scene scene = new Scene(root, 250, 150);//setup the scene
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    public void join_game(ActionEvent actionEvent) throws Exception {
+        Stage stage = new Stage();
+        stage.initOwner(Main.getStage());
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Join window");
+
+        Parent root = FXMLLoader.load(getClass().getResource("connectors/joinWindow.fxml"));
+
+
 
         //setup scene
         Scene scene = new Scene(root, 250, 150);//setup the scene

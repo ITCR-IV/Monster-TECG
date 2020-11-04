@@ -12,6 +12,6 @@
             </font>
         </Text>
         <Button layoutX="337.0" layoutY="236.0" mnemonicParsing="false" onAction="#host_game" prefHeight="51.0" prefWidth="126.0" text="Host Game" />
-        <Button layoutX="337.0" layoutY="336.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" text="Join Game" />
+        <Button layoutX="337.0" layoutY="336.0" mnemonicParsing="false" onAction="#join_game" prefHeight="51.0" prefWidth="126.0" text="Join Game" />
     </children>
 </AnchorPane>

@@ -8,7 +8,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Class that controls the window that pops up when adding a new contact
+ * Class that controls the window that pops up when hosting a new game
  */
 public class HostWindow extends Main {
     /**

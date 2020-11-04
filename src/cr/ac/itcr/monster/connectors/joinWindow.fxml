@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.connectors.JoinController">
+    <children>
+        <Text layoutX="18.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Host's IP:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <Text layoutX="46.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Port:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <Button fx:id="cancelButton" layoutX="29.0" layoutY="111.0" mnemonicParsing="false" onAction="#cancelButtonAction" prefHeight="25.0" prefWidth="92.0" text="Cancel"/>
+      <Button fx:id="connectButton" layoutX="125.0" layoutY="111.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Connect" />
+      <TextField fx:id="IPBox" layoutX="87.0" layoutY="6.0" text="IP" />
+      <TextField fx:id="PortBox" layoutX="87.0" layoutY="40.0" text="Port"/>
+    </children>
+</AnchorPane>
