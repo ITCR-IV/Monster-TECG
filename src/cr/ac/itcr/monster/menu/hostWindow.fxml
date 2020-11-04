@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.connectors.HostController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.menu.HostController">
     <children>
         <Button fx:id="cancelButton" layoutX="99.0" layoutY="110.0" mnemonicParsing="false" prefWidth="51.0" text="Cancel" />
         <Text layoutX="32.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IP:">
@@ -21,5 +21,7 @@
       <Text layoutX="28.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting for other player to connect..." wrappingWidth="194.044921875" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="60.0" layoutY="10.0" width="150.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="60.0" layoutY="35.0" width="150.0" />
+      <Label fx:id="IPField" layoutX="60.0" layoutY="10.0" prefHeight="20.0" prefWidth="150.0" text="" />
+      <Label fx:id="PORTField" layoutX="60.0" layoutY="10.0" prefHeight="20.0" prefWidth="150.0" text="" />
     </children>
 </AnchorPane>
