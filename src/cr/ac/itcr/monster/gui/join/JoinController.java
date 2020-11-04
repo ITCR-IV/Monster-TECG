@@ -13,11 +13,14 @@ public class JoinController {
     private TextField IPBox,PortBox;
 
     //Vuelve al menú
-    public void cancelButtonAction(ActionEvent actionEvent) {
+    @FXML
+    private void cancelButtonAction(ActionEvent actionEvent) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
-    public void connectButtonAction(ActionEvent actionEvent){
+
+    @FXML
+    private void connectButtonAction(ActionEvent actionEvent){
 
     }
 }

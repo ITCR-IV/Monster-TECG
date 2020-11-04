@@ -18,7 +18,10 @@ public class HostWindow {
         stage.setResizable(false);
         stage.setTitle("Host window");
 
-        Parent root = FXMLLoader.load(getClass().getResource("hostWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("hostWindow.fxml")); //Group node that is root
+        Parent root = loader.load();
+        HostController controller = loader.getController();
+        controller.setup(stage);
 
         //setup scene
         Scene scene = new Scene(root, 250, 150);//setup the scene

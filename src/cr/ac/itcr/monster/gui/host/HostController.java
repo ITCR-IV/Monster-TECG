@@ -17,13 +17,22 @@ public class HostController {
     public Label PORTField;
 
     //Se muestra la dir IP a conectar
-    public void info(){
+    @FXML
+    public void setup(Stage stage){
         IPField.setText("DirIP");
+        PORTField.setText("DirPort");
+
+        stage.setOnCloseRequest(event -> {
+            System.out.println("Closing window");
+            //poner aquí función para desconectar receiver
+        });
     }
 
     //Vuelve al menú
-    public void cancelButtonAction(ActionEvent actionEvent){
+    @FXML
+    private void cancelButtonAction(ActionEvent actionEvent){
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
+
 }
