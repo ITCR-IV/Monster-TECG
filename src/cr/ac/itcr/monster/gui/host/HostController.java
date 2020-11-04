@@ -1,4 +1,4 @@
-package cr.ac.itcr.monster.menu;
+package cr.ac.itcr.monster.gui.host;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

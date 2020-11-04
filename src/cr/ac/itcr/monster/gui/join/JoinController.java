@@ -1,4 +1,4 @@
-package cr.ac.itcr.monster.menu;
+package cr.ac.itcr.monster.gui.join;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

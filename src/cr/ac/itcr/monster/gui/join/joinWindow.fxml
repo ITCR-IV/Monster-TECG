@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.menu.JoinController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.gui.join.JoinController">
     <children>
         <Button fx:id="cancelButton" layoutX="14.0" layoutY="110.0" mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel" />
         <Button fx:id="connectButton" layoutX="176.0" layoutY="110.0" mnemonicParsing="false" onAction="#connectButtonAction" text="Connect" />

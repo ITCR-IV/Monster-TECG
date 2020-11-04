@@ -21,7 +21,7 @@ public class Main extends Application {
         primaryStage.setTitle("Monster TECG");
         primaryStage.setResizable(false);
 
-        Parent root = FXMLLoader.load(getClass().getResource("menu/menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("gui/menu.fxml"));
 
         Scene scene = new Scene(root, 800, 600);//setup the scene
         primaryStage.setScene(scene);

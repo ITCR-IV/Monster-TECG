@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.menu.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.gui.MenuController">
     <children>
         <Text layoutX="156.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONSTER TCG" wrappingWidth="486.7453308105469">
             <font>
@@ -12,6 +12,6 @@
             </font>
         </Text>
         <Button layoutX="337.0" layoutY="236.0" mnemonicParsing="false" onAction="#host_game" prefHeight="51.0" prefWidth="126.0" text="Host Game" />
-        <Button layoutX="337.0" layoutY="336.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" text="Join Game" />
+        <Button layoutX="337.0" layoutY="336.0" mnemonicParsing="false" onAction="#join_game" prefHeight="51.0" prefWidth="126.0" text="Join Game" />
     </children>
 </AnchorPane>

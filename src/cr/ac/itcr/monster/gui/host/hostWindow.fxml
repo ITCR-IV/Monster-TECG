@@ -5,9 +5,9 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.menu.HostController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.gui.host.HostController">
     <children>
-        <Button fx:id="cancelButton" layoutX="99.0" layoutY="110.0" mnemonicParsing="false" prefWidth="51.0" text="Cancel" />
+        <Button fx:id="cancelButton" layoutX="99.0" layoutY="110.0" mnemonicParsing="false" prefWidth="51.0" onAction="#cancelButtonAction" text="Cancel" />
         <Text layoutX="32.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IP:">
             <font>
                 <Font size="14.0" />
