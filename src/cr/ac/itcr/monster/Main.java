@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class Main extends Application {
+    private static Window stage;
 
     @Override
     public void init() throws Exception {
@@ -15,6 +17,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        stage = primaryStage;
         primaryStage.setTitle("Monster TECG");
         primaryStage.setResizable(false);
 
@@ -32,5 +35,9 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static Window getStage() {
+        return stage;
     }
 }
