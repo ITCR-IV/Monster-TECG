@@ -10,11 +10,11 @@ import javafx.stage.Stage;
 public class HostController {
 
     @FXML
-    public Label PORTField;
-    @FXML
     private Button cancelButton;
     @FXML
     private Label IPField;
+    @FXML
+    public Label PORTField;
 
     //Se muestra la dir IP a conectar
     public void info(){
