@@ -22,6 +22,6 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="60.0" layoutY="10.0" width="150.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="60.0" layoutY="35.0" width="150.0" />
       <Label fx:id="IPField" layoutX="60.0" layoutY="10.0" prefHeight="20.0" prefWidth="150.0" text="" />
-      <Label fx:id="PORTField" layoutX="60.0" layoutY="10.0" prefHeight="20.0" prefWidth="150.0" text="" />
+      <Label fx:id="PORTField" layoutX="60.0" layoutY="35.0" prefHeight="20.0" prefWidth="150.0" text="" />
     </children>
 </AnchorPane>

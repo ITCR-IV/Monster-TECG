@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class Host implements Runnable {
 
@@ -18,6 +19,11 @@ public class Host implements Runnable {
         //singleton!! :D
         Thread t = new Thread(this); //thread so that it's permanently checking for sockets
         t.start();
+        try {
+            Thread.sleep(100); //esto es para darle chance al server socket de crearse antes de que lo usen para cualquier cosa
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static synchronized Host getInstance() {
@@ -31,6 +37,7 @@ public class Host implements Runnable {
     public void terminate() throws IOException {
         this.flag = false;
         ss.close();
+        instance = null;
     }
 
     private void handleMsg(String incomingMsg) {
@@ -78,7 +85,13 @@ public class Host implements Runnable {
                 }
                 s.close(); //closes the socket
             }
-        } catch (Exception e) {
+        } catch (SocketException e) {
+            if (!flag) {
+                System.out.println("Interrupted server socket accept");
+            } else {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
