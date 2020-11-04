@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketException;
 
 public class Host implements Runnable {
 
@@ -21,14 +20,42 @@ public class Host implements Runnable {
         t.start();
     }
 
-    public static Host getInstance() {
+    public static synchronized Host getInstance() {
         if (instance!=  null){
             return instance;
         }
-        synchronized (Host.class) {
-            instance = new Host();
-            return instance;
+        instance = new Host();
+        return instance;
+    }
+
+    public void terminate() throws IOException {
+        this.flag = false;
+        ss.close();
+    }
+
+    private void handleMsg(String incomingMsg) {
+        String[] parts = incomingMsg.split("-", 3);
+        String address = parts[0];
+        if (client != null) {
+            if (client != address) {
+                System.out.println("Intentó conectarse cliente erróneo");
+                return;
+            }
+        } else {
+            client = address;
         }
+
+        String type = parts[1];
+
+        switch (type) {
+            case "establish connection":
+                break;
+            case "closing connection":
+                this.client = null;
+                break;
+        }
+
+        String info = parts[2];
     }
 
 
@@ -41,6 +68,7 @@ public class Host implements Runnable {
                 try {
                     DataInputStream dis = new DataInputStream(s.getInputStream()); // input stream
                     String incomingMsg = dis.readUTF(); // reads the incoming msg
+                    handleMsg(incomingMsg);
 
                     DataOutputStream dos = new DataOutputStream(s.getOutputStream()); // output stream to reply to socket
                     dos.writeUTF("holaa"); //envía un mensaje de vuelta
