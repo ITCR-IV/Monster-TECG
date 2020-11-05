@@ -24,18 +24,14 @@ public class HostController {
     //Se muestra la dir IP a conectar
     @FXML
     public void setup(Stage stage) throws UnknownHostException {
-        Host host = Host.getInstance();
+        Host host = Host.getHost();
 
         IPField.setText(String.valueOf(InetAddress.getLocalHost().getHostAddress()));
         PORTField.setText(Integer.toString(host.getPort()));
 
         stage.setOnCloseRequest(event -> {
             System.out.println("Closing window");
-            try {
-                host.terminate();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            host.terminate();
         });
     }
 
@@ -45,13 +41,9 @@ public class HostController {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
 
-        Host host = Host.getInstance();
+        Host host = Host.getHost();
 
-        try {
-            host.terminate();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        host.terminate();
     }
 
 }

@@ -13,6 +13,7 @@ public class Host implements Runnable {
 
     private String client;
     private ServerSocket ss;
+    private DataOutputStream dos;
     private boolean flag =true;
 
     private Host(){
@@ -26,7 +27,7 @@ public class Host implements Runnable {
         }
     }
 
-    public static synchronized Host getInstance() {
+    public static synchronized Host getHost() {
         if (instance!=  null){
             return instance;
         }
@@ -34,35 +35,31 @@ public class Host implements Runnable {
         return instance;
     }
 
-    public void terminate() throws IOException {
+    public void terminate(){
         this.flag = false;
-        ss.close();
+        try {
+            ss.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         instance = null;
     }
 
-    private void handleMsg(String incomingMsg) {
-        String[] parts = incomingMsg.split("-", 3);
-        String address = parts[0];
-        if (client != null) {
-            if (client != address) {
-                System.out.println("Intentó conectarse cliente erróneo");
-                return;
-            }
-        } else {
-            client = address;
-        }
+    private void handleMsg(String incomingMsg) throws IOException {
+        String[] parts = incomingMsg.split("-", 2);
 
-        String type = parts[1];
+        String type = parts[0];
+        String info = parts[1];
 
         switch (type) {
             case "establish connection":
+                this.client = info;
+                dos.writeUTF("connection succesful");
                 break;
             case "closing connection":
-                this.client = null;
+                this.terminate();
                 break;
         }
-
-        String info = parts[2];
     }
 
 
@@ -70,21 +67,16 @@ public class Host implements Runnable {
     public void run() {
         try (ServerSocket server = new ServerSocket(0)) {  //this try automatically closes the server socket when done
             this.ss = server;
+            Socket s = ss.accept(); //waits for client socket to connect
+            DataInputStream dis = new DataInputStream(s.getInputStream()); // input stream
+            this.dos = new DataOutputStream(s.getOutputStream()); // output stream to reply to socket
             while (flag) {
-                Socket s = ss.accept(); //waits for client socket to connect
-                try {
-                    DataInputStream dis = new DataInputStream(s.getInputStream()); // input stream
-                    String incomingMsg = dis.readUTF(); // reads the incoming msg
-                    handleMsg(incomingMsg);
+                dis.readUTF();
+                String incomingMsg = dis.readUTF();
 
-                    DataOutputStream dos = new DataOutputStream(s.getOutputStream()); // output stream to reply to socket
-                    dos.writeUTF("holaa"); //envía un mensaje de vuelta
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                s.close(); //closes the socket
+                handleMsg(incomingMsg);
             }
+            s.close(); //closes the socket
         } catch (SocketException e) {
             if (!flag) {
                 System.out.println("Interrupted server socket accept");
