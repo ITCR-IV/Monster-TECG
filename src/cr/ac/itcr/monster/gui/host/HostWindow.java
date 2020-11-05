@@ -10,9 +10,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HostWindow {
+    private static Stage stage;
 
     public HostWindow() throws IOException {
-        Stage stage = new Stage();
+        stage = new Stage();
         stage.initOwner(App.getStage());
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
@@ -27,5 +28,9 @@ public class HostWindow {
         Scene scene = new Scene(root, 250, 150);//setup the scene
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void closeHostWindow(){
+        stage.close();
     }
 }

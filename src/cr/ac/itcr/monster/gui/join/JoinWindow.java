@@ -10,9 +10,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class JoinWindow {
+    private static Stage stage;
 
     public JoinWindow() throws IOException {
-        Stage stage = new Stage();
+        stage = new Stage();
         stage.initOwner(App.getStage());
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
@@ -24,5 +25,9 @@ public class JoinWindow {
         Scene scene = new Scene(root, 250, 150);//setup the scene
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void closeJoinWindow() {
+        stage.close();
     }
 }

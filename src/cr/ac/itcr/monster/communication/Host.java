@@ -1,6 +1,7 @@
 package cr.ac.itcr.monster.communication;
 
 import cr.ac.itcr.monster.App;
+import cr.ac.itcr.monster.gui.host.HostWindow;
 import javafx.application.Platform;
 
 import java.io.DataInputStream;
@@ -60,7 +61,10 @@ public class Host implements Runnable {
                 dos.writeUTF("connection succesful-name host");
                 System.out.println(client);
 
-                Platform.runLater(() -> App.switchScene("game")); //platform.runlater necesario para accesar javafx thread de manera segura
+                Platform.runLater(() -> { //platform.runlater necesario para accesar javafx thread de manera segura
+                    HostWindow.closeHostWindow();
+                    App.switchScene("game");
+                });
                 break;
             case "closing connection":
                 this.terminate();

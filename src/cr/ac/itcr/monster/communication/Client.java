@@ -1,6 +1,8 @@
 package cr.ac.itcr.monster.communication;
 
 import cr.ac.itcr.monster.App;
+import cr.ac.itcr.monster.gui.host.HostWindow;
+import cr.ac.itcr.monster.gui.join.JoinWindow;
 import javafx.application.Platform;
 
 import java.io.DataInputStream;
@@ -49,7 +51,11 @@ public class Client implements Runnable {
             case "connection succesful":
                 this.host = info;
                 System.out.println(host);
-                Platform.runLater(() -> App.switchScene("game"));
+
+                Platform.runLater(() -> {
+                    JoinWindow.closeJoinWindow();
+                    App.switchScene("game");
+                });
                 break;
             case "closing connection":
                 this.terminate();
