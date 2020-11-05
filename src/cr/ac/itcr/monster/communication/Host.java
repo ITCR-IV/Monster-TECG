@@ -7,6 +7,7 @@ import javafx.application.Platform;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -111,6 +112,9 @@ public class Host implements Runnable {
             } else {
                 e.printStackTrace();
             }
+        } catch (EOFException e) {
+            System.out.println("Data Stream closed prematurely");
+            System.out.println(e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }

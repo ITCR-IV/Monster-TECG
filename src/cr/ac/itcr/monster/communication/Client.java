@@ -111,10 +111,7 @@ public class Client implements Runnable {
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();
-        } catch (EOFException e) {
-            System.out.println("Data Stream closed prematurely");
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
+        }  catch (IOException e) {
             System.out.println("Failed to connect to given ip/port combination or terminated connection");
             System.out.println(e.getMessage());
         } catch (IllegalArgumentException e) {
