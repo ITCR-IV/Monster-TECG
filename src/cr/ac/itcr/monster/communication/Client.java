@@ -1,5 +1,8 @@
 package cr.ac.itcr.monster.communication;
 
+import cr.ac.itcr.monster.App;
+import javafx.application.Platform;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -46,6 +49,7 @@ public class Client implements Runnable {
             case "connection succesful":
                 this.host = info;
                 System.out.println(host);
+                Platform.runLater(() -> App.switchScene("game"));
                 break;
             case "closing connection":
                 this.terminate();

@@ -1,6 +1,6 @@
 package cr.ac.itcr.monster.gui.join;
 
-import cr.ac.itcr.monster.Main;
+import cr.ac.itcr.monster.App;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,7 +13,7 @@ public class JoinWindow {
 
     public JoinWindow() throws IOException {
         Stage stage = new Stage();
-        stage.initOwner(Main.getStage());
+        stage.initOwner(App.getStage());
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.setTitle("Join window");

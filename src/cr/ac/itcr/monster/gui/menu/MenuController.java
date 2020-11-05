@@ -1,4 +1,4 @@
-package cr.ac.itcr.monster.gui;
+package cr.ac.itcr.monster.gui.menu;
 
 import cr.ac.itcr.monster.gui.host.HostWindow;
 import cr.ac.itcr.monster.gui.join.JoinWindow;

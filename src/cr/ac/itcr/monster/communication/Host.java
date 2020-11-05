@@ -1,5 +1,8 @@
 package cr.ac.itcr.monster.communication;
 
+import cr.ac.itcr.monster.App;
+import javafx.application.Platform;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -56,6 +59,8 @@ public class Host implements Runnable {
                 this.client = info;
                 dos.writeUTF("connection succesful-name host");
                 System.out.println(client);
+
+                Platform.runLater(() -> App.switchScene("game")); //platform.runlater necesario para accesar javafx thread de manera segura
                 break;
             case "closing connection":
                 this.terminate();
