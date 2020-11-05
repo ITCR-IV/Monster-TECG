@@ -18,7 +18,6 @@ public class App extends Application {
     private static Scene menuScene;
     private static Scene gameScene;
     private static GameController gameController;
-
     @Override
     public void init() throws Exception {
         //Lo que vaya aquí sucede antes de iniciar la aplicación
