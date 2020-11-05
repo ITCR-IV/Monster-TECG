@@ -65,7 +65,6 @@ public class Client implements Runnable {
             dos.writeUTF("establish connection-name client");
 
             while(flag){
-                dis.readUTF();
                 String incomingMsg = dis.readUTF();
 
                 handleMsg(incomingMsg);

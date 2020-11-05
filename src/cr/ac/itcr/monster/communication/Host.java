@@ -72,7 +72,6 @@ public class Host implements Runnable {
             DataInputStream dis = new DataInputStream(s.getInputStream()); // input stream
             this.dos = new DataOutputStream(s.getOutputStream()); // output stream to reply to socket
             while (flag) {
-                dis.readUTF();
                 String incomingMsg = dis.readUTF();
 
                 handleMsg(incomingMsg);
