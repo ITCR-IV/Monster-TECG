@@ -1,6 +1,7 @@
 package cr.ac.itcr.monster.communication;
 
 import cr.ac.itcr.monster.App;
+import cr.ac.itcr.monster.gui.game.GameController;
 import cr.ac.itcr.monster.gui.host.HostWindow;
 import javafx.application.Platform;
 
@@ -18,6 +19,7 @@ public class Host implements Runnable {
     private String client;
     private ServerSocket ss;
     private DataOutputStream dos;
+    private DataInputStream dis;
     private boolean flag =true;
 
     private Host(){
@@ -49,6 +51,14 @@ public class Host implements Runnable {
         instance = null;
     }
 
+    public void sendMsg(String msg) {
+        try {
+            dos.writeUTF(msg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void handleMsg(String incomingMsg) throws IOException {
         String[] parts = incomingMsg.split("-", 2);
 
@@ -56,18 +66,27 @@ public class Host implements Runnable {
         String info = parts[1];
 
         switch (type) {
-            case "establish connection":
+            case "ESTABLISH CONNECTION":
                 this.client = info;
-                dos.writeUTF("connection succesful-name host");
+                dos.writeUTF("CONNECTION SUCCESFUL-name host");
                 System.out.println(client);
 
                 Platform.runLater(() -> { //platform.runlater necesario para accesar javafx thread de manera segura
                     HostWindow.closeHostWindow();
-                    App.switchScene("game");
+                    App.startGame("host");
                 });
                 break;
-            case "closing connection":
+            case "CLOSING CONNECTION":
                 this.terminate();
+                break;
+            case "ACTION":
+                switch (info){
+                    case "switch turn":
+                        Platform.runLater(() -> {
+                            GameController.getInstance().endTurnButton.setDisable(false);
+                            GameController.getInstance().endTurnButton.fire();});
+                        break;
+                }
                 break;
         }
     }
@@ -78,14 +97,14 @@ public class Host implements Runnable {
         try (ServerSocket server = new ServerSocket(0)) {  //this try automatically closes the server socket when done
             this.ss = server;
             Socket s = ss.accept(); //waits for client socket to connect
-            DataInputStream dis = new DataInputStream(s.getInputStream()); // input stream
+            this.dis = new DataInputStream(s.getInputStream()); // input stream
             this.dos = new DataOutputStream(s.getOutputStream()); // output stream to reply to socket
             while (flag) {
                 String incomingMsg = dis.readUTF();
 
                 handleMsg(incomingMsg);
             }
-            s.close(); //closes the socket
+            ss.close(); //closes the socket
         } catch (SocketException e) {
             if (!flag) {
                 System.out.println("Interrupted server socket accept");

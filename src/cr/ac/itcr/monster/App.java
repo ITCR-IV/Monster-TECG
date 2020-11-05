@@ -1,5 +1,9 @@
 package cr.ac.itcr.monster;
 
+import cr.ac.itcr.monster.communication.Client;
+import cr.ac.itcr.monster.communication.Host;
+import cr.ac.itcr.monster.gui.game.GameController;
+import cr.ac.itcr.monster.gui.host.HostController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,10 +11,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import java.net.ServerSocket;
+
 public class App extends Application {
     private static Stage stage;
     private static Scene menuScene;
     private static Scene gameScene;
+    private static GameController gameController;
 
     @Override
     public void init() throws Exception {
@@ -24,7 +31,10 @@ public class App extends Application {
         primaryStage.setResizable(false);
 
         Parent menuRoot = FXMLLoader.load(getClass().getResource("gui/menu/menu.fxml"));
-        Parent gameRoot =  FXMLLoader.load(getClass().getResource("gui/game/game.fxml"));
+
+        FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("gui/game/game.fxml"));
+        Parent gameRoot = gameLoader.load();
+        gameController = gameLoader.getController();
 
         menuScene = new Scene(menuRoot, 800, 600);//setup the scene
         gameScene = new Scene(gameRoot, 800, 600);
@@ -35,15 +45,21 @@ public class App extends Application {
 
     @Override
     public void stop() throws Exception {
-        //Lo que vaya aquí sucede al cerrar la aplicación
+        Host.getHost().terminate();
+        Client client = Client.getClient();
+        if (client != null) {
+            client.terminate();
+        }
     }
 
-    public static void switchScene(String newScene){
+    public static void startGame(String player){
 
-        if (newScene == "game") {
+        if (player == "host") {
             stage.setScene(gameScene);
-        } else if (newScene == "menu") {
-            stage.setScene(menuScene);
+            gameController.setup("host");
+        } else if (player == "client") {
+            stage.setScene(gameScene);
+            gameController.setup("client");
         }
 
     }

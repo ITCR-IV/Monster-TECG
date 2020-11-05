@@ -1,12 +1,13 @@
 package cr.ac.itcr.monster.communication;
 
 import cr.ac.itcr.monster.App;
-import cr.ac.itcr.monster.gui.host.HostWindow;
+import cr.ac.itcr.monster.gui.game.GameController;
 import cr.ac.itcr.monster.gui.join.JoinWindow;
 import javafx.application.Platform;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -18,6 +19,7 @@ public class Client implements Runnable {
     private String host;
     private boolean flag =true;
     private DataOutputStream dos;
+    private Socket s;
 
     private InetAddress IP;
     private int PORT;
@@ -26,6 +28,7 @@ public class Client implements Runnable {
 
         this.IP=IP;
         this.PORT=PORT;
+        instance = this;
 
         Thread t = new Thread(this); //thread so that it's permanently checking socket
         t.start();
@@ -36,9 +39,26 @@ public class Client implements Runnable {
         }
     }
 
+    public static synchronized Client getClient() {
+        return instance;
+    }
+
     public void terminate() {
+        try {
+            s.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         this.flag = false;
         instance = null;
+    }
+
+    public void sendMsg(String msg) {
+        try {
+            dos.writeUTF(msg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void handleMsg(String incomingMsg) {
@@ -48,17 +68,26 @@ public class Client implements Runnable {
         String info = parts[1];
 
         switch (type) {
-            case "connection succesful":
+            case "CONNECTION SUCCESFUL":
                 this.host = info;
                 System.out.println(host);
 
                 Platform.runLater(() -> {
                     JoinWindow.closeJoinWindow();
-                    App.switchScene("game");
+                    App.startGame("client");
                 });
                 break;
-            case "closing connection":
+            case "CLOSING CONNECTION":
                 this.terminate();
+                break;
+            case "ACTION":
+                switch (info){
+                    case "switch turn":
+                            Platform.runLater(() -> {
+                                GameController.getInstance().endTurnButton.setDisable(false);
+                                GameController.getInstance().endTurnButton.fire();});
+                        break;
+                }
                 break;
         }
 
@@ -68,22 +97,25 @@ public class Client implements Runnable {
     @Override
     public void run() {
         try (Socket s = new Socket(IP, PORT)) {
+            this.s = s;
 
             this.dos = new DataOutputStream(s.getOutputStream()); //open data stream
             DataInputStream dis = new DataInputStream(s.getInputStream());
 
-            dos.writeUTF("establish connection-name client");
+            dos.writeUTF("ESTABLISH CONNECTION-name client");
 
-            while(flag){
+            while (flag) {
                 String incomingMsg = dis.readUTF();
 
                 handleMsg(incomingMsg);
             }
-
         } catch (UnknownHostException e) {
             e.printStackTrace();
+        } catch (EOFException e) {
+            System.out.println("Data Stream closed prematurely");
+            System.out.println(e.getMessage());
         } catch (IOException e) {
-            System.out.println("Failed to connect to given ip/port combination");
+            System.out.println("Failed to connect to given ip/port combination or terminated connection");
             System.out.println(e.getMessage());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
