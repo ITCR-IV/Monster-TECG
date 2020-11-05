@@ -3,15 +3,16 @@ package cr.ac.itcr.monster.communication;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.*;
-import java.util.Queue;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class Client implements Runnable {
     private static volatile Client instance;
 
     private String host;
     private boolean flag =true;
-    private Queue<String> eventQueue;
+    private DataOutputStream dos;
 
     private InetAddress IP;
     private int PORT;
@@ -36,37 +37,38 @@ public class Client implements Runnable {
     }
 
     private void handleMsg(String incomingMsg) {
-        String[] parts = incomingMsg.split("-", 3);
-        String address = parts[0];
+        String[] parts = incomingMsg.split("-", 2);
 
-        String type = parts[1];
+        String type = parts[0];
+        String info = parts[1];
 
         switch (type) {
             case "connection succesful":
+                this.host = info;
+                System.out.println(host);
                 break;
             case "closing connection":
                 this.terminate();
                 break;
         }
 
-        String info = parts[2];
     }
 
-    public void connect(String IP,String PORT){
-
-    }
 
     @Override
     public void run() {
         try (Socket s = new Socket(IP, PORT)) {
 
-            DataOutputStream dos = new DataOutputStream(s.getOutputStream()); //open data stream
+            this.dos = new DataOutputStream(s.getOutputStream()); //open data stream
             DataInputStream dis = new DataInputStream(s.getInputStream());
 
-            dos.writeUTF("establish connection-");
+            dos.writeUTF("establish connection-name client");
 
             while(flag){
+                dis.readUTF();
+                String incomingMsg = dis.readUTF();
 
+                handleMsg(incomingMsg);
             }
 
         } catch (UnknownHostException e) {

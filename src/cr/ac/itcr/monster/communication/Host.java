@@ -54,7 +54,8 @@ public class Host implements Runnable {
         switch (type) {
             case "establish connection":
                 this.client = info;
-                dos.writeUTF("connection succesful");
+                dos.writeUTF("connection succesful-name host");
+                System.out.println(client);
                 break;
             case "closing connection":
                 this.terminate();
