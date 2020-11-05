@@ -87,5 +87,4 @@ modules.xml
 
 #Also ignoring the legal and bin files of javaFX library
 
-lib/javafx-sdk-11.0.2/bin/
 lib/javafx-sdk-11.0.2/legal/
