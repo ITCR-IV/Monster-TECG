@@ -1,4 +1,4 @@
-package cr.ac.itcr.monster.game;
+package cr.ac.itcr.monster.game.hand;
 
 public class Hand { //hand is indexed starting at 0
     private Card head;

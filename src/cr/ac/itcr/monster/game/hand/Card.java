@@ -1,4 +1,4 @@
-package cr.ac.itcr.monster.game;
+package cr.ac.itcr.monster.game.hand;
 
 
 public class Card {
