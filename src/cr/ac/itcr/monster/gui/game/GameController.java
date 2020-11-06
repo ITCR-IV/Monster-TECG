@@ -60,11 +60,13 @@ public class GameController {
     private static boolean turn;
     private String playerType;
     private GameHandler gameHandler;
-    private int deckSize;
+    private int deckSize=20;
+    private int enemyDeckSize=20;
     private int friendlyMinionsSize;
     private int enemyMinionsSize;
     private int handSize;
     private int enemyHandSize;
+    private int cardSelection;
 
     public void setup(String player) {
         instance = this;
@@ -157,10 +159,14 @@ public class GameController {
         Text name = (Text) elements.get(1);
         Text cost = (Text) elements.get(3);
         rect.setFill(Color.NAVAJOWHITE);
-        name.setText(drawnCard.getNombre());
+        name.setText(drawnCard.getNombre().replaceAll(" ","\n"));
         cost.setText(String.valueOf(drawnCard.getCoste()));
 
         this.handSize++;
+        this.deckSize--;
+
+        Text deckCount = (Text) playerDeck.getChildren().get(1);
+        deckCount.setText(deckSize+"/16");
     }
 
     public void enemyDraw(String cardName) {
@@ -173,10 +179,24 @@ public class GameController {
         rect.setFill(Color.NAVAJOWHITE);
 
         this.enemyHandSize++;
+        this.enemyDeckSize--;
+
+        Text deckCount = (Text) enemyDeck.getChildren().get(1);
+        deckCount.setText(enemyDeckSize+"/16");
     }
 
     public void selectCard(int index) {
-        System.out.println("estripada la carta"+ index);
+        if (index < 10) { //cartas de mano
+            if (index >= handSize) {
+                return;
+            }
+        } else{ //minions
+            if (index-10 >= friendlyMinionsSize) {
+                return;
+            }
+        }
+        this.cardSelection = index;
+        System.out.println(index);
     }
 
     public void targetMinon(int index) {

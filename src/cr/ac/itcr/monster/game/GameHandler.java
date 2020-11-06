@@ -37,8 +37,6 @@ public class GameHandler {
     public Card drawCard() {
         Card drawnCard = playerDeck.draw();
         playerCards.addCard(drawnCard);
-        System.out.println(messenger);
-        System.out.println(drawnCard);
         messenger.sendMsg("ACTION-draw-"+drawnCard.getNombre());
         return drawnCard;
     }
