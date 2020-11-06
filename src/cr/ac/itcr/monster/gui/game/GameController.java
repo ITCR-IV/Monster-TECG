@@ -3,6 +3,7 @@ package cr.ac.itcr.monster.gui.game;
 import com.sun.javafx.fxml.builder.JavaFXSceneBuilder;
 import cr.ac.itcr.monster.communication.Client;
 import cr.ac.itcr.monster.communication.Host;
+import cr.ac.itcr.monster.communication.Messenger;
 import cr.ac.itcr.monster.game.GameHandler;
 import cr.ac.itcr.monster.game.cards.Card;
 import javafx.beans.Observable;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -57,7 +59,8 @@ public class GameController {
     private String playerType;
     private GameHandler gameHandler;
     private int deckSize;
-    private int minionSize;
+    private int friendlyMinionsSize;
+    private int enemyMinionsSize;
     private int handSize;
 
     public void setup(String player) {
@@ -72,6 +75,7 @@ public class GameController {
             System.out.println("It's not your turn :(");
             endTurnButton.setDisable(true);
         }
+        gameHandler = new GameHandler(playerType);
         Card.loadCards();
 
         int i = 0;
@@ -102,7 +106,11 @@ public class GameController {
                 shape.setFill(Color.rgb(159, 159, 159));
             }
         }
+        i = 0;
         for (StackPane stackPane : enemyMinions) {
+            int finalI = i;
+            stackPane.setOnMouseClicked(event -> targetMinon(finalI));
+            i++;
             for (Node item: stackPane.getChildren()) {
                 Shape shape = (Shape) item;
                 shape.setStroke(Color.rgb(159, 159, 159));
@@ -129,15 +137,19 @@ public class GameController {
             }
     }
 
-    public void selectCard(int index) {
+    public void drawCard() {
 
+    }
+
+    public void selectCard(int index) {
+        System.out.println("estripada la carta"+ index);
     }
 
     public void targetMinon(int index) {
-
+        System.out.println("estripado el enemigo"+ index);
     }
 
-    public void targetEnemy(int index) {
-
+    public void targetEnemy(MouseEvent mouseEvent) {
+        System.out.println("clicked on enemy");
     }
 }

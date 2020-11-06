@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Card {
     private String nombre;
@@ -16,6 +17,7 @@ public class Card {
     private String descripcion;
 
     public static Card[] allCards = new Card[40];
+    public static HashMap<String, Card> allCardsDict = new HashMap<String, Card>();
     public static Card[] hechizos = new Card[10];
     public static Card[] esbirros = new Card[20];
     public static Card[] secretos = new Card[10];
@@ -46,6 +48,10 @@ public class Card {
             hechizos = Arrays.copyOfRange(allCards, 0, 10);
             esbirros = Arrays.copyOfRange(allCards, 10, 30);
             secretos = Arrays.copyOfRange(allCards, 30, 40);
+
+            for (Card card : allCards) {
+                allCardsDict.put(card.getNombre(), card);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();

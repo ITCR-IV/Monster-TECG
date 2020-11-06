@@ -11,36 +11,39 @@ public class Deck {
     private Card[] deck = new Card[20];
     private ArrayList<Card> discardPile;
 
+    public Deck() {
+        refill();
+    }
+
     //Añadir al tope de la pila
     public void push(Card carta){
         this.deck[top]=carta;
         top++;
     }
     //Sacar la carta que esté arriba
-    public Object draw(){
+    public Card draw(){
         if (top > 0) {
             return this.deck[--top];
-
         }
         return null;
     }
 
     //Ver la carta que esté arriba
-    public Object peek(){
+    public Card peek(){
         return this.deck[top-1];
     }
 
     //Refillear con cartas aleatorias (Sería la llamada que hace en el app)
-    public void refill(){
+    private void refill(){
         Random random = new Random(); //instance of random class
             for (int i = 0; i < 7; i++) {
                 push(Card.getHechizos()[random.nextInt(10)]);
             }
             for (int i = 0; i < 9; i++) {
-                push(Card.getEsbirros()[random.nextInt(20)+10]);
+                push(Card.getEsbirros()[random.nextInt(20)]);
             }
             for (int i = 0; i < 4; i++) {
-                push(Card.getSecretos()[random.nextInt(10)+30]);
+                push(Card.getSecretos()[random.nextInt(10)]);
             }
 
             for (int i = 0; i < 20; i++) { //shuffling of the deck

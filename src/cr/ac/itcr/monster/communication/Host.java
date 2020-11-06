@@ -13,7 +13,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
-public class Host implements Runnable {
+public class Host implements Runnable, Messenger{
 
     private static volatile Host instance;
 

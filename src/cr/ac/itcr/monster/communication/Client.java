@@ -13,7 +13,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class Client implements Runnable {
+public class Client implements Runnable,Messenger {
     private static volatile Client instance;
 
     private String host;
