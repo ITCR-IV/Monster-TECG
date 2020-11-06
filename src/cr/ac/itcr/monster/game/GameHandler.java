@@ -9,7 +9,6 @@ import javafx.scene.layout.StackPane;
 import java.util.ArrayList;
 
 public class GameHandler {
-
     private Deck playerDeck;
     private Deck enemyDeck;
     private Hand playerCards;

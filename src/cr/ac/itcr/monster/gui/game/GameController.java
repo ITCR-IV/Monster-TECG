@@ -56,6 +56,9 @@ public class GameController {
     private static boolean turn;
     private String playerType;
     private GameHandler gameHandler;
+    private int deckSize;
+    private int minionSize;
+    private int handSize;
 
     public void setup(String player) {
         instance = this;
@@ -71,18 +74,39 @@ public class GameController {
         }
         Card.loadCards();
 
-        for (StackPane i : playerCards) {
-            for (Node item: i.getChildren()) {
+        int i = 0;
+        for (StackPane stackPane : playerCards) {
+            int forI = i; //variable must be copied to effectively final variable for it to work
+            stackPane.setOnMouseClicked(event -> selectCard(forI));
+            i++;
+            for (Node item: stackPane.getChildren()) {
                 Shape shape = (Shape) item;
                 shape.setStroke(Color.rgb(244, 244, 244));
                 shape.setFill(Color.rgb(244, 244, 244));
             }
         }
-        for (StackPane i : enemyCards) {
-            for (Node item: i.getChildren()) {
+        for (StackPane stackPane : enemyCards) {
+            for (Node item: stackPane.getChildren()) {
                 Shape shape = (Shape) item;
                 shape.setStroke(Color.rgb(244, 244, 244));
                 shape.setFill(Color.rgb(244, 244, 244));
+            }
+        }
+        for (StackPane stackPane : playerMinions) {
+            int finalI = i;
+            stackPane.setOnMouseClicked(event -> selectCard(finalI));
+            i++;
+            for (Node item: stackPane.getChildren()) {
+                Shape shape = (Shape) item;
+                shape.setStroke(Color.rgb(159, 159, 159));
+                shape.setFill(Color.rgb(159, 159, 159));
+            }
+        }
+        for (StackPane stackPane : enemyMinions) {
+            for (Node item: stackPane.getChildren()) {
+                Shape shape = (Shape) item;
+                shape.setStroke(Color.rgb(159, 159, 159));
+                shape.setFill(Color.rgb(159, 159, 159));
             }
         }
 
@@ -103,5 +127,17 @@ public class GameController {
                     Client.getClient().sendMsg("ACTION-switch turn");
                 }
             }
+    }
+
+    public void selectCard(int index) {
+
+    }
+
+    public void targetMinon(int index) {
+
+    }
+
+    public void targetEnemy(int index) {
+
     }
 }
