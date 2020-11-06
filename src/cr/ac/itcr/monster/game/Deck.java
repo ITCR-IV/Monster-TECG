@@ -5,8 +5,8 @@ public class Deck {
     private Object[] deck;
 
     //Añadir al tope de la pila
-    public void push(Object Carta){
-        this.deck[top++]=Carta;
+    public void push(Object carta){
+        this.deck[top++]=carta;
         ++this.size;
     }
     //Sacar la carta que esté arriba
