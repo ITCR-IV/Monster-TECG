@@ -6,41 +6,56 @@ import cr.ac.itcr.monster.game.cards.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 
 public class GameController {
-    private static boolean turn;
-    @FXML
-    private Rectangle playerDeck;
-    @FXML
-    private Rectangle enemyDeck;
-    @FXML
-    private ArrayList<Rectangle> playerCards;
-    @FXML
-    private ArrayList<Rectangle> enemyCards;
 
-
-    private String player;
     private static volatile GameController instance;
-
-    @FXML
-    public Button endTurnButton;
-
     public static synchronized GameController getInstance() {
         return instance;
     }
 
+    //GUI references
+    @FXML
+    private StackPane playerDeck;
+    @FXML
+    private StackPane enemyDeck;
+    @FXML
+    private ArrayList<StackPane> playerCards;
+    @FXML
+    private ArrayList<StackPane> enemyCards;
+    @FXML
+    private ArrayList<StackPane> playerMinions;
+    @FXML
+    private ArrayList<StackPane> enemyMinions;
+    @FXML
+    private Pane enemy;
+    @FXML
+    private Pane player;
+
+    //Buttons
+    @FXML
+    private Button playCardButton;
+    @FXML
+    private Button infoButton;
+    @FXML
+    public Button endTurnButton;
+
+    //logical variables
+    private static boolean turn;
+    private String playerType;
 
     public void setup(String player) {
         instance = this;
         if (player.equals("host")) {
-            this.player = "host";
+            this.playerType = "host";
             this.turn = true;
             System.out.println("It's your turn!!");
         } else if (player.equals("client")) {
-            this.player = "client";
+            this.playerType = "client";
             this.turn = false;
             System.out.println("It's not your turn :(");
             endTurnButton.setDisable(true);
@@ -58,9 +73,9 @@ public class GameController {
             } else {
                 System.out.println("It's no longer your turn :/");
                 endTurnButton.setDisable(true);
-                if (player.equals("host")) {
+                if (playerType.equals("host")) {
                     Host.getHost().sendMsg("ACTION-switch turn");
-                } else if (player.equals("client")) {
+                } else if (playerType.equals("client")) {
                     Client.getClient().sendMsg("ACTION-switch turn");
                 }
             }

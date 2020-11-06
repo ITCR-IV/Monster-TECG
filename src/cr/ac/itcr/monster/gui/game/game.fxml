@@ -8,20 +8,21 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
+<?import java.util.ArrayList?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.gui.game.GameController">
    <children>
       <Rectangle fill="#9f9f9f" height="300.0" layoutY="150.0" stroke="TRANSPARENT" strokeType="INSIDE" width="800.0" />
-      <Button fx:id="endTurnButton" layoutX="725.0" layoutY="279.0" mnemonicParsing="false" onAction="#switchTurn" text="Terminar&#10;turno&#10;" textAlignment="CENTER" />
-      <Button layoutX="11.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Usar Carta" />
-      <Button layoutX="98.0" layoutY="456.0" mnemonicParsing="false" prefWidth="101.0" text="Ver información" />
       <Line endX="710.0" layoutY="300.0" />
+      <Line endY="300.0" layoutX="710.0" layoutY="150.0" />
+      <Line endX="593.0" endY="600.0" startX="593.0" startY="450.0" />
 
-      <StackPane layoutX="636.0" layoutY="465.0" prefHeight="121.0" prefWidth="121.0">
+      <StackPane fx:id="playerDeck" layoutX="636.0" layoutY="465.0" prefHeight="121.0" prefWidth="121.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="SIENNA" height="121.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="16/16" />
          </children></StackPane>
-      <StackPane layoutX="218.0" layoutY="456.0" prefHeight="65.0" prefWidth="65.0">
+
+      <StackPane fx:id="playerCard0" layoutX="218.0" layoutY="456.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -29,7 +30,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="293.0" layoutY="456.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="playerCard1" layoutX="293.0" layoutY="456.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -37,7 +38,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="368.0" layoutY="456.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="playerCard2" layoutX="368.0" layoutY="456.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -45,7 +46,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="443.0" layoutY="456.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="playerCard3" layoutX="443.0" layoutY="456.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -53,7 +54,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="518.0" layoutY="456.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="playerCard4" layoutX="518.0" layoutY="456.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -61,7 +62,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="218.0" layoutY="529.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="playerCard5" layoutX="218.0" layoutY="529.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -69,7 +70,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="293.0" layoutY="529.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="playerCard6" layoutX="293.0" layoutY="529.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -77,7 +78,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="368.0" layoutY="529.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="playerCard7" layoutX="368.0" layoutY="529.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -85,7 +86,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="443.0" layoutY="529.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="playerCard8" layoutX="443.0" layoutY="529.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -93,7 +94,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="518.0" layoutY="529.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="playerCard9" layoutX="518.0" layoutY="529.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -102,22 +103,65 @@
          </children>
       </StackPane>
 
-      <Line endX="593.0" endY="600.0" startX="593.0" startY="450.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da5e5e" height="42.0" layoutX="43.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
-      <Line endY="299.0" layoutX="710.0" layoutY="150.0" />
+      <fx:define>
+         <ArrayList fx:id="playerCards">
+            <fx:reference source="playerCard0" />
+            <fx:reference source="playerCard1" />
+            <fx:reference source="playerCard2" />
+            <fx:reference source="playerCard3" />
+            <fx:reference source="playerCard4" />
+            <fx:reference source="playerCard5" />
+            <fx:reference source="playerCard6" />
+            <fx:reference source="playerCard7" />
+            <fx:reference source="playerCard8" />
+            <fx:reference source="playerCard9" />
+         </ArrayList>
+      </fx:define>
+
+      <Pane fx:id="enemy" prefHeight="150.0" prefWidth="207.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da5e5e" height="42.0" layoutX="43.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
+            <ProgressBar layoutX="15.0" layoutY="71.0" prefHeight="18.0" prefWidth="127.0" progress="1.0" />
+            <ProgressBar layoutX="15.0" layoutY="118.0" prefHeight="18.0" prefWidth="127.0" progress="0.2" />
+            <Text layoutX="15.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" />
+            <Text layoutX="142.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000/1000" />
+            <Text layoutX="16.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" />
+            <Text layoutX="142.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200/1000" textAlignment="RIGHT" wrappingWidth="56.42578125" />
+            <Text layoutX="75.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemigo" />
+         </children>
+      </Pane>
+
+      <Line endY="150.0" layoutX="207.0" />
+      <Line endY="150.0" layoutX="593.0" />
+
+      <Pane fx:id="player" layoutY="450.0" prefHeight="150.0" prefWidth="207.0">
+         <children>
+            <ProgressBar layoutX="15.0" layoutY="71.0" prefHeight="18.0" prefWidth="127.0" progress="1.0" />
+            <ProgressBar layoutX="15.0" layoutY="118.0" prefHeight="18.0" prefWidth="127.0" progress="0.2" />
+            <Text layoutX="15.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" />
+            <Text layoutX="142.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000/1000" />
+            <Text layoutX="16.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" />
+            <Text layoutX="142.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200/1000" textAlignment="RIGHT" wrappingWidth="56.42578125" />
+         </children>
+      </Pane>
+      <!--
       <ProgressBar layoutX="15.0" layoutY="521.0" prefHeight="18.0" prefWidth="127.0" progress="1.0" />
       <ProgressBar layoutX="15.0" layoutY="568.0" prefHeight="18.0" prefWidth="127.0" progress="0.2" />
       <Text layoutX="15.0" layoutY="517.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" />
       <Text layoutX="16.0" layoutY="566.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" />
-      <Line endY="150.0" layoutX="207.0" />
-      <Line endY="150.0" layoutX="593.0" />
-      <StackPane layoutX="636.0" layoutY="15.0" prefHeight="121.0" prefWidth="121.0">
+      <Text layoutX="142.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000/1000" />
+      <Text layoutX="142.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200/1000" textAlignment="RIGHT" wrappingWidth="56.42578125" />
+      -->
+      <Line endY="150.0" layoutX="207.0" layoutY="450.0" />
+
+      <StackPane fx:id="enemyDeck" layoutX="636.0" layoutY="15.0" prefHeight="121.0" prefWidth="121.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="SIENNA" height="121.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="16/16" />
          </children>
       </StackPane>
-      <StackPane layoutX="218.0" layoutY="6.0" prefHeight="65.0" prefWidth="65.0">
+
+      <StackPane fx:id="enemyCard0" layoutX="218.0" layoutY="6.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -125,7 +169,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="293.0" layoutY="6.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="enemyCard1" layoutX="293.0" layoutY="6.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -133,7 +177,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="368.0" layoutY="6.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="enemyCard2" layoutX="368.0" layoutY="6.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -141,7 +185,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="443.0" layoutY="6.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="enemyCard3" layoutX="443.0" layoutY="6.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -149,7 +193,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="518.0" layoutY="6.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="enemyCard4" layoutX="518.0" layoutY="6.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -157,7 +201,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="218.0" layoutY="79.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="enemyCard5" layoutX="218.0" layoutY="79.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -165,7 +209,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="293.0" layoutY="79.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="enemyCard6" layoutX="293.0" layoutY="79.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -173,7 +217,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="368.0" layoutY="79.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="enemyCard7" layoutX="368.0" layoutY="79.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -181,7 +225,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="443.0" layoutY="79.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="enemyCard8" layoutX="443.0" layoutY="79.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -189,7 +233,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="518.0" layoutY="79.0" prefHeight="65.0" prefWidth="65.0">
+      <StackPane fx:id="enemyCard9" layoutX="518.0" layoutY="79.0" prefHeight="65.0" prefWidth="65.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
@@ -197,16 +241,22 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <ProgressBar layoutX="15.0" layoutY="71.0" prefHeight="18.0" prefWidth="127.0" progress="1.0" />
-      <ProgressBar layoutX="15.0" layoutY="118.0" prefHeight="18.0" prefWidth="127.0" progress="0.2" />
-      <Text layoutX="15.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" />
-      <Text layoutX="16.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" />
-      <Text layoutX="75.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemigo" />
-      <Text layoutX="142.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000/1000" />
-      <Text layoutX="142.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000/1000" />
-      <Text layoutX="142.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200/1000" textAlignment="RIGHT" wrappingWidth="56.42578125" />
-      <Text layoutX="142.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200/1000" textAlignment="RIGHT" wrappingWidth="56.42578125" />
-      <StackPane layoutX="30.0" layoutY="320.0" prefHeight="110.0" prefWidth="110.0">
+      <fx:define>
+         <ArrayList fx:id="enemyCards">
+            <fx:reference source="enemyCard0" />
+            <fx:reference source="enemyCard1" />
+            <fx:reference source="enemyCard2" />
+            <fx:reference source="enemyCard3" />
+            <fx:reference source="enemyCard4" />
+            <fx:reference source="enemyCard5" />
+            <fx:reference source="enemyCard6" />
+            <fx:reference source="enemyCard7" />
+            <fx:reference source="enemyCard8" />
+            <fx:reference source="enemyCard9" />
+         </ArrayList>
+      </fx:define>
+
+      <StackPane fx:id="playerMinion0" layoutX="30.0" layoutY="320.0" prefHeight="110.0" prefWidth="110.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1dd" height="110.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" StackPane.alignment="CENTER" />
@@ -214,7 +264,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="165.0" layoutY="320.0" prefHeight="110.0" prefWidth="110.0">
+      <StackPane fx:id="playerMinion1" layoutX="165.0" layoutY="320.0" prefHeight="110.0" prefWidth="110.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1dd" height="110.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" StackPane.alignment="CENTER" />
@@ -222,7 +272,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="300.0" layoutY="320.0" prefHeight="110.0" prefWidth="110.0">
+      <StackPane fx:id="playerMinion2" layoutX="300.0" layoutY="320.0" prefHeight="110.0" prefWidth="110.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1dd" height="110.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" StackPane.alignment="CENTER" />
@@ -230,7 +280,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="435.0" layoutY="320.0" prefHeight="110.0" prefWidth="110.0">
+      <StackPane fx:id="playerMinion3" layoutX="435.0" layoutY="320.0" prefHeight="110.0" prefWidth="110.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1dd" height="110.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" StackPane.alignment="CENTER" />
@@ -238,7 +288,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="570.0" layoutY="320.0" prefHeight="110.0" prefWidth="110.0">
+      <StackPane fx:id="playerMinion4" layoutX="570.0" layoutY="320.0" prefHeight="110.0" prefWidth="110.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1dd" height="110.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" StackPane.alignment="CENTER" />
@@ -246,7 +296,18 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="30.0" layoutY="170.0" prefHeight="110.0" prefWidth="110.0">
+
+      <fx:define>
+         <ArrayList fx:id="playerMinions">
+            <fx:reference source="playerMinion0" />
+            <fx:reference source="playerMinion1" />
+            <fx:reference source="playerMinion2" />
+            <fx:reference source="playerMinion3" />
+            <fx:reference source="playerMinion4" />
+         </ArrayList>
+      </fx:define>
+
+      <StackPane fx:id="enemyMinion0" layoutX="30.0" layoutY="170.0" prefHeight="110.0" prefWidth="110.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1dd" height="110.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" StackPane.alignment="CENTER" />
@@ -254,7 +315,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="165.0" layoutY="170.0" prefHeight="110.0" prefWidth="110.0">
+      <StackPane fx:id="enemyMinion1" layoutX="165.0" layoutY="170.0" prefHeight="110.0" prefWidth="110.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1dd" height="110.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" StackPane.alignment="CENTER" />
@@ -262,7 +323,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="300.0" layoutY="170.0" prefHeight="110.0" prefWidth="110.0">
+      <StackPane fx:id="enemyMinion2" layoutX="300.0" layoutY="170.0" prefHeight="110.0" prefWidth="110.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1dd" height="110.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" StackPane.alignment="CENTER" />
@@ -270,7 +331,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="435.0" layoutY="170.0" prefHeight="110.0" prefWidth="110.0">
+      <StackPane fx:id="enemyMinion3" layoutX="435.0" layoutY="170.0" prefHeight="110.0" prefWidth="110.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1dd" height="110.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" StackPane.alignment="CENTER" />
@@ -278,7 +339,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <StackPane layoutX="570.0" layoutY="170.0" prefHeight="110.0" prefWidth="110.0">
+      <StackPane fx:id="enemyMinion4" layoutX="570.0" layoutY="170.0" prefHeight="110.0" prefWidth="110.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1dd" height="110.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" StackPane.alignment="CENTER" />
@@ -286,8 +347,21 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" StackPane.alignment="BOTTOM_RIGHT" />
          </children>
       </StackPane>
-      <Line endY="150.0" layoutX="207.0" layoutY="450.0" />
+      <fx:define>
+         <ArrayList fx:id="enemyMinions">
+            <fx:reference source="enemyMinion0" />
+            <fx:reference source="enemyMinion1" />
+            <fx:reference source="enemyMinion2" />
+            <fx:reference source="enemyMinion3" />
+            <fx:reference source="enemyMinion4" />
+         </ArrayList>
+      </fx:define>
+
       <Button layoutX="727.0" layoutY="341.0" mnemonicParsing="false" text="Historial" />
+
+      <Button fx:id="endTurnButton" layoutX="725.0" layoutY="279.0" mnemonicParsing="false" onAction="#switchTurn" text="Terminar&#10;turno&#10;" textAlignment="CENTER" />
+      <Button fx:id="playCardButton" layoutX="11.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Usar Carta" />
+      <Button fx:id="infoButton" layoutX="98.0" layoutY="456.0" mnemonicParsing="false" prefWidth="101.0" text="Ver información" />
 
    </children>
 </Pane>
