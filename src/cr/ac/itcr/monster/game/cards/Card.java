@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class Card {
     private String nombre;
@@ -15,6 +16,9 @@ public class Card {
     private String descripcion;
 
     public static Card[] allCards = new Card[40];
+    public static Card[] hechizos = new Card[10];
+    public static Card[] esbirros = new Card[20];
+    public static Card[] secretos = new Card[10];
 
     public Card() {
 
@@ -39,6 +43,9 @@ public class Card {
             System.out.println("Attempting to read from file in: "+json.getCanonicalPath());
 
             allCards = mapper.readValue(json,Card[].class); //convert JSON array to
+            hechizos = Arrays.copyOfRange(allCards, 0, 10);
+            esbirros = Arrays.copyOfRange(allCards, 10, 30);
+            secretos = Arrays.copyOfRange(allCards, 30, 40);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,6 +54,18 @@ public class Card {
 
     public static Card[] getAllCards() {
         return allCards;
+    }
+
+    public static Card[] getHechizos() {
+        return hechizos;
+    }
+
+    public static Card[] getEsbirros() {
+        return esbirros;
+    }
+
+    public static Card[] getSecretos() {
+        return secretos;
     }
 
     public String getNombre() {

@@ -5,26 +5,47 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
+<?import java.util.ArrayList?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.gui.game.GameController">
    <children>
       <Rectangle fill="#9f9f9f" height="300.0" layoutY="150.0" stroke="TRANSPARENT" strokeType="INSIDE" width="800.0" />
-      <Button layoutX="725.0" layoutY="279.0" mnemonicParsing="false" text="Terminar&#10;turno&#10;" textAlignment="CENTER" onAction="#switchTurn" fx:id="endTurnButton"/>
+      <Button fx:id="endTurnButton" layoutX="725.0" layoutY="279.0" mnemonicParsing="false" onAction="#switchTurn" text="Terminar&#10;turno&#10;" textAlignment="CENTER" />
       <Button layoutX="11.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Usar Carta" />
       <Button layoutX="98.0" layoutY="456.0" mnemonicParsing="false" prefWidth="101.0" text="Ver información" />
       <Line endX="710.0" layoutY="300.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="SIENNA" height="121.0" layoutX="636.0" layoutY="465.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="293.0" layoutY="456.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="368.0" layoutY="456.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="443.0" layoutY="456.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="518.0" layoutY="456.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="218.0" layoutY="529.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="293.0" layoutY="530.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="368.0" layoutY="529.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="443.0" layoutY="529.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="518.0" layoutY="530.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="218.0" layoutY="456.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+
+      <StackPane layoutX="636.0" layoutY="465.0" prefHeight="121.0" prefWidth="121.0">
+         <children>
+            <Rectangle fx:id="playerDeck" arcHeight="5.0" arcWidth="5.0" fill="SIENNA" height="121.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="16/16" />
+         </children></StackPane>
+
+      <Rectangle fx:id="playerCard1" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="218.0" layoutY="456.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="playerCard2" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="293.0" layoutY="456.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="playerCard3" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="368.0" layoutY="456.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="playerCard4" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="443.0" layoutY="456.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="playerCard5" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="518.0" layoutY="456.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="playerCard6" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="218.0" layoutY="529.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="playerCard7" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="293.0" layoutY="529.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="playerCard8" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="368.0" layoutY="529.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="playerCard9" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="443.0" layoutY="529.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="playerCard10" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="518.0" layoutY="530.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <fx:define>
+         <ArrayList fx:id="playerCards">
+            <fx:reference source="playerCard1" />
+            <fx:reference source="playerCard2" />
+            <fx:reference source="playerCard3" />
+            <fx:reference source="playerCard4" />
+            <fx:reference source="playerCard5" />
+            <fx:reference source="playerCard6" />
+            <fx:reference source="playerCard7" />
+            <fx:reference source="playerCard8" />
+            <fx:reference source="playerCard9" />
+            <fx:reference source="playerCard10" />
+         </ArrayList>
+      </fx:define>
+
       <Line endX="593.0" endY="600.0" startX="593.0" startY="450.0" />
-      <Text layoutX="681.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" text="16/16" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da5e5e" height="42.0" layoutX="43.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
       <Line endY="299.0" layoutX="710.0" layoutY="150.0" />
       <ProgressBar layoutX="15.0" layoutY="521.0" prefHeight="18.0" prefWidth="127.0" progress="1.0" />
@@ -33,17 +54,33 @@
       <Text layoutX="16.0" layoutY="566.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" />
       <Line endY="150.0" layoutX="207.0" />
       <Line endY="150.0" layoutX="593.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="SIENNA" height="121.0" layoutX="636.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="293.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="368.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="443.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="518.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="218.0" layoutY="79.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="293.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="368.0" layoutY="79.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="443.0" layoutY="79.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="518.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="218.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="enemyDeck" arcHeight="5.0" arcWidth="5.0" fill="SIENNA" height="121.0" layoutX="636.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
+
+      <Rectangle fx:id="enemyCard1" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="218.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="enemyCard2" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="293.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="enemyCard3" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="368.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="enemyCard4" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="443.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="enemyCard5" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="518.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="enemyCard6" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="218.0" layoutY="79.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="enemyCard7" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="293.0" layoutY="79.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="enemyCard8" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="368.0" layoutY="79.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="enemyCard9" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="443.0" layoutY="79.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="enemyCard10" arcHeight="5.0" arcWidth="5.0" fill="NAVAJOWHITE" height="65.0" layoutX="518.0" layoutY="79.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <fx:define>
+         <ArrayList fx:id="enemyCards">
+            <fx:reference source="enemyCard1" />
+            <fx:reference source="enemyCard3" />
+            <fx:reference source="enemyCard2" />
+            <fx:reference source="enemyCard4" />
+            <fx:reference source="enemyCard5" />
+            <fx:reference source="enemyCard6" />
+            <fx:reference source="enemyCard7" />
+            <fx:reference source="enemyCard8" />
+            <fx:reference source="enemyCard9" />
+            <fx:reference source="enemyCard10" />
+         </ArrayList>
+      </fx:define>
+
       <Text layoutX="681.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="16/16" />
       <ProgressBar layoutX="15.0" layoutY="71.0" prefHeight="18.0" prefWidth="127.0" progress="1.0" />
       <ProgressBar layoutX="15.0" layoutY="118.0" prefHeight="18.0" prefWidth="127.0" progress="0.2" />
@@ -65,6 +102,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1dd" height="110.0" layoutX="435.0" layoutY="170.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1dd" height="110.0" layoutX="570.0" layoutY="170.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
       <Line endY="150.0" layoutX="207.0" layoutY="450.0" />
-      <Button layoutX="727.0" layoutY="341.0" mnemonicParsing="false" text="Historial"/>
+      <Button layoutX="727.0" layoutY="341.0" mnemonicParsing="false" text="Historial" />
+
    </children>
 </Pane>

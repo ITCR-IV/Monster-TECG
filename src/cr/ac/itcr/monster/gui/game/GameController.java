@@ -6,9 +6,22 @@ import cr.ac.itcr.monster.game.cards.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.shape.Rectangle;
+
+import java.util.ArrayList;
 
 public class GameController {
     private static boolean turn;
+    @FXML
+    private Rectangle playerDeck;
+    @FXML
+    private Rectangle enemyDeck;
+    @FXML
+    private ArrayList<Rectangle> playerCards;
+    @FXML
+    private ArrayList<Rectangle> enemyCards;
+
+
     private String player;
     private static volatile GameController instance;
 
@@ -33,6 +46,7 @@ public class GameController {
             endTurnButton.setDisable(true);
         }
         Card.loadCards();
+
     }
 
     @FXML
