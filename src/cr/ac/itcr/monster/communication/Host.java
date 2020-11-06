@@ -87,6 +87,9 @@ public class Host implements Runnable, Messenger{
                             GameController.getInstance().endTurnButton.setDisable(false);
                             GameController.getInstance().endTurnButton.fire();});
                         break;
+                    case "draw":
+                        Platform.runLater(() -> GameController.getInstance().enemyDraw(parts[2]));
+                        break;
                 }
                 break;
         }

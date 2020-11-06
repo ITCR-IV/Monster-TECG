@@ -64,6 +64,7 @@ public class GameController {
     private int friendlyMinionsSize;
     private int enemyMinionsSize;
     private int handSize;
+    private int enemyHandSize;
 
     public void setup(String player) {
         instance = this;
@@ -78,7 +79,6 @@ public class GameController {
             endTurnButton.setDisable(true);
         }
         gameHandler = new GameHandler(playerType);
-        Card.loadCards();
 
         int i = 0;
         for (StackPane stackPane : playerCards) {
@@ -120,6 +120,10 @@ public class GameController {
             }
         }
 
+        drawCard();
+        drawCard();
+        drawCard();
+        drawCard();
     }
 
     @FXML
@@ -139,9 +143,10 @@ public class GameController {
             }
     }
 
-    public void drawCard(String cardName) {
-        StackPane guiCard = playerCards.get(handSize);
+    public void drawCard() {
         Card drawnCard = gameHandler.drawCard();
+
+        StackPane guiCard = playerCards.get(handSize);
         ObservableList<Node> elements = guiCard.getChildren();
         for (Node item: elements) {
             Shape shape = (Shape) item;
@@ -156,6 +161,18 @@ public class GameController {
         cost.setText(String.valueOf(drawnCard.getCoste()));
 
         this.handSize++;
+    }
+
+    public void enemyDraw(String cardName) {
+        gameHandler.enemyDraw(cardName);
+
+        StackPane guiCard = enemyCards.get(enemyHandSize);
+        ObservableList<Node> elements = guiCard.getChildren();
+        Rectangle rect = (Rectangle) elements.get(0);
+        rect.setStroke(Color.BLACK);
+        rect.setFill(Color.NAVAJOWHITE);
+
+        this.enemyHandSize++;
     }
 
     public void selectCard(int index) {

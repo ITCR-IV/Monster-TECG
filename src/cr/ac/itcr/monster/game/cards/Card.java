@@ -62,6 +62,10 @@ public class Card {
         return allCards;
     }
 
+    public static Card getCardByName(String name) {
+        return allCardsDict.get(name);
+    }
+
     public static Card[] getHechizos() {
         return hechizos;
     }

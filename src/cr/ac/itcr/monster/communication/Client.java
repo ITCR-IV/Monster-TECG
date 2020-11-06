@@ -88,7 +88,7 @@ public class Client implements Runnable,Messenger {
                             GameController.getInstance().endTurnButton.fire();});
                         break;
                     case "draw":
-                        Platform.runLater(() -> GameController.getInstance().drawCard(parts[2]));
+                        Platform.runLater(() -> GameController.getInstance().enemyDraw(parts[2]));
                         break;
                 }
                 break;
