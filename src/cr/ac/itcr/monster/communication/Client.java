@@ -62,7 +62,7 @@ public class Client implements Runnable,Messenger {
     }
 
     private void handleMsg(String incomingMsg) {
-        String[] parts = incomingMsg.split("-", 2);
+        String[] parts = incomingMsg.split("-", 3);
 
         String type = parts[0];
         String info = parts[1];
@@ -83,9 +83,12 @@ public class Client implements Runnable,Messenger {
             case "ACTION":
                 switch (info){
                     case "switch turn":
-                            Platform.runLater(() -> {
-                                GameController.getInstance().endTurnButton.setDisable(false);
-                                GameController.getInstance().endTurnButton.fire();});
+                        Platform.runLater(() -> {
+                            GameController.getInstance().endTurnButton.setDisable(false);
+                            GameController.getInstance().endTurnButton.fire();});
+                        break;
+                    case "draw":
+                        Platform.runLater(() -> GameController.getInstance().drawCard(parts[2]));
                         break;
                 }
                 break;

@@ -34,9 +34,10 @@ public class GameHandler {
         }
     }
 
-    public void drawCard() {
+    public Card drawCard() {
         Card drawnCard = playerDeck.draw();
         playerCards.addCard(drawnCard);
-        Client.getClient().sendMsg("ACTION-Draw:"+drawnCard.getNombre());
+        messenger.sendMsg("ACTION-draw-"+drawnCard.getNombre());
+        return drawnCard;
     }
 }

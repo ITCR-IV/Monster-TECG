@@ -16,7 +16,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -137,8 +139,23 @@ public class GameController {
             }
     }
 
-    public void drawCard() {
+    public void drawCard(String cardName) {
+        StackPane guiCard = playerCards.get(handSize);
+        Card drawnCard = gameHandler.drawCard();
+        ObservableList<Node> elements = guiCard.getChildren();
+        for (Node item: elements) {
+            Shape shape = (Shape) item;
+            shape.setStroke(Color.BLACK);
+            shape.setFill(Color.BLACK);
+        }
+        Rectangle rect = (Rectangle) elements.get(0);
+        Text name = (Text) elements.get(1);
+        Text cost = (Text) elements.get(3);
+        rect.setFill(Color.NAVAJOWHITE);
+        name.setText(drawnCard.getNombre());
+        cost.setText(String.valueOf(drawnCard.getCoste()));
 
+        this.handSize++;
     }
 
     public void selectCard(int index) {
