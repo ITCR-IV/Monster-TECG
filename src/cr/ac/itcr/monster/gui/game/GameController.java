@@ -1,15 +1,22 @@
 package cr.ac.itcr.monster.gui.game;
 
+import com.sun.javafx.fxml.builder.JavaFXSceneBuilder;
 import cr.ac.itcr.monster.communication.Client;
 import cr.ac.itcr.monster.communication.Host;
 import cr.ac.itcr.monster.game.GameHandler;
 import cr.ac.itcr.monster.game.cards.Card;
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class GameController {
@@ -63,6 +70,21 @@ public class GameController {
             endTurnButton.setDisable(true);
         }
         Card.loadCards();
+
+        for (StackPane i : playerCards) {
+            for (Node item: i.getChildren()) {
+                Shape shape = (Shape) item;
+                shape.setStroke(Color.rgb(244, 244, 244));
+                shape.setFill(Color.rgb(244, 244, 244));
+            }
+        }
+        for (StackPane i : enemyCards) {
+            for (Node item: i.getChildren()) {
+                Shape shape = (Shape) item;
+                shape.setStroke(Color.rgb(244, 244, 244));
+                shape.setFill(Color.rgb(244, 244, 244));
+            }
+        }
 
     }
 

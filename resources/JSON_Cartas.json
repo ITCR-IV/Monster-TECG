@@ -45,12 +45,12 @@
     "descripcion": "Recuperar dos cartas aleatorias del discard pile"
   },
   {
-    "nombre":"Intercambio de cartas",
+    "nombre":"Asesinar",
     "type":"Hechizo",
     "vida":0,
     "ataque": 0,
-    "coste": 300,
-    "descripcion": "Intercambiar el deck completo entre ambos jugadores"
+    "coste": 200,
+    "descripcion": "Elimina un esbirro que esté en juego"
   },
   { "nombre":"Destrucción",
     "type":"Hechizo",
@@ -289,12 +289,12 @@
     "descripcion":"Si la vida llega a 0 por un ataque absorbe el golpe final y te deja con 1 de vida"
   },
   {
-    "nombre":"Chivo expiatorio",
+    "nombre":"Finalizador",
     "type":"Secretos",
     "vida":0,
     "ataque":0,
     "coste":200,
-    "descripcion":"Si la vida del contrincante llega a 1% hace el daño restante para terminar con su vida"
+    "descripcion":"Si la vida del contrincante llega a 5% hace el daño restante para terminar con su vida"
   },
   {
     "nombre":"Hidromiel",

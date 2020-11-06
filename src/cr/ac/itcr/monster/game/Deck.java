@@ -2,12 +2,14 @@ package cr.ac.itcr.monster.game;
 
 import cr.ac.itcr.monster.game.cards.Card;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 public class Deck {
     private int top = 0;
     private Card[] deck = new Card[20];
+    private ArrayList<Card> discardPile;
 
     //Añadir al tope de la pila
     public void push(Card carta){
