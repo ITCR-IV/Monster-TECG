@@ -3,13 +3,13 @@ package cr.ac.itcr.monster.game;
 
 public class Card {
 
-    private String id;
+    private Object info;
 
     private Card next;
     private Card previous;
 
-    public Card(String id) {
-        this.id = id;
+    public Card(String info) {
+        this.info = info;
     }
 
     public Card getNext() {
