@@ -2,6 +2,7 @@ package cr.ac.itcr.monster.gui.game;
 
 import cr.ac.itcr.monster.communication.Client;
 import cr.ac.itcr.monster.communication.Host;
+import cr.ac.itcr.monster.game.cards.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,6 +32,7 @@ public class GameController {
             System.out.println("It's not your turn :(");
             endTurnButton.setDisable(true);
         }
+        Card.loadCards();
     }
 
     @FXML

@@ -1,0 +1,315 @@
+[
+  { "nombre":"Bola de Fuego",
+    "type":"Hechizo",
+    "vida":0,
+    "ataque": 200,
+    "coste": 200,
+    "descripcion": "Le hace 200 de daño a cualquier entidad del juego"
+  },
+  {
+    "nombre":"Congelar",
+    "type":"Hechizo",
+    "vida":0,
+    "ataque": 0,
+    "coste": 250,
+    "descripcion": " El adversario no puede atacar el siguiente turno"
+  },
+  { "nombre":"Curar",
+    "type":"Hechizo",
+    "vida":0,
+    "ataque": 0,
+    "coste": 100,
+    "descripcion": "Se cura en una cantidad variable, la vida del jugador."
+  },
+  {
+    "nombre":"Poder Supremo",
+    "type":"Hechizo",
+    "vida":0,
+    "ataque": 0,
+    "coste": 550,
+    "descripcion": "En el siguiente turno, el jugador puede invocar 3 cartas consecutivas sin importar el nivel de mana. "
+  },
+  { "nombre":"Robar Carta",
+    "type":"Hechizo",
+    "vida":0,
+    "ataque": 0,
+    "coste": 100,
+    "descripcion": "Roba una carta aleatoria del otro jugador."
+  },
+  {
+    "nombre":"Recuperar cartas",
+    "type":"Hechizo",
+    "vida":0,
+    "ataque": 0,
+    "coste": 150,
+    "descripcion": "Recuperar dos cartas aleatorias del discard pile"
+  },
+  {
+    "nombre":"Intercambio de cartas",
+    "type":"Hechizo",
+    "vida":0,
+    "ataque": 0,
+    "coste": 300,
+    "descripcion": "Intercambiar el deck completo entre ambos jugadores"
+  },
+  { "nombre":"Destrucción",
+    "type":"Hechizo",
+    "vida":0,
+    "ataque": 0,
+    "coste": 600,
+    "descripcion": "Destruye todos los esbirros de cualquiera de los dos jugadores, se elige de manera aleatoria"
+  },
+  { "nombre":"Refill",
+    "type":"Hechizo",
+    "vida":0,
+    "ataque": 0,
+    "coste": 300,
+    "descripcion": "Permite tomar 3 cartas"
+  },
+  {
+    "nombre":"Conversión",
+    "type":"Hechizo",
+    "vida":0,
+    "ataque": 0,
+    "coste": 350,
+    "descripcion": "Robar un esbirro del enemigo que esté en juego"
+  },
+  {
+    "nombre":"Hombre Lobo",
+    "type":"Esbirros",
+    "vida":400,
+    "ataque":175,
+    "coste":500,
+    "descripcion":""
+  },
+  {
+    "nombre":"Troll",
+    "type":"Esbirros",
+    "vida":250,
+    "ataque":75,
+    "coste":200,
+    "descripcion":""
+  },
+  {
+    "nombre":"Duende",
+    "type":"Esbirros",
+    "vida":100,
+    "ataque":50,
+    "coste":25,
+    "descripcion":""
+  },
+  {
+    "nombre":"Hada",
+    "type":"Esbirros",
+    "vida":1000,
+    "ataque":20,
+    "coste":350,
+    "descripcion":""
+  },
+  { "nombre":"Minotauro",
+    "type":"Esbirros",
+    "vida":300,
+    "ataque":350,
+    "coste":800,
+    "descripcion":""
+  },
+  {
+    "nombre":"Medusa",
+   "type":"Esbirros",
+   "vida":100,
+   "ataque":200,
+   "coste":200,
+   "descripcion":""
+  },
+  {
+    "nombre":"Enano",
+   "type":"Esbirros",
+   "vida":50,
+    "ataque":200,
+   "coste":75,
+   "descripcion":""
+  },
+  {
+    "nombre":"Dragón",
+   "type":"Esbirros",
+   "vida":1000,
+    "ataque":375,
+   "coste":1100,
+   "descripcion":""
+  },
+  {
+    "nombre":"Demonio",
+   "type":"Esbirros",
+   "vida":250,
+    "ataque":50,
+   "coste":75,
+   "descripcion":""
+  },
+  {
+    "nombre":"Sirena",
+   "type":"Esbirros",
+   "vida":300,
+    "ataque":75,
+   "coste":125,
+   "descripcion":""
+  },
+  {
+    "nombre":"Vampiro",
+   "type":"Esbirros",
+   "vida":250,
+    "ataque":100,
+   "coste":75,
+   "descripcion":""
+  },
+  {
+    "nombre":"Gigante",
+   "type":"Esbirros",
+   "vida":800,
+    "ataque":100,
+   "coste":750,
+   "descripcion":""
+  },
+  {
+    "nombre":"Unicornio",
+   "type":"Esbirros",
+   "vida":500,
+   "ataque":200,
+    "coste":250,
+    "descripcion":""
+  },
+  {
+    "nombre":"Crusader",
+   "type":"Esbirros",
+   "vida":500,
+   "ataque":300,
+    "coste":700,
+    "descripcion":""
+  },
+  {
+    "nombre":"Kraken",
+   "type":"Esbirros",
+   "vida":500,
+   "ataque":200,
+    "coste":550,
+    "descripcion":""
+  },
+  {
+    "nombre":"Centauro",
+   "type":"Esbirros",
+   "vida":400,
+   "ataque":125,
+   "coste":200,
+   "descripcion":""
+  },
+  {
+    "nombre":"Grifo",
+   "type":"Esbirros",
+   "vida":250,
+    "ataque":150,
+   "coste":100,
+   "descripcion":""
+  },
+  {
+    "nombre":"Quimera",
+   "type":"Esbirros",
+   "vida":400,
+   "ataque":300,
+    "coste":500,
+    "descripcion":""
+    },
+  {
+    "nombre":"Kelpie",
+    "type":"Esbirros",
+    "vida":250,
+    "ataque":75,
+    "coste":75,
+    "descripcion":""
+  },
+  {
+    "nombre":"Fénix",
+   "type":"Esbirros",
+   "vida":600,
+   "ataque":150,
+   "coste":450,
+   "descripcion":""
+  },
+  {
+    "nombre":"Mal de ojo",
+    "type":"Secretos",
+    "vida":0,
+    "ataque":0,
+    "coste":350,
+    "descripcion":"Si se recibe más de 200 de daño se retornará un 50% del daño al contrincante automáticamente"
+  },
+  { "nombre":"Maldición",
+    "type":"Secretos",
+    "vida":0,
+    "ataque":0,
+    "coste":500,
+    "descripcion":"Si se recibe más de 200 de daño se retornará un 100% del año al contrincante automáticamente"
+  },
+  {
+    "nombre":"Posesión",
+    "type":"Secretos",
+    "vida":0,
+    "ataque":0,
+    "coste":800,
+    "descripcion":"Si se recibe más de 200 de daño se retornará un 200% del año al contrincante automáticamente"
+  },
+  {
+    "nombre":"Kit médico",
+    "type":"Secretos",
+    "vida":0,
+    "ataque":0,
+    "coste":100,
+    "descripcion":"Si la vida llega a un 10% de esta se regenerará hasta llegar a un 30%"
+  },
+  {
+    "nombre":"Pócima Curativa",
+    "type":"Secretos",
+    "vida":0,
+    "ataque":0,
+    "coste":350,
+    "descripcion":"Si la vida llega a un 10% de esta se regenerará hasta llegar a un 50%"
+  },
+  {
+    "nombre":"Fuente de la juventud",
+    "type":"Secretos",
+    "vida":0,
+    "ataque":0,
+    "coste":700,
+    "descripcion":"Si la vida llega a un 10% de esta se regenerará hasta llegar a un 70%"
+  },
+    {
+      "nombre":"Chivo expiatorio",
+    "type":"Secretos",
+    "vida":0,
+    "ataque":0,
+    "coste":150,
+    "descripcion":"Si la vida llega a 0 por un ataque absorbe el golpe final y te deja con 1 de vida"
+  },
+  {
+    "nombre":"Chivo expiatorio",
+    "type":"Secretos",
+    "vida":0,
+    "ataque":0,
+    "coste":200,
+    "descripcion":"Si la vida del contrincante llega a 1% hace el daño restante para terminar con su vida"
+  },
+  {
+    "nombre":"Hidromiel",
+    "type":"Secretos",
+    "vida":0,
+    "ataque":0,
+    "coste":500,
+    "descripcion":"Si se agota el maná recupera automáticamente el 50% de este"
+  },
+  {
+    "nombre":"Varita de poder",
+    "type":"Secretos",
+    "vida":0,
+    "ataque":0,
+    "coste":1000,
+    "descripcion":"Si se agota el maná recupera automáticamente el 75% de este"
+  }
+]
