@@ -1,7 +1,9 @@
 package cr.ac.itcr.monster.game.hand;
 
+import cr.ac.itcr.monster.game.Card;
+
 public class Hand { //hand is indexed starting at 0
-    private Card head;
+    private HandCard head;
     private int size;
 
     public Hand() {
@@ -13,8 +15,8 @@ public class Hand { //hand is indexed starting at 0
         return size;
     }
 
-    public void addCard(Object card) {
-        Card newCard = new Card(card);
+    public void addCard(Card card) {
+        HandCard newHandCard = new HandCard(card);
 
         if (this.size == 10) { //max 10 cards in hand
             return;
@@ -24,22 +26,22 @@ public class Hand { //hand is indexed starting at 0
         }
 
         if (this.head == null) {
-            this.head = newCard;
+            this.head = newHandCard;
             return;
         }
 
-        Card current = this.head;
+        HandCard current = this.head;
         while (current.getNext() != null) {
             current = current.getNext();
         }
 
-        newCard.setPrevious(current);
-        current.setNext(newCard);
+        newHandCard.setPrevious(current);
+        current.setNext(newHandCard);
         this.size++;
     }
 
     public Object removeCard(int position) {
-        Card current = this.head;
+        HandCard current = this.head;
 
         if (current == null) {
             System.out.println("Error: removeCard called on empty hand"); //for possible bugfixing purposes
