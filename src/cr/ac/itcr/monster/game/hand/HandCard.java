@@ -1,7 +1,7 @@
 package cr.ac.itcr.monster.game.hand;
 
 
-import cr.ac.itcr.monster.game.Card;
+import cr.ac.itcr.monster.game.cards.Card;
 
 public class HandCard {
 
