@@ -2,6 +2,7 @@ package cr.ac.itcr.monster.gui.game;
 
 import cr.ac.itcr.monster.communication.Client;
 import cr.ac.itcr.monster.communication.Host;
+import cr.ac.itcr.monster.game.GameHandler;
 import cr.ac.itcr.monster.game.cards.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,6 +48,7 @@ public class GameController {
     //logical variables
     private static boolean turn;
     private String playerType;
+    private GameHandler gameHandler;
 
     public void setup(String player) {
         instance = this;
