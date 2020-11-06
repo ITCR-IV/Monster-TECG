@@ -8,7 +8,7 @@ public class Card {
     private Card next;
     private Card previous;
 
-    public Card(String info) {
+    public Card(Object info) {
         this.info = info;
     }
 
@@ -26,5 +26,9 @@ public class Card {
 
     public void setPrevious(Card previous) {
         this.previous = previous;
+    }
+
+    public Object getInfo() {
+        return info;
     }
 }
