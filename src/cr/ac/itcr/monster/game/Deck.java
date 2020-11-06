@@ -1,4 +1,4 @@
-package Game;
+package cr.ac.itcr.monster.game;
 
 public class Deck {
     private int top, size;
