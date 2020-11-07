@@ -1,5 +1,6 @@
 package cr.ac.itcr.monster.gui.game;
 
+import cr.ac.itcr.monster.App;
 import cr.ac.itcr.monster.communication.Client;
 import cr.ac.itcr.monster.communication.Host;
 import cr.ac.itcr.monster.game.GameHandler;
@@ -20,7 +21,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
-import org.w3c.dom.css.Rect;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -51,9 +51,13 @@ public class GameController {
     public Button endTurnButton;
 
     //logical variables
+    private GameHandler gameHandler;
+    public GameHandler getGameHandler() {
+        return gameHandler;
+    }
+
     private static boolean turn;
     private String playerType;
-    private GameHandler gameHandler;
     private int deckSize=20;
     private int enemyDeckSize=20;
     private int friendlyMinionsSize;
@@ -265,8 +269,8 @@ public class GameController {
     public void damageMinion(int damageDealt, int minionIndex, String playerType) {
         if (playerType.equals("player")) {
             Text lifeText = (Text) playerMinions.get(minionIndex - 1).getChildren().get(3);
-            int totalLife = gameHandler.getPlayerMinion(minionIndex).getVidaTotal();
-            double life = gameHandler.getPlayerMinion(minionIndex).damage(damageDealt);
+            int totalLife = gameHandler.getPlayerMinion(minionIndex+10).getVidaTotal();
+            double life = gameHandler.getPlayerMinion(minionIndex+10).damage(damageDealt);
 
             lifeText.setText((int) life+"/"+totalLife);
 
@@ -299,12 +303,18 @@ public class GameController {
 
             lifeBar.setProgress(life/1000);
             lifeText.setText((int) life+"/1000");
+            if (life == 0) {
+                App.endGame();
+            }
         } else if (playerType.equals("enemy")) {
             ProgressBar lifeBar = (ProgressBar) enemy.getChildren().get(0);
             Text lifeText = (Text) enemy.getChildren().get(2);
             double life = gameHandler.getEnemy().pierdeVida(damageDealt);
             lifeBar.setProgress(life/1000);
             lifeText.setText((int) life+"/1000");
+            if (life == 0) {
+                App.endGame();
+            }
         } else {
             System.out.println("Llamada con playerType incorrecto a takeDamage en GameController");
         }
@@ -379,7 +389,10 @@ public class GameController {
             if (index-10 > friendlyMinionsSize) {
                 return;
             }
-            if(gameHandler.getPlayerMinion(index).isCD()){
+            if (gameHandler.getPlayerMinion(index) == null) {
+                return;
+            }
+            if (gameHandler.getPlayerMinion(index).isCD()) {
                 return;
             }
             rect = (Rectangle) playerMinions.get(index-11).getChildren().get(0);
@@ -458,6 +471,7 @@ public class GameController {
             Esbirro esbirro = gameHandler.getPlayerMinion(cardSelection);
             damageMinion(esbirro.getAtaque(),index,"enemy");
             gameHandler.getPlayerMinion(cardSelection).setCD(true);
+            gameHandler.minionAttackMinion(esbirro,index);
         }
         resetCardSelection();
     }
@@ -509,6 +523,7 @@ public class GameController {
             Esbirro esbirro = gameHandler.getPlayerMinion(cardSelection);
             takeDamage(esbirro.getAtaque(),"enemy");
             gameHandler.getPlayerMinion(cardSelection).setCD(true);
+            gameHandler.minionAttackEnemy(esbirro);
         }
         resetCardSelection();
     }

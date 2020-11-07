@@ -59,12 +59,17 @@ public class Deck {
     private void refill(){
         Random random = new Random(); //instance of random class
             for (int i = 0; i < 7; i++) {
-                push(Card.getHechizos()[random.nextInt(10)]);
+                Card hechizo = (Card.getHechizos()[random.nextInt(10)]);
+                if (!(hechizo.getNombre().equals("Poder Supremo") || hechizo.getNombre().equals("Refill") || hechizo.getNombre().equals("Conversión") || hechizo.getNombre().equals("Destrucción"))) {
+                    push(hechizo);
+                } else {
+                    i--;
+                }
             }
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < 13; i++) {
                 push(Card.getEsbirros()[random.nextInt(20)]);
             }
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 0; i++) {
                 push(Card.getSecretos()[random.nextInt(10)]);
             }
 
