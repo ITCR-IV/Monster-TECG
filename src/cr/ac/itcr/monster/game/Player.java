@@ -8,12 +8,20 @@ public class Player {
         return vida;
     }
 
-    public void pierdeVida(int vida) {
+    public double pierdeVida(int vida) {
         this.vida -= vida;
+        if (this.vida < 0) {
+            this.vida = 0;
+        }
+        return this.vida;
     }
 
-    public void recuperaVida(int vida) {
+    public double recuperaVida(int vida) {
         this.vida += vida;
+        if (this.vida > 1000) {
+            this.vida = 1000;
+        }
+        return this.vida;
     }
 
     public double getMana() {

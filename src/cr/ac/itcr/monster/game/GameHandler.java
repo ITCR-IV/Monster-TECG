@@ -6,11 +6,6 @@ import cr.ac.itcr.monster.communication.Messenger;
 import cr.ac.itcr.monster.game.cards.Card;
 import cr.ac.itcr.monster.game.cards.Esbirro;
 import cr.ac.itcr.monster.game.hand.Hand;
-import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-
-import java.util.ArrayList;
 
 public class GameHandler {
     private Messenger messenger;
@@ -111,11 +106,15 @@ public class GameHandler {
             }
         }
     }
-        public Player getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
     public Player getEnemy() {
         return enemy;
+    }
+
+    public Esbirro getPlayerMinion(int cardSelection) {
+        return playerMinions[cardSelection - 11];
     }
 }

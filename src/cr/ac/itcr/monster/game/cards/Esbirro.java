@@ -14,4 +14,11 @@ public class Esbirro {
         return this.vida;
     }
 
+    public int getVida() {
+        return vida;
+    }
+
+    public int getAtaque() {
+        return ataque;
+    }
 }

@@ -4,6 +4,7 @@ import cr.ac.itcr.monster.communication.Client;
 import cr.ac.itcr.monster.communication.Host;
 import cr.ac.itcr.monster.game.GameHandler;
 import cr.ac.itcr.monster.game.cards.Card;
+import cr.ac.itcr.monster.game.cards.Esbirro;
 import cr.ac.itcr.monster.gui.game.info.InfoWindow;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -178,6 +179,44 @@ public class GameController {
         }
     }
 
+    public void heal(int lifeHealed, String playerType) {
+        if (playerType.equals("player")) {
+            ProgressBar lifeBar = (ProgressBar) player.getChildren().get(0);
+            Text lifeText = (Text) player.getChildren().get(2);
+            double life = gameHandler.getPlayer().recuperaVida(lifeHealed);
+
+            lifeBar.setProgress(life/1000);
+            lifeText.setText((int) life+"/1000");
+        } else if (playerType.equals("enemy")) {
+            ProgressBar lifeBar = (ProgressBar) enemy.getChildren().get(0);
+            Text lifeText = (Text) enemy.getChildren().get(2);
+            double life = gameHandler.getEnemy().recuperaVida(lifeHealed);
+            lifeBar.setProgress(life/1000);
+            lifeText.setText((int) life+"/1000");
+        } else {
+            System.out.println("Llamada con playerType incorrecto a heal en GameController");
+        }
+    }
+
+    public void takeDamage(int damageDealt, String playerType) {
+        if (playerType.equals("player")) {
+            ProgressBar lifeBar = (ProgressBar) player.getChildren().get(0);
+            Text lifeText = (Text) player.getChildren().get(2);
+            double life = gameHandler.getPlayer().pierdeVida(damageDealt);
+
+            lifeBar.setProgress(life/1000);
+            lifeText.setText((int) life+"/1000");
+        } else if (playerType.equals("enemy")) {
+            ProgressBar lifeBar = (ProgressBar) enemy.getChildren().get(0);
+            Text lifeText = (Text) enemy.getChildren().get(2);
+            double life = gameHandler.getEnemy().pierdeVida(damageDealt);
+            lifeBar.setProgress(life/1000);
+            lifeText.setText((int) life+"/1000");
+        } else {
+            System.out.println("Llamada con playerType incorrecto a takeDamage en GameController");
+        }
+    }
+
     public void drawCard() {
         if (handSize >= 10) {
             return;
@@ -263,10 +302,33 @@ public class GameController {
 
     public void targetEnemyMinion(int index) {
         System.out.println("estripado el enemigo"+ index);
+        if (!targeting) {
+            return;
+        }
+        //Card card =
     }
 
     public void targetEnemy(MouseEvent mouseEvent) {
         System.out.println("clicked on enemy");
+        if (!targeting) {
+            return;
+        }
+        if (cardSelection <= 10) {
+            Card card = gameHandler.getPlayerCard(cardSelection);
+            if (card.getCoste() > gameHandler.getPlayer().getMana()) {
+                return;
+            }
+            String type = card.getType();
+            switch (type) {
+                case "Hechizo":
+                    //Aquí va lo que sucede con los hechizos targeted
+                    break;
+            }
+        } else { //este else siginifica que se ataca con un esbirro
+            Esbirro esbirro = gameHandler.getPlayerMinion(cardSelection);
+            takeDamage(esbirro.getAtaque(),"enemy");
+        }
+        resetCardSelection();
     }
 
     public void displayInfo(ActionEvent actionEvent) {
@@ -318,11 +380,11 @@ public class GameController {
             if (card.getCoste() > gameHandler.getPlayer().getMana()) {
                 return;
             }
-            spendMana(card.getCoste(), "player");
             String type = card.getType();
             switch (type) {
                 case "Esbirro":
                     addMinion(card, "player");
+                    spendMana(card.getCoste(), "player");
                     break;
                 case "Hechizo":
                     gameHandler.spellplayed(card);
