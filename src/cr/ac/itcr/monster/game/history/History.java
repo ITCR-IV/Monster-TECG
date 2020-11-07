@@ -60,6 +60,22 @@ public class History {
     }
 
     /**
+     * Busca en la lista un evento y devuelve su información
+     * @param pos
+     * @return
+     */
+    public String getEvent(int pos){
+        Event current = this.head;
+        if (current == null) {
+            System.out.println("Error: getEvent called on empty Event"); //for possible bugfixing purposes
+        }
+        for (int i = 1; i < pos; i++) { //hand is indexed starting at 1
+            current = current.getNext();
+        }
+        return current.getInfo();
+    }
+
+    /**
      * Recibe el String de datos,lo interpreta y lo convierte en una descripción de jugada.
      * @param data
      * @return
