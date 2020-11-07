@@ -202,6 +202,26 @@ public class GameController {
         }
     }
 
+    public void killMinion(int minionIndex, String playerType) {
+        if (playerType.equals("player")) {
+            for (Node item: playerMinions.get(minionIndex-1).getChildren()) {
+                Shape shape = (Shape) item;
+                shape.setStroke(Color.rgb(159, 159, 159));
+                shape.setFill(Color.rgb(159, 159, 159));
+            }
+            gameHandler.removeFriendlyMinion(minionIndex);
+        } else if (playerType.equals("enemy")) {
+            for (Node item: enemyMinions.get(minionIndex-1).getChildren()) {
+                Shape shape = (Shape) item;
+                shape.setStroke(Color.rgb(159, 159, 159));
+                shape.setFill(Color.rgb(159, 159, 159));
+            }
+            gameHandler.removeEnemyMinion(minionIndex);
+        }else {
+            System.out.println("Llamada con playerType incorrecto a killMinion en GameController");
+        }
+    }
+
     public void damageMinion(int damageDealt, int minionIndex, String playerType) {
         if (playerType.equals("player")) {
             Text lifeText = (Text) playerMinions.get(minionIndex - 1).getChildren().get(3);
@@ -209,11 +229,18 @@ public class GameController {
             double life = gameHandler.getPlayerMinion(minionIndex).damage(damageDealt);
 
             lifeText.setText((int) life+"/"+totalLife);
+
+            if (life == 0) {
+                killMinion(minionIndex,playerType);
+            }
         } else if (playerType.equals("enemy")) {
             Text lifeText = (Text) enemyMinions.get(minionIndex - 1).getChildren().get(3);
             int totalLife = gameHandler.getEnemyMinion(minionIndex).getVidaTotal();
             double life = gameHandler.getEnemyMinion(minionIndex).damage(damageDealt);
             lifeText.setText((int) life+"/"+totalLife);
+            if (life == 0) {
+                killMinion(minionIndex,playerType);
+            }
         } else {
             System.out.println("Llamada con playerType incorrecto a damageMinion en GameController");
         }
