@@ -129,4 +129,12 @@ public class GameHandler {
             }
         }
     }
+
+    public void removeFriendlyMinion(int minionIndex) {
+        playerMinions[minionIndex - 1] = null;
+    }
+
+    public void removeEnemyMinion(int minionIndex) {
+        enemyMinions[minionIndex - 1] = null;
+    }
 }
