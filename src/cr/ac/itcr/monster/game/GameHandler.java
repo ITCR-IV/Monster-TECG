@@ -118,6 +118,10 @@ public class GameHandler {
         return playerMinions[cardSelection - 11];
     }
 
+    public Esbirro getEnemyMinion(int cardSelection) {
+        return enemyMinions[cardSelection - 1];
+    }
+
     public void resetMinionsCD() {
         for (Esbirro minion:playerMinions) {
             if (minion != null) {

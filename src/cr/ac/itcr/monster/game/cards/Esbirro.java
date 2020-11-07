@@ -1,18 +1,23 @@
 package cr.ac.itcr.monster.game.cards;
 
 public class Esbirro {
+    int vidaTotal;
     int vida;
     int ataque;
     boolean CD;
 
     public Esbirro(int vida, int ataque) {
         this.vida = vida;
+        this.vidaTotal = vida;
         this.ataque = ataque;
         this.CD = false;
     }
 
     public double damage(int damageDealt) {
         this.vida -= damageDealt;
+        if (this.vida < 0) {
+            this.vida = 0;
+        }
         return this.vida;
     }
 
@@ -30,5 +35,9 @@ public class Esbirro {
 
     public int getAtaque() {
         return ataque;
+    }
+
+    public int getVidaTotal() {
+        return vidaTotal;
     }
 }
