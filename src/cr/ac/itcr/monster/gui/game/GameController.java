@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
+import org.w3c.dom.css.Rect;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,6 +58,7 @@ public class GameController {
     private int handSize;
     private int enemyHandSize;
     private int cardSelection;
+    private boolean targeting;
 
     public void setup(String player) {
         instance = this;
@@ -104,7 +106,7 @@ public class GameController {
         i = 1;
         for (StackPane stackPane : enemyMinions) {
             int finalI = i;
-            stackPane.setOnMouseClicked(event -> targetMinion(finalI));
+            stackPane.setOnMouseClicked(event -> targetEnemyMinion(finalI));
             i++;
             for (Node item: stackPane.getChildren()) {
                 Shape shape = (Shape) item;
@@ -224,6 +226,7 @@ public class GameController {
 
     public void selectCard(int index) {
         Rectangle rect;
+        System.out.println(index);
         if (index <= 10) { //cartas de mano
             if (index > handSize) {
                 return;
@@ -255,9 +258,10 @@ public class GameController {
             }
         }
         this.cardSelection = 0;
+        this.targeting = false;
     }
 
-    public void targetMinion(int index) {
+    public void targetEnemyMinion(int index) {
         System.out.println("estripado el enemigo"+ index);
     }
 
@@ -279,9 +283,11 @@ public class GameController {
             StackPane guiMinion = null;
             if (player.equals("player")) {
                 guiMinion = playerMinions.get(position);
+                friendlyMinionsSize++;
             } else if (player.equals("enemy")) {
                 guiMinion = enemyMinions.get(position);
                 removeEnemyCard();
+                enemyMinionsSize++;
             }
 
             ObservableList<Node> elements = guiMinion.getChildren();
@@ -307,24 +313,31 @@ public class GameController {
         if (cardSelection == 0) {
             return;
         }
-        if (cardSelection<=10) {
+        if (cardSelection <= 10) {
             Card card = gameHandler.getPlayerCard(cardSelection);
-            if (card.getCoste()>gameHandler.getPlayer().getMana()) {
+            if (card.getCoste() > gameHandler.getPlayer().getMana()) {
                 return;
             }
-            spendMana(card.getCoste(),"player");
+            spendMana(card.getCoste(), "player");
             String type = card.getType();
             switch (type) {
                 case "Esbirro":
-                    addMinion(card,"player");
+                    addMinion(card, "player");
                     break;
                 case "Hechizo":
                     gameHandler.spellplayed(card);
                     break;
             }
+        } else { //este else siginifica que se juega un esbirro
+            Rectangle rect = (Rectangle) playerMinions.get(cardSelection-11).getChildren().get(0);
+            rect.setStroke(Color.CRIMSON);
+            targeting = true;
         }
         removeCard(cardSelection);
-        resetCardSelection();
+        if (!targeting) {
+            resetCardSelection();
+        }
+
     }
 
     public void removeCard(int index) {

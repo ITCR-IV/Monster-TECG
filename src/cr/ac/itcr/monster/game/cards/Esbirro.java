@@ -8,4 +8,10 @@ public class Esbirro {
         this.vida = vida;
         this.ataque = ataque;
     }
+
+    public double damage(int damageDealt) {
+        this.vida -= damageDealt;
+        return this.vida;
+    }
+
 }
