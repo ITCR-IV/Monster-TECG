@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
@@ -60,7 +59,7 @@ public class GameController {
     private int enemyHandSize;
     private int cardSelection;
     private boolean targeting;
-    private boolean Freeze=false;
+    private boolean freeze =false;
 
     public void setup(String player) {
         instance = this;
@@ -133,6 +132,9 @@ public class GameController {
                 drawCard();
                 recoverMana(250,"player");
             } else { //terminar turno
+                if (freeze) {
+                    Freeze(false);
+                }
                 endTurnButton.setDisable(true);
                 playCardButton.setDisable(true);
                 recoverMana(250,"enemy");
@@ -471,9 +473,21 @@ public class GameController {
     }
     public void Freeze (boolean freeze){
         if (freeze){
-            this.Freeze=true;
+            this.freeze =true;
+            for (int i = 1; i <= 5; i++) {
+                if (gameHandler.getPlayerMinion(i + 10) != null) {
+                    Rectangle rect = (Rectangle) playerMinions.get(i - 1).getChildren().get(0);
+                    rect.setFill(Color.LIGHTSKYBLUE);
+                }
+            }
         }else{
-            this.Freeze=false;
+            for (int i = 1; i <= 5; i++) {
+                if (gameHandler.getPlayerMinion(i + 10) != null) {
+                    Rectangle rect = (Rectangle) playerMinions.get(i - 1).getChildren().get(0);
+                    rect.setFill(Color.rgb(255, 241, 221));
+                }
+            }
+            this.freeze =false;
         }
     }
 
