@@ -87,6 +87,7 @@ public class Host implements Runnable, Messenger{
 
         String type = parts[0];
         String info = parts[1];
+        String other = parts[2];
 
         switch (type) {
             case "ESTABLISH CONNECTION":
@@ -123,6 +124,17 @@ public class Host implements Runnable, Messenger{
                         Platform.runLater(()->GameController.getInstance().Freeze(true));
                         break;
                     case "Curar":
+                        Platform.runLater(()->GameController.getInstance().heal(Integer.parseInt(other),"enemy"));
+                        break;
+                    case "Bola de Fuego":
+                        if (other==""){
+                            Platform.runLater(()->GameController.getInstance().takeDamage(200,"player"));
+                        }else{
+                            Platform.runLater(()->GameController.getInstance().damageMinion(200,Integer.parseInt(other),"player"));
+                        }
+                        break;
+                    case "Asesinar":
+                        Platform.runLater(()->GameController.getInstance().killMinion(Integer.parseInt(other),"player"));
                         break;
                 }
                 break;

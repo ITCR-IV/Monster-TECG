@@ -443,6 +443,7 @@ public class GameController {
                     switch (card.getNombre()) {
                         case "Bola de Fuego":
                             damageMinion(card.getAtaque(),index,"enemy");
+                            gameHandler.getMessenger().sendMsg("HECHIZO-BoladeFuego-"+Integer.toString(index));
                             break;
                         case "Congelar":
                             break;
@@ -456,6 +457,7 @@ public class GameController {
                             break;
                         case "Asesinar":
                             killMinion(index,"enemy");
+                            gameHandler.getMessenger().sendMsg("HECHIZO-Asesinar-"+Integer.toString(index));
                             break;
                         case "Destrucción":
                             break;
@@ -496,6 +498,7 @@ public class GameController {
                     switch (card.getNombre()) {
                         case "Bola de Fuego":
                             takeDamage(card.getAtaque(),"enemy");
+                            gameHandler.getMessenger().sendMsg("HECHIZO-Bola de Fuego-");
                             break;
                         case "Congelar":
                             break;
@@ -604,8 +607,9 @@ public class GameController {
                                 gameHandler.getMessenger().sendMsg("HECHIZO-freeze");
                                 break;
                             case "Curar":
-                                heal((int) Math.random()*501,"player");
-                                gameHandler.getMessenger().sendMsg("HECHIZO-Curar");
+                                int curar=(int) Math.random()*501;
+                                heal(curar,"player");
+                                gameHandler.getMessenger().sendMsg("HECHIZO-Curar-"+Integer.toString(curar));
                                 break;
                             case "Poder Supremo":
                                 break;

@@ -92,6 +92,7 @@ public class Client implements Runnable,Messenger {
 
         String type = parts[0];
         String info = parts[1];
+        String other = parts[2];
 
         switch (type) {
             case "CONNECTION SUCCESFUL":
@@ -108,13 +109,21 @@ public class Client implements Runnable,Messenger {
                 break;
             case "ACTION":
                 switch (info){
-                    case "switch turn":
-                        Platform.runLater(() -> {
-                            GameController.getInstance().endTurnButton.setDisable(false);
-                            GameController.getInstance().endTurnButton.fire();});
+                    case"freeze":
+                        Platform.runLater(()->GameController.getInstance().Freeze(true));
                         break;
-                    case "draw":
-                        Platform.runLater(() -> GameController.getInstance().enemyDraw(parts[2]));
+                    case "Curar":
+                        Platform.runLater(()->GameController.getInstance().heal(Integer.parseInt(other),"enemy"));
+                        break;
+                    case "Bola de Fuego":
+                        if (other==""){
+                            Platform.runLater(()->GameController.getInstance().takeDamage(200,"player"));
+                        }else{
+                            Platform.runLater(()->GameController.getInstance().damageMinion(200,Integer.parseInt(other),"player"));
+                        }
+                        break;
+                    case "Asesinar":
+                        Platform.runLater(()->GameController.getInstance().killMinion(Integer.parseInt(other),"player"));
                         break;
                 }
                 break;
@@ -126,6 +135,7 @@ public class Client implements Runnable,Messenger {
                     case "freeze":
                         Platform.runLater(()->GameController.getInstance().Freeze(true));
                         break;
+
                 }
                 break;
             case "ATAQUE":
