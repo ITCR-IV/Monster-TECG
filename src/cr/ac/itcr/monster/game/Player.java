@@ -4,7 +4,7 @@ public class Player {
     int vida = 1000;
     int mana = 200;
 
-    public int getVida() {
+    public double getVida() {
         return vida;
     }
 
@@ -16,15 +16,23 @@ public class Player {
         this.vida += vida;
     }
 
-    public int getMana() {
+    public double getMana() {
         return mana;
     }
 
-    public void pierdeMana(int mana) {
+    public double pierdeMana(int mana) {
         this.mana -= mana;
+        if (this.mana<0) {
+            this.mana = 0;
+        }
+        return this.mana;
     }
 
-    public void recuperaMana(int mana) {
+    public double recuperaMana(int mana) {
         this.mana += mana;
+        if (this.mana > 1000) {
+            this.mana = 1000;
+        }
+        return this.mana;
     }
 }

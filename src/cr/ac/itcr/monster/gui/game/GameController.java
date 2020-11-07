@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -125,9 +126,11 @@ public class GameController {
                 endTurnButton.setDisable(false);
                 playCardButton.setDisable(false);
                 drawCard();
+                recoverMana(250,"player");
             } else { //terminar turno
                 endTurnButton.setDisable(true);
                 playCardButton.setDisable(true);
+                recoverMana(250,"enemy");
                 if (playerType.equals("host")) {
                     Host.getHost().sendMsg("ACTION-switch turn");
                 } else if (playerType.equals("client")) {
@@ -135,6 +138,28 @@ public class GameController {
                 }
             }
         resetCardSelection();
+    }
+
+    public void recoverMana(int recoveredMana,String playerType) {
+        if (playerType.equals("player")) {
+            ProgressBar manaBar = (ProgressBar) player.getChildren().get(1);
+            Text manaText = (Text) player.getChildren().get(3);
+            double mana = gameHandler.getPlayer().recuperaMana(recoveredMana);
+            manaBar.setProgress(mana/1000);
+            manaText.setText((int) mana+"/1000");
+        } else if (playerType.equals("enemy")) {
+            ProgressBar manaBar = (ProgressBar) enemy.getChildren().get(1);
+            Text manaText = (Text) enemy.getChildren().get(3);
+            double mana = gameHandler.getEnemy().recuperaMana(recoveredMana);
+            manaBar.setProgress(mana/1000);
+            manaText.setText((int) mana+"/1000");
+        } else {
+            System.out.println("Llamada con playerType incorrecto a recoverMana en GameController");
+        }
+    }
+
+    public void spendMana(int spentMana, String playerType) {
+
     }
 
     public void drawCard() {
@@ -270,6 +295,9 @@ public class GameController {
         }
         if (cardSelection<=10) {
             Card card = gameHandler.getPlayerCard(cardSelection);
+            if (card.getCoste()>gameHandler.getPlayer().getMana()) {
+                return;
+            }
             String type = card.getType();
             switch (type) {
                 case "Esbirro":

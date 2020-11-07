@@ -27,6 +27,8 @@ public class GameHandler {
         playerDeck = new Deck();
         playerCards = new Hand();
         enemyCards = new Hand();
+        enemy = new Player();
+        player = new Player();
         if (playerType.equals("host")) {
             this.messenger = Host.getHost();
         } else if (playerType.equals("client")) {
@@ -88,5 +90,13 @@ public class GameHandler {
                 System.out.println("Called removeCard in GameHandler with wrong player type specification");
             }
         }
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Player getEnemy() {
+        return enemy;
     }
 }
