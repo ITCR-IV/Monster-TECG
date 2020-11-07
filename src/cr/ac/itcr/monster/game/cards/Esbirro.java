@@ -1,12 +1,13 @@
 package cr.ac.itcr.monster.game.cards;
 
 public class Esbirro {
+    String nombre;
     int vidaTotal;
     int vida;
     int ataque;
     boolean CD;
 
-    public Esbirro(int vida, int ataque) {
+    public Esbirro(int vida, int ataque, String nombre) {
         this.vida = vida;
         this.vidaTotal = vida;
         this.ataque = ataque;
@@ -39,5 +40,9 @@ public class Esbirro {
 
     public int getVidaTotal() {
         return vidaTotal;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 }

@@ -56,7 +56,7 @@ public class GameHandler {
                     return i;
                 }
             }
-            playerMinions[i] = new Esbirro(card.getVida(), card.getAtaque());
+            playerMinions[i] = new Esbirro(card.getVida(), card.getAtaque(), card.getNombre());
             messenger.sendMsg("ESBIRRO-"+card.getNombre());
         } else if (playerType == "enemy") {
             while (enemyMinions[i]!=null) {
@@ -65,7 +65,7 @@ public class GameHandler {
                     return i;
                 }
             }
-            enemyMinions[i] = new Esbirro(card.getVida(), card.getAtaque());
+            enemyMinions[i] = new Esbirro(card.getVida(), card.getAtaque(), card.getNombre());
         }
         else{
             System.out.println("Se llamó addMinion en GameHandler sin dar un playerType válido");
@@ -138,5 +138,13 @@ public class GameHandler {
 
     public Deck getPlayerDeck() {
         return playerDeck;
+    }
+
+    public void minionAttackEnemy(Esbirro esbirro) {
+        messenger.sendMsg("ATAQUE-"+esbirro.getNombre()+"-enemigo");
+    }
+
+    public void minionAttackMinion(Esbirro esbirro, int index) {
+        messenger.sendMsg("ATAQUE-"+esbirro.getNombre()+"-"+index);
     }
 }

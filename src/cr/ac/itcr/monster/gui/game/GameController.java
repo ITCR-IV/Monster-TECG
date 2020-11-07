@@ -21,7 +21,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
-import org.w3c.dom.css.Rect;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -401,6 +400,7 @@ public class GameController {
             Esbirro esbirro = gameHandler.getPlayerMinion(cardSelection);
             damageMinion(esbirro.getAtaque(),index,"enemy");
             gameHandler.getPlayerMinion(cardSelection).setCD(true);
+            gameHandler.minionAttackMinion(esbirro,index);
         }
         resetCardSelection();
     }
@@ -448,6 +448,7 @@ public class GameController {
             Esbirro esbirro = gameHandler.getPlayerMinion(cardSelection);
             takeDamage(esbirro.getAtaque(),"enemy");
             gameHandler.getPlayerMinion(cardSelection).setCD(true);
+            gameHandler.minionAttackEnemy(esbirro);
         }
         resetCardSelection();
     }
