@@ -332,7 +332,10 @@ public class GameController {
             if (index-10 > friendlyMinionsSize) {
                 return;
             }
-            if(gameHandler.getPlayerMinion(index).isCD()){
+            if (gameHandler.getPlayerMinion(index) == null) {
+                return;
+            }
+            if (gameHandler.getPlayerMinion(index).isCD()) {
                 return;
             }
             rect = (Rectangle) playerMinions.get(index-11).getChildren().get(0);
