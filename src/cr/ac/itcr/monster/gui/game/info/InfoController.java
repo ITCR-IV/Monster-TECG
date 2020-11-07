@@ -24,10 +24,6 @@ public class InfoController {
     private void cancelButtonAction(ActionEvent actionEvent){
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
-
-        Host host = Host.getHost();
-
-        host.terminate();
     }
 
     public void setup(Card card) {

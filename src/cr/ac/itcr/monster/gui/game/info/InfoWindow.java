@@ -18,7 +18,7 @@ public class InfoWindow {
         stage.initOwner(App.getStage());
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
-        stage.setTitle("Join window");
+        stage.setTitle("Información");
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("infoWindow.fxml")); //Group node that is root
