@@ -57,4 +57,8 @@ public class Deck {
     public void Reset(){
         Arrays.fill(this.deck,null);
     }
+
+    public ArrayList<Card> getDiscardPile() {
+        return discardPile;
+    }
 }

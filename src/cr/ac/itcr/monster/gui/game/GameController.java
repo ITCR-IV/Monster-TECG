@@ -250,7 +250,10 @@ public class GameController {
     }
 
     public void playCard(ActionEvent actionEvent) {
-        if (cardSelection>0 && cardSelection<=10) {
+        if (cardSelection == 0) {
+            return;
+        }
+        if (cardSelection<=10) {
             Card card = gameHandler.getPlayerCard(cardSelection);
             String type = card.getType();
             switch (type) {
@@ -259,5 +262,20 @@ public class GameController {
                     break;
             }
         }
+    }
+
+    public void removeCard(int index) {
+        if (index <= 10) {
+            for (int i = index; index < 10; index++) {
+                playerCards.set(i - 1, playerCards.get(i));
+            }
+            for (Node item : playerCards.get(index - 1).getChildren()) {
+                Shape shape = (Shape) item;
+                shape.setStroke(Color.rgb(244, 244, 244));
+                shape.setFill(Color.rgb(244, 244, 244));
+            }
+        } else {
+        }
+        gameHandler.removeCard(index);
     }
 }

@@ -75,4 +75,11 @@ public class GameHandler {
         }
         return i;
     }
+
+    public void removeCard(int index) {
+        if (index<=10) {
+            Card card = playerCards.removeCard(index);
+            playerDeck.getDiscardPile().add(card);
+        }
+    }
 }
