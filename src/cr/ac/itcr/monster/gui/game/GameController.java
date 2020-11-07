@@ -25,6 +25,9 @@ import org.w3c.dom.css.Rect;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Clase encargada de manejar más que nada el gui del juego
+ */
 public class GameController {
 
     private static volatile GameController instance;
@@ -61,6 +64,11 @@ public class GameController {
     private boolean targeting;
     private boolean freeze =false;
 
+    /**
+     * Hace el set up inicial del juego, define quien va a mover la primera jugada, da las características necesarias
+     * del GUI y da al jugador las cartas iniciales
+     * @param player
+     */
     public void setup(String player) {
         instance = this;
         if (player.equals("host")) {
@@ -122,6 +130,10 @@ public class GameController {
         drawCard();
     }
 
+    /**
+     * Cambia el turno de un jugador y hace los cambios que esto conlleve
+     * @param actionEvent
+     */
     @FXML
     public void switchTurn(ActionEvent actionEvent) {
         this.turn = !turn;
@@ -147,6 +159,11 @@ public class GameController {
         resetCardSelection();
     }
 
+    /**
+     * Muestra la recuperación de man´´a en la pantalla y ordena al gameHandler a hacer lo mismo
+     * @param recoveredMana
+     * @param playerType
+     */
     public void recoverMana(int recoveredMana,String playerType) {
         if (playerType.equals("player")) {
             ProgressBar manaBar = (ProgressBar) player.getChildren().get(1);
@@ -165,6 +182,11 @@ public class GameController {
         }
     }
 
+    /**
+     * Registra el gasto de maná principalmente cuando se utiliza una carta
+     * @param spentMana
+     * @param playerType
+     */
     public void spendMana(int spentMana, String playerType) {
         if (playerType.equals("player")) {
             ProgressBar manaBar = (ProgressBar) player.getChildren().get(1);
@@ -183,6 +205,11 @@ public class GameController {
         }
     }
 
+    /**
+     * Reestablece la vida de un jugador y obliga al handler a hacer lo mismo
+     * @param lifeHealed
+     * @param playerType
+     */
     public void heal(int lifeHealed, String playerType) {
         if (playerType.equals("player")) {
             ProgressBar lifeBar = (ProgressBar) player.getChildren().get(0);
@@ -201,6 +228,13 @@ public class GameController {
             System.out.println("Llamada con playerType incorrecto a heal en GameController");
         }
     }
+
+    /**
+     * Mata automáticamente a un minion de un jugador en base a su indice
+     * y fuerza al game Handler a registrarlo
+     * @param minionIndex
+     * @param playerType
+     */
     public void killMinion(int minionIndex, String playerType) {
         if (playerType.equals("player")) {
             for (Node item: playerMinions.get(minionIndex-1).getChildren()) {
@@ -221,6 +255,13 @@ public class GameController {
         }
     }
 
+    /**
+     * Hace daño a un Minion en base a su índice y fuerza al
+     * game Handler a registrar el daño sufrido por el minión
+     * @param damageDealt
+     * @param minionIndex
+     * @param playerType
+     */
     public void damageMinion(int damageDealt, int minionIndex, String playerType) {
         if (playerType.equals("player")) {
             Text lifeText = (Text) playerMinions.get(minionIndex - 1).getChildren().get(3);
@@ -245,6 +286,11 @@ public class GameController {
         }
     }
 
+    /**
+     * Registra el daó recibido por alguno de los jugadores y hace que el game Handler registre igualmente los daós
+     * @param damageDealt
+     * @param playerType
+     */
     public void takeDamage(int damageDealt, String playerType) {
         if (playerType.equals("player")) {
             ProgressBar lifeBar = (ProgressBar) player.getChildren().get(0);
@@ -264,6 +310,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Perminte sacar una carta del deck y la pone a disposición del jugador
+     */
     public void drawCard() {
         if (handSize >= 10) {
             return;
@@ -291,6 +340,10 @@ public class GameController {
         deckCount.setText(deckSize+"/16");
     }
 
+    /**
+     * Registra la carta que el enemigo sacó y obliga al game Handler a registrarlo
+     * @param cardName
+     */
     public void enemyDraw(String cardName) {
         if (enemyHandSize >= 10) {
             return;
@@ -310,6 +363,10 @@ public class GameController {
         deckCount.setText(enemyDeckSize+"/16");
     }
 
+    /**
+     * Selecciona una carta enbase a su índice
+     * @param index
+     */
     public void selectCard(int index) {
         Rectangle rect;
         System.out.println(index);
@@ -334,6 +391,9 @@ public class GameController {
         System.out.println(index);
     }
 
+    /**
+     * Deselecciona la carta previamente seleccionada por el jugador
+     */
     public void resetCardSelection() {
         Rectangle rect;
         if (cardSelection > 0) {
@@ -350,6 +410,10 @@ public class GameController {
         this.targeting = false;
     }
 
+    /**
+     * Si el target es un minion hace los daños o cambios que este debe de sufrir
+     * @param index
+     */
     public void targetEnemyMinion(int index) {
         System.out.println("estripado el enemigo"+ index);
         if (!targeting) {
@@ -378,7 +442,7 @@ public class GameController {
                         case "Recuperar Cartas":
                             break;
                         case "Asesinar":
-                            damageMinion(gameHandler.getPlayerMinion(index).getVidaTotal(),index,"enemy");
+                            killMinion(index,"enemy");
                             break;
                         case "Destrucción":
                             break;
@@ -398,6 +462,10 @@ public class GameController {
         resetCardSelection();
     }
 
+    /**
+     * En caso de que el objetivo a hacer daño sea el jugador, hace que este reciba el daño pertinente
+     * @param mouseEvent
+     */
     public void targetEnemy(MouseEvent mouseEvent) {
         System.out.println("clicked on enemy");
         if (!targeting) {
@@ -445,12 +513,21 @@ public class GameController {
         resetCardSelection();
     }
 
+    /**
+     * Enseña la información de una carta determinada
+     * @param actionEvent
+     */
     public void displayInfo(ActionEvent actionEvent) {
         if (cardSelection>0 && cardSelection<=10) {
             InfoWindow info = new InfoWindow(gameHandler.getPlayerCard(cardSelection));
         }
     }
 
+    /**
+     * Añade un minion al array de minions de un jugador
+     * @param card
+     * @param player
+     */
     public void addMinion(Card card,String player) {
         int position = 6;
         position = gameHandler.addMinion(card,player);
@@ -485,6 +562,10 @@ public class GameController {
         }
     }
 
+    /**
+     * Se activa cuando se juegan las cartas y detecta que carta se jugó
+     * @param actionEvent
+     */
     public void playCard(ActionEvent actionEvent) {
         if (cardSelection == 0) {
             return;
@@ -509,6 +590,7 @@ public class GameController {
                                 break;
                             case "Curar":
                                 heal((int) Math.random()*501,"player");
+                                gameHandler.getMessenger().sendMsg("HECHIZO-Curar");
                                 break;
                             case "Poder Supremo":
                                 break;
@@ -543,6 +625,11 @@ public class GameController {
         }
 
     }
+
+    /**
+     * Su principal objetivo es cambiar la variable congelar cuando se usó la carta de hechizos que tiene este efecto
+     * @param freeze
+     */
     public void Freeze (boolean freeze){
         if (freeze){
             this.freeze =true;
@@ -563,6 +650,10 @@ public class GameController {
         }
     }
 
+    /**
+     * Elimina una carta en base a su índice
+     * @param index
+     */
     public void removeCard(int index) {
 
         if (index <= 10) {
@@ -590,6 +681,9 @@ public class GameController {
         gameHandler.removeCard(index,"player");
     }
 
+    /**
+     * Elimina una Carta del enemigo en base a su indice
+     */
     public void removeEnemyCard() {
         for (Node item : enemyCards.get(enemyHandSize-1).getChildren()) {
             Shape shape = (Shape) item;

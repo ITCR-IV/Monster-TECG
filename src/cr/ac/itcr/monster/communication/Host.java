@@ -14,16 +14,21 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
+/**
+ * Clase encargada de la logística de un Host y su manejo
+ */
 public class Host implements Runnable, Messenger{
 
     private static volatile Host instance;
-
     private String client;
     private ServerSocket ss;
     private DataOutputStream dos;
     private DataInputStream dis;
     private boolean flag =true;
 
+    /**
+     * Builder de Host
+     */
     private Host(){
         //singleton!! :D
         Thread t = new Thread(this); //thread so that it's permanently checking for sockets
@@ -35,6 +40,10 @@ public class Host implements Runnable, Messenger{
         }
     }
 
+    /**
+     * Da la instancia de Host
+     * @return Host
+     */
     public static synchronized Host getHost() {
         if (instance!=  null){
             return instance;
@@ -43,6 +52,9 @@ public class Host implements Runnable, Messenger{
         return instance;
     }
 
+    /**
+     * Sucede si el Host se desconecta o cuando termina el juego
+     */
     public void terminate(){
         this.flag = false;
         try {
@@ -53,6 +65,10 @@ public class Host implements Runnable, Messenger{
         instance = null;
     }
 
+    /**
+     * Módulo que envía mensajes para la comunicación entre el cliente y el host
+     * @param msg
+     */
     public void sendMsg(String msg) {
         try {
             dos.writeUTF(msg);
@@ -61,6 +77,11 @@ public class Host implements Runnable, Messenger{
         }
     }
 
+    /**
+     * Modulo que recibe e interpreta el mensaje obtenido del cliente
+     * @param incomingMsg
+     * @throws IOException
+     */
     private void handleMsg(String incomingMsg) throws IOException {
         String[] parts = incomingMsg.split("-", 3);
 
@@ -100,6 +121,8 @@ public class Host implements Runnable, Messenger{
                 switch (info){
                     case"freeze":
                         Platform.runLater(()->GameController.getInstance().Freeze(true));
+                        break;
+                    case "Curar":
                         break;
                 }
                 break;

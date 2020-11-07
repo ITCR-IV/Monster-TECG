@@ -9,9 +9,17 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Encargado de montare el GUI pertinente de Join
+ */
 public class JoinWindow {
     private static Stage stage;
 
+    /**
+     * Builder, construye y guarda en la variable pertinente la ventana de Join con
+     * toda la información necesaria
+     * @throws IOException
+     */
     public JoinWindow() throws IOException {
         stage = new Stage();
         stage.initOwner(App.getStage());
@@ -27,6 +35,9 @@ public class JoinWindow {
         stage.show();
     }
 
+    /**
+     * En casi de que se cierre la ventana maneja el cierre de esta
+     */
     public static void closeJoinWindow() {
         stage.close();
     }

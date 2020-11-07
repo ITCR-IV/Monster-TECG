@@ -14,17 +14,29 @@ import javafx.stage.Window;
 
 import java.net.ServerSocket;
 
+/**
+ * Aplicación principal, llama a los métodos necesarios para que la aplicación corra
+ */
 public class App extends Application {
     private static Stage stage;
     private static Scene menuScene;
     private static Scene gameScene;
     private static GameController gameController;
 
+    /**
+     * Antes de iniciar aplicación en caso de que se requiera settear parametros
+     * @throws Exception
+     */
     @Override
     public void init() throws Exception {
         //Lo que vaya aquí sucede antes de iniciar la aplicación
     }
 
+    /**
+     * Inciialización de la aplicación  hace la llamadas necesarias
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage = primaryStage;
@@ -44,6 +56,10 @@ public class App extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Es lo que sucede cuando la aplicación se cierra
+     * @throws Exception
+     */
     @Override
     public void stop() throws Exception {
         Host.getHost().terminate();
@@ -53,6 +69,11 @@ public class App extends Application {
         }
     }
 
+    /**
+     * Método de comienzo del jugo donde crea un game controller para el jost y otro para
+     * el contrincante
+     * @param player
+     */
     public static void startGame(String player){
 
         if (player == "host") {
@@ -65,10 +86,18 @@ public class App extends Application {
 
     }
 
+    /**
+     * Permite el accseso de otras partes del código al Stage
+     * @return
+     */
     public static Stage getStage() {
         return stage;
     }
 
+    /**
+     * Main method
+     * @param args
+     */
     public static void main(String[] args) {
         Card.loadCards();
         launch(args);

@@ -6,20 +6,35 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * cñase que crea el deck como un Array de Cartas
+ */
 public class Deck {
     private int top = 0;
     private Card[] deck = new Card[20];
     private ArrayList<Card> discardPile = new ArrayList<Card>();
 
+    /**
+     * Builder del Deck
+     */
     public Deck() {
         refill();
     }
 
+    /**
+     * Añadir una carta al tope de la pila
+     * @param carta
+     */
     //Añadir al tope de la pila
     public void push(Card carta){
         this.deck[top]=carta;
         top++;
     }
+
+    /**
+     * Sacar la carta que está en el tope de la pila
+     * @return Carta del tope
+     */
     //Sacar la carta que esté arriba
     public Card draw(){
         if (top > 0) {
@@ -28,11 +43,18 @@ public class Deck {
         return null;
     }
 
+    /**
+     * Ver que carta está en el tope de pila
+     * @return Carta en el tope
+     */
     //Ver la carta que esté arriba
     public Card peek(){
         return this.deck[top-1];
     }
 
+    /**
+     * llena el deck a su máximo de cartas aleatorias bien distribuidas entre Hechizos, Esbirros y Secretos
+     */
     //Refillear con cartas aleatorias (Sería la llamada que hace en el app)
     private void refill(){
         Random random = new Random(); //instance of random class
@@ -53,11 +75,19 @@ public class Deck {
                 deck[i] = temp;
         }
     }
+
+    /**
+     * Settea el deck a 0
+     */
     //Resetear el deck a 0
     public void Reset(){
         Arrays.fill(this.deck,null);
     }
 
+    /**
+     * El array que contiene las cartas ya jugadas o las cartas muertas
+     * @return Array de cartas jugadas
+     */
     public ArrayList<Card> getDiscardPile() {
         return discardPile;
     }

@@ -14,6 +14,10 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * Clase encargada de la logística de un cliente y su manejo
+ *
+ */
 public class Client implements Runnable,Messenger {
     private static volatile Client instance;
 
@@ -25,6 +29,12 @@ public class Client implements Runnable,Messenger {
     private InetAddress IP;
     private int PORT;
 
+
+    /**
+     * Client Builder
+     * @param IP
+     * @param PORT
+     */
     public Client(InetAddress IP, int PORT){
 
         this.IP=IP;
@@ -40,10 +50,17 @@ public class Client implements Runnable,Messenger {
         }
     }
 
+    /**
+     * Obtener instancia de cliente
+     * @return Client
+     */
     public static synchronized Client getClient() {
         return instance;
     }
 
+    /**
+     * Cuando el cliente se desconecta del host
+     */
     public void terminate() {
         try {
             s.close();
@@ -54,6 +71,10 @@ public class Client implements Runnable,Messenger {
         instance = null;
     }
 
+    /**
+     * Para la comunicación entre el host y el cliente, envía strings
+     * @param msg
+     */
     public void sendMsg(String msg) {
         try {
             dos.writeUTF(msg);
@@ -62,6 +83,10 @@ public class Client implements Runnable,Messenger {
         }
     }
 
+    /**
+     * Recibe un mensaje e interpreta su significado
+     * @param incomingMsg
+     */
     private void handleMsg(String incomingMsg) {
         String[] parts = incomingMsg.split("-", 3);
 
@@ -106,7 +131,6 @@ public class Client implements Runnable,Messenger {
         }
 
     }
-
 
     @Override
     public void run() {

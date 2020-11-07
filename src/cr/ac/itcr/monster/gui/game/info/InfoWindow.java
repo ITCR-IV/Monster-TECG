@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Clase encargada de la ventana independiente de información de carta
+ * Es más que quién maneja el GUI de la ventana de información
+ */
 public class InfoWindow {
 
     public InfoWindow(Card card) {

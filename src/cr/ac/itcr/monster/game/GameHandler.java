@@ -7,6 +7,10 @@ import cr.ac.itcr.monster.game.cards.Card;
 import cr.ac.itcr.monster.game.cards.Esbirro;
 import cr.ac.itcr.monster.game.hand.Hand;
 
+/**
+ * Clase que controla toda la logística detrás del Juego, maneja los decks y las
+ * cartas y posteriormente informa al usuario enemigo y al Game Controller
+ */
 public class GameHandler {
     private Messenger messenger;
 
@@ -18,6 +22,10 @@ public class GameHandler {
     private Player enemy;
     private Player player;
 
+    /**
+     * Builder del Game Handler
+     * @param playerType
+     */
     public GameHandler(String playerType) {
         playerDeck = new Deck();
         playerCards = new Hand();
@@ -31,10 +39,20 @@ public class GameHandler {
         }
     }
 
+    /**
+     * Devuelve la carta de un jugador en una posición determinada
+     * @param pos
+     * @return Carta del jugador en pos
+     */
     public Card getPlayerCard(int pos) {
         return playerCards.getCard(pos);
     }
 
+    /**
+     * Saca una Carta del deck personal
+     *
+     * @return Carta sacada del deck
+     */
     public Card drawCard() {
         Card drawnCard = playerDeck.draw();
         playerCards.addCard(drawnCard);
@@ -42,11 +60,21 @@ public class GameHandler {
         return drawnCard;
     }
 
+    /**
+     * Obtiene un registro de qué carta sacó el enemigo
+     * @param cardName
+     */
     public void enemyDraw(String cardName) {
         Card drawnCard = Card.getCardByName(cardName);
         enemyCards.addCard(drawnCard);
     }
 
+    /**
+     * Añade un minion al array y mantiene el conteo de estos
+     * @param card
+     * @param playerType
+     * @return posición del minion agregado
+     */
     public int addMinion(Card card, String playerType) {
         int i=0;
         if (playerType=="player") {
@@ -74,6 +102,12 @@ public class GameHandler {
         return i;
     }
 
+    /**
+     * Elimina la carta del hand de un jugador en base a su posición
+     * @param index
+     * @param player
+     * @return la carta eliminada
+     */
     public Card removeCard(int index,String player) {
         if (index<=10) {
             if (player.equals("player")) {
@@ -90,22 +124,43 @@ public class GameHandler {
         return null;
     }
 
+    /**
+     * Getter del Jugador
+     * @return Jugador
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * El getter del enemigo
+     * @return el enemigo
+     */
     public Player getEnemy() {
         return enemy;
     }
 
+    /**
+     * Getter de un minión en vase a su indice de carta seleccionada
+     * @param cardSelection
+     * @return Minion elegido
+     */
     public Esbirro getPlayerMinion(int cardSelection) {
         return playerMinions[cardSelection - 11];
     }
 
+    /**
+     * Getter de un minion enemigo en base a una carta seleccionada
+     * @param cardSelection
+     * @return Minion enemigo elegido
+     */
     public Esbirro getEnemyMinion(int cardSelection) {
         return enemyMinions[cardSelection - 1];
     }
 
+    /**
+     * Reseteo del cooldown del minion después de ser usado en un turno
+     */
     public void resetMinionsCD() {
         for (Esbirro minion:playerMinions) {
             if (minion != null) {
@@ -114,28 +169,50 @@ public class GameHandler {
         }
     }
 
+    /**
+     * Getter de la mano del enemigo
+     * @return Mano del enemigo
+     */
     public Hand getEnemyCards() {
         return enemyCards;
     }
 
+    /**
+     * Getter de la mano del jugador
+     * @return mano del jugador
+     */
     public Hand getPlayerCards() {
         return playerCards;
     }
 
-
+    /**
+     * Elimina un minion del jugador en base a su índice
+     * @param minionIndex
+     */
     public void removeFriendlyMinion(int minionIndex) {
         playerMinions[minionIndex - 1] = null;
     }
 
+    /**
+     * Elimina un minion enemigo en base a su índice
+     * @param minionIndex
+     */
     public void removeEnemyMinion(int minionIndex) {
         enemyMinions[minionIndex - 1] = null;
 
     }
 
+    /**
+     * Getter del messenger para enviar mensajes desde diferentes partes del código
+     */
     public Messenger getMessenger() {
         return messenger;
     }
 
+    /**
+     * Getter del Deck del jugador
+     * @return Deck del jugador
+     */
     public Deck getPlayerDeck() {
         return playerDeck;
     }

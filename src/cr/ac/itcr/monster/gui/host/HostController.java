@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-
+/**
+ * Es quién se encarga de la logistica por parte de la ventana del Host
+ */
 public class HostController {
 
     @FXML
@@ -21,6 +23,11 @@ public class HostController {
     @FXML
     public Label PORTField;
 
+    /**
+     * Hace el set up del host muestra las ventana con la información pertinente
+     * @param stage
+     * @throws UnknownHostException
+     */
     //Se muestra la dir IP a conectar
     @FXML
     public void setup(Stage stage) throws UnknownHostException {
@@ -35,6 +42,10 @@ public class HostController {
         });
     }
 
+    /**
+     * Dirige la acción del button para devolverse al menú princippal
+     * @param actionEvent
+     */
     //Vuelve al menú
     @FXML
     private void cancelButtonAction(ActionEvent actionEvent){

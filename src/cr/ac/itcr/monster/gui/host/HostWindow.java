@@ -9,9 +9,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Es básicamente la clase que se encarga del GUI de un Host
+ */
 public class HostWindow {
     private static Stage stage;
 
+    /**
+     * Builder construye la ventana y la guarda en la variable destinada a esto
+     * @throws IOException
+     */
     public HostWindow() throws IOException {
         stage = new Stage();
         stage.initOwner(App.getStage());
@@ -30,6 +37,9 @@ public class HostWindow {
         stage.show();
     }
 
+    /**
+     * Metodo para el caso que se cierre la ventana
+     */
     public static void closeHostWindow(){
         stage.close();
     }
