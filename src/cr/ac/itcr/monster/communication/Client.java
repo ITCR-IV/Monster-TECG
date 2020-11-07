@@ -92,7 +92,6 @@ public class Client implements Runnable,Messenger {
 
         String type = parts[0];
         String info = parts[1];
-        String other = parts[2];
 
         switch (type) {
             case "CONNECTION SUCCESFUL":
@@ -113,17 +112,17 @@ public class Client implements Runnable,Messenger {
                         Platform.runLater(()->GameController.getInstance().Freeze(true));
                         break;
                     case "Curar":
-                        Platform.runLater(()->GameController.getInstance().heal(Integer.parseInt(other),"enemy"));
+                        Platform.runLater(()->GameController.getInstance().heal(Integer.parseInt(parts[2]),"enemy"));
                         break;
                     case "Bola de Fuego":
-                        if (other==""){
+                        if (parts[2]=="enemigo"){
                             Platform.runLater(()->GameController.getInstance().takeDamage(200,"player"));
                         }else{
-                            Platform.runLater(()->GameController.getInstance().damageMinion(200,Integer.parseInt(other),"player"));
+                            Platform.runLater(()->GameController.getInstance().damageMinion(200,Integer.parseInt(parts[2]),"player"));
                         }
                         break;
                     case "Asesinar":
-                        Platform.runLater(()->GameController.getInstance().killMinion(Integer.parseInt(other),"player"));
+                        Platform.runLater(()->GameController.getInstance().killMinion(Integer.parseInt(parts[2]),"player"));
                         break;
                 }
                 break;

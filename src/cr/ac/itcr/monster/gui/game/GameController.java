@@ -498,7 +498,7 @@ public class GameController {
                     switch (card.getNombre()) {
                         case "Bola de Fuego":
                             takeDamage(card.getAtaque(),"enemy");
-                            gameHandler.getMessenger().sendMsg("HECHIZO-Bola de Fuego-");
+                            gameHandler.getMessenger().sendMsg("HECHIZO-Bola de Fuego-enemigo");
                             break;
                         case "Congelar":
                             break;
