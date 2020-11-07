@@ -108,6 +108,21 @@ public class Client implements Runnable,Messenger {
                 break;
             case "ACTION":
                 switch (info){
+                    case "switch turn":
+                        Platform.runLater(() -> {
+                            GameController.getInstance().endTurnButton.setDisable(false);
+                            GameController.getInstance().endTurnButton.fire();});
+                        break;
+                    case "draw":
+                        Platform.runLater(() -> GameController.getInstance().enemyDraw(parts[2]));
+                        break;
+                }
+                break;
+            case "ESBIRRO":
+                Platform.runLater(() -> GameController.getInstance().addMinion(Card.getCardByName(parts[1]), "enemy"));
+                break;
+            case "HECHIZO":
+                switch (info){
                     case"freeze":
                         Platform.runLater(()->GameController.getInstance().Freeze(true));
                         break;
@@ -124,16 +139,6 @@ public class Client implements Runnable,Messenger {
                     case "Asesinar":
                         Platform.runLater(()->GameController.getInstance().killMinion(Integer.parseInt(parts[2]),"player"));
                         break;
-                }
-                break;
-            case "ESBIRRO":
-                Platform.runLater(() -> GameController.getInstance().addMinion(Card.getCardByName(parts[1]), "enemy"));
-                break;
-            case"HECHIZO":
-                switch (info){
-                    case "freeze":
-                        Platform.runLater(()->GameController.getInstance().Freeze(true));
-                        break;
 
                 }
                 break;
@@ -143,12 +148,14 @@ public class Client implements Runnable,Messenger {
                         Platform.runLater(()-> {
                             int damage = Card.getCardByName(parts[2]).getAtaque();
                             GameController.getInstance().takeDamage(damage,"player");
+                            GameController.getInstance().getGameHandler().getHistory().addEvent(incomingMsg);
                         });
                         break;
                     default:
                         Platform.runLater(()-> {
                             int damage = Card.getCardByName(parts[2]).getAtaque();
                             GameController.getInstance().damageMinion(damage, Integer.parseInt(info),"player");
+                            GameController.getInstance().getGameHandler().getHistory().addEvent(incomingMsg);
                         });
                         break;
                 }
