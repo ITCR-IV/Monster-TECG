@@ -79,17 +79,20 @@ public class GameHandler {
         return i;
     }
 
-    public void removeCard(int index,String player) {
+    public Card removeCard(int index,String player) {
         if (index<=10) {
             if (player.equals("player")) {
                 Card card = playerCards.removeCard(index);
                 playerDeck.getDiscardPile().add(card);
+                return card;
             } else if (player.equals("enemy")) {
-                enemyCards.removeCard(index);
+                Card card = enemyCards.removeCard(index);
+                return card;
             } else{
                 System.out.println("Called removeCard in GameHandler with wrong player type specification");
             }
         }
+        return null;
     }
 
     public Player getPlayer() {

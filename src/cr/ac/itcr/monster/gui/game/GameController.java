@@ -159,7 +159,21 @@ public class GameController {
     }
 
     public void spendMana(int spentMana, String playerType) {
-
+        if (playerType.equals("player")) {
+            ProgressBar manaBar = (ProgressBar) player.getChildren().get(1);
+            Text manaText = (Text) player.getChildren().get(3);
+            double mana = gameHandler.getPlayer().pierdeMana(spentMana);
+            manaBar.setProgress(mana/1000);
+            manaText.setText((int) mana+"/1000");
+        } else if (playerType.equals("enemy")) {
+            ProgressBar manaBar = (ProgressBar) enemy.getChildren().get(1);
+            Text manaText = (Text) enemy.getChildren().get(3);
+            double mana = gameHandler.getEnemy().pierdeMana(spentMana);
+            manaBar.setProgress(mana/1000);
+            manaText.setText((int) mana+"/1000");
+        } else {
+            System.out.println("Llamada con playerType incorrecto a spendMana en GameController");
+        }
     }
 
     public void drawCard() {
@@ -298,6 +312,7 @@ public class GameController {
             if (card.getCoste()>gameHandler.getPlayer().getMana()) {
                 return;
             }
+            spendMana(card.getCoste(),"player");
             String type = card.getType();
             switch (type) {
                 case "Esbirro":
@@ -342,7 +357,8 @@ public class GameController {
             shape.setStroke(Color.rgb(244, 244, 244));
             shape.setFill(Color.rgb(244, 244, 244));
         }
-        gameHandler.removeCard(enemyHandSize,"enemy");
+        Card card = gameHandler.removeCard(enemyHandSize,"enemy");
+        spendMana(card.getCoste(),"enemy");
         enemyHandSize--;
     }
 }
