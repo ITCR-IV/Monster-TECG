@@ -27,6 +27,23 @@ public class History {
     }
 
     public void addEvent(String data) {
+        String info = parseData(data);
+        Event newEvent = new Event(info);
+
+        if (this.head == null) {
+            this.head = newEvent;
+            this.size++;
+            return;
+        }
+
+        Event current = this.head;
+        while (current.getNext() != null) {
+            current = current.getNext();
+        }
+
+        newEvent.setPrev(current);
+        current.setNext(newEvent);
+        this.size++;
 
     }
 
@@ -37,25 +54,11 @@ public class History {
         String info = parts[1];
 
         switch (type) {
-            case "ESBIRRO":
-                Platform.runLater(() -> GameController.getInstance().addMinion(Card.getCardByName(parts[1]), "enemy"));
-
-                break;
-            case "HECHIZO":
-                switch (info){
-                    case"freeze":
-                        Platform.runLater(()->GameController.getInstance().Freeze(true));
-                        break;
-                    case "Curar":
-                        break;
-                }
-                break;
             case "ATAQUE":
                 Card card = Card.getCardByName(parts[2]);
                 switch (info) {
                     case "enemigo":
                         return ("Fui atacado por " +card.getAtaque()+" puntos de vida por el "+card.getNombre()+" enemigo");
-                        break;
                     case "amigo":
                         return ("Ataqué al enemigo con mi " +card.getNombre()+" y le quité "+card.getAtaque()+" puntos de vida");
                     default:
@@ -67,9 +70,8 @@ public class History {
                             Esbirro esbirro1 = GameController.getInstance().getGameHandler().getEnemyMinion(Integer.parseInt(info));
                             return ("El "+esbirro1.getNombre()+ " enemigo atacó a mi" + parts[2] + "por " + Card.getCardByName(info).getAtaque()
                             + " puntos de daño");                        }
-                        break;
                 }
-                break;
         }
+        return "placeholder";
     }
 }
