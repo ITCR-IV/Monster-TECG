@@ -200,6 +200,23 @@ public class GameController {
         }
     }
 
+    public void damageMinion(int damageDealt, int minionIndex, String playerType) {
+        if (playerType.equals("player")) {
+            Text lifeText = (Text) playerMinions.get(minionIndex - 1).getChildren().get(3);
+            int totalLife = gameHandler.getPlayerMinion(minionIndex).getVidaTotal();
+            double life = gameHandler.getPlayerMinion(minionIndex).damage(damageDealt);
+
+            lifeText.setText((int) life+"/"+totalLife);
+        } else if (playerType.equals("enemy")) {
+            Text lifeText = (Text) enemyMinions.get(minionIndex - 1).getChildren().get(3);
+            int totalLife = gameHandler.getEnemyMinion(minionIndex).getVidaTotal();
+            double life = gameHandler.getEnemyMinion(minionIndex).damage(damageDealt);
+            lifeText.setText((int) life+"/"+totalLife);
+        } else {
+            System.out.println("Llamada con playerType incorrecto a damageMinion en GameController");
+        }
+    }
+
     public void takeDamage(int damageDealt, String playerType) {
         if (playerType.equals("player")) {
             ProgressBar lifeBar = (ProgressBar) player.getChildren().get(0);
@@ -310,7 +327,23 @@ public class GameController {
         if (!targeting) {
             return;
         }
-        //Card card =
+        if (cardSelection <= 10) {
+            Card card = gameHandler.getPlayerCard(cardSelection);
+            if (card.getCoste() > gameHandler.getPlayer().getMana()) {
+                return;
+            }
+            String type = card.getType();
+            switch (type) {
+                case "Hechizo":
+                    //Aquí va lo que sucede con los hechizos targeted
+                    break;
+            }
+        } else { //este else siginifica que se ataca con un esbirro
+            Esbirro esbirro = gameHandler.getPlayerMinion(cardSelection);
+            damageMinion(esbirro.getAtaque(),index,"enemy");
+            gameHandler.getPlayerMinion(cardSelection).setCD(true);
+        }
+        resetCardSelection();
     }
 
     public void targetEnemy(MouseEvent mouseEvent) {
