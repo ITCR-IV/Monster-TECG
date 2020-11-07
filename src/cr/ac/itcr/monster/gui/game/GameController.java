@@ -60,6 +60,7 @@ public class GameController {
     private int enemyHandSize;
     private int cardSelection;
     private boolean targeting;
+    private boolean Freeze=false;
 
     public void setup(String player) {
         instance = this;
@@ -392,8 +393,37 @@ public class GameController {
                     spendMana(card.getCoste(), "player");
                     break;
                 case "Hechizo":
-                    gameHandler.spellplayed(card);
-                    break;
+                        switch (card.getNombre()) {
+                            case "Bola de Fuego":
+                                break;
+                            case "Congelar":
+                                Freeze(true);
+                                break;
+                            case "Curar":
+                                heal((int) Math.random()*501,"player");
+                                break;
+                            case "Poder Supremo":
+                                break;
+                            case "Robar Carta":
+                                int robar=(int) (Math.random()*getInstance().enemyDeckSize);
+                                gameHandler.getPlayerCards().addCard(gameHandler.getEnemyCards().removeCard(++robar));
+                                int robar2=(int) (Math.random()*getInstance().enemyDeckSize);
+                                gameHandler.getPlayerCards().addCard(gameHandler.getEnemyCards().removeCard(++robar2));
+                                break;
+
+                            case "Recuperar Cartas":
+
+                                break;
+                            case "Asesinar":
+                                break;
+                            case "Destrucción":
+                                break;
+                            case "Refill":
+                                break;
+                            case "Conversión":
+                                break;
+
+                        }
             }
         } else { //este else siginifica que se juega un esbirro
             Rectangle rect = (Rectangle) playerMinions.get(cardSelection-11).getChildren().get(0);
@@ -405,6 +435,13 @@ public class GameController {
             resetCardSelection();
         }
 
+    }
+    public void Freeze (boolean freeze){
+        if (freeze){
+            this.Freeze=true;
+        }else{
+            this.Freeze=false;
+        }
     }
 
     public void removeCard(int index) {
