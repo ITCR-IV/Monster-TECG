@@ -226,11 +226,18 @@ public class GameController {
             double life = gameHandler.getPlayerMinion(minionIndex).damage(damageDealt);
 
             lifeText.setText((int) life+"/"+totalLife);
+
+            if (life == 0) {
+                killMinion(minionIndex,playerType);
+            }
         } else if (playerType.equals("enemy")) {
             Text lifeText = (Text) enemyMinions.get(minionIndex - 1).getChildren().get(3);
             int totalLife = gameHandler.getEnemyMinion(minionIndex).getVidaTotal();
             double life = gameHandler.getEnemyMinion(minionIndex).damage(damageDealt);
             lifeText.setText((int) life+"/"+totalLife);
+            if (life == 0) {
+                killMinion(minionIndex,playerType);
+            }
         } else {
             System.out.println("Llamada con playerType incorrecto a damageMinion en GameController");
         }
