@@ -6,6 +6,7 @@ import cr.ac.itcr.monster.communication.Host;
 import cr.ac.itcr.monster.communication.Messenger;
 import cr.ac.itcr.monster.game.GameHandler;
 import cr.ac.itcr.monster.game.cards.Card;
+import cr.ac.itcr.monster.gui.game.info.InfoWindow;
 import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,28 +33,17 @@ public class GameController {
 
     //GUI references
     @FXML
-    private StackPane playerDeck;
+    private StackPane playerDeck,enemyDeck;
     @FXML
-    private StackPane enemyDeck;
+    private ArrayList<StackPane> playerCards,enemyCards;
     @FXML
-    private ArrayList<StackPane> playerCards;
+    private ArrayList<StackPane> playerMinions,enemyMinions;
     @FXML
-    private ArrayList<StackPane> enemyCards;
-    @FXML
-    private ArrayList<StackPane> playerMinions;
-    @FXML
-    private ArrayList<StackPane> enemyMinions;
-    @FXML
-    private Pane enemy;
-    @FXML
-    private Pane player;
+    private Pane enemy,player;
 
     //Buttons
     @FXML
-    private Button playCardButton;
-    @FXML
-    private Button infoButton;
-    @FXML
+    private Button playCardButton, infoButton;
     public Button endTurnButton;
 
     //logical variables
@@ -224,5 +214,11 @@ public class GameController {
 
     public void targetEnemy(MouseEvent mouseEvent) {
         System.out.println("clicked on enemy");
+    }
+
+    public void displayInfo(ActionEvent actionEvent) {
+        if (cardSelection>0 && cardSelection<=10) {
+            InfoWindow info = new InfoWindow(gameHandler.getPlayerCard(cardSelection));
+        }
     }
 }

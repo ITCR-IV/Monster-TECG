@@ -27,7 +27,7 @@ public class InfoWindow {
             controller.setup(card);
 
             //setup scene
-            Scene scene = new Scene(root, 250, 150);//setup the scene
+            Scene scene = new Scene(root, 300, 200);//setup the scene
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

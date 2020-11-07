@@ -76,7 +76,7 @@
   },
   {
     "nombre":"Hombre Lobo",
-    "type":"Esbirros",
+    "type":"Esbirro",
     "vida":400,
     "ataque":175,
     "coste":500,
@@ -84,7 +84,7 @@
   },
   {
     "nombre":"Troll",
-    "type":"Esbirros",
+    "type":"Esbirro",
     "vida":250,
     "ataque":75,
     "coste":200,
@@ -92,7 +92,7 @@
   },
   {
     "nombre":"Duende",
-    "type":"Esbirros",
+    "type":"Esbirro",
     "vida":100,
     "ataque":50,
     "coste":25,
@@ -100,14 +100,14 @@
   },
   {
     "nombre":"Hada",
-    "type":"Esbirros",
+    "type":"Esbirro",
     "vida":1000,
     "ataque":20,
     "coste":350,
     "descripcion":""
   },
   { "nombre":"Minotauro",
-    "type":"Esbirros",
+    "type":"Esbirro",
     "vida":300,
     "ataque":350,
     "coste":800,
@@ -115,7 +115,7 @@
   },
   {
     "nombre":"Medusa",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":100,
    "ataque":200,
    "coste":200,
@@ -123,7 +123,7 @@
   },
   {
     "nombre":"Enano",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":50,
     "ataque":200,
    "coste":75,
@@ -131,15 +131,15 @@
   },
   {
     "nombre":"Dragón",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":1000,
     "ataque":375,
-   "coste":1100,
+   "coste":1000,
    "descripcion":""
   },
   {
     "nombre":"Demonio",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":250,
     "ataque":50,
    "coste":75,
@@ -147,7 +147,7 @@
   },
   {
     "nombre":"Sirena",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":300,
     "ataque":75,
    "coste":125,
@@ -155,7 +155,7 @@
   },
   {
     "nombre":"Vampiro",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":250,
     "ataque":100,
    "coste":75,
@@ -163,7 +163,7 @@
   },
   {
     "nombre":"Gigante",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":800,
     "ataque":100,
    "coste":750,
@@ -171,7 +171,7 @@
   },
   {
     "nombre":"Unicornio",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":500,
    "ataque":200,
     "coste":250,
@@ -179,7 +179,7 @@
   },
   {
     "nombre":"Crusader",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":500,
    "ataque":300,
     "coste":700,
@@ -187,7 +187,7 @@
   },
   {
     "nombre":"Kraken",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":500,
    "ataque":200,
     "coste":550,
@@ -195,7 +195,7 @@
   },
   {
     "nombre":"Centauro",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":400,
    "ataque":125,
    "coste":200,
@@ -203,7 +203,7 @@
   },
   {
     "nombre":"Grifo",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":250,
     "ataque":150,
    "coste":100,
@@ -211,7 +211,7 @@
   },
   {
     "nombre":"Quimera",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":400,
    "ataque":300,
     "coste":500,
@@ -219,7 +219,7 @@
     },
   {
     "nombre":"Kelpie",
-    "type":"Esbirros",
+    "type":"Esbirro",
     "vida":250,
     "ataque":75,
     "coste":75,
@@ -227,7 +227,7 @@
   },
   {
     "nombre":"Fénix",
-   "type":"Esbirros",
+   "type":"Esbirro",
    "vida":600,
    "ataque":150,
    "coste":450,
@@ -235,14 +235,14 @@
   },
   {
     "nombre":"Mal de ojo",
-    "type":"Secretos",
+    "type":"Secreto",
     "vida":0,
     "ataque":0,
     "coste":350,
     "descripcion":"Si se recibe más de 200 de daño se retornará un 50% del daño al contrincante automáticamente"
   },
   { "nombre":"Maldición",
-    "type":"Secretos",
+    "type":"Secreto",
     "vida":0,
     "ataque":0,
     "coste":500,
@@ -250,7 +250,7 @@
   },
   {
     "nombre":"Posesión",
-    "type":"Secretos",
+    "type":"Secreto",
     "vida":0,
     "ataque":0,
     "coste":800,
@@ -258,7 +258,7 @@
   },
   {
     "nombre":"Kit médico",
-    "type":"Secretos",
+    "type":"Secreto",
     "vida":0,
     "ataque":0,
     "coste":100,
@@ -266,7 +266,7 @@
   },
   {
     "nombre":"Pócima Curativa",
-    "type":"Secretos",
+    "type":"Secreto",
     "vida":0,
     "ataque":0,
     "coste":350,
@@ -274,7 +274,7 @@
   },
   {
     "nombre":"Fuente de juventud",
-    "type":"Secretos",
+    "type":"Secreto",
     "vida":0,
     "ataque":0,
     "coste":700,
@@ -282,7 +282,7 @@
   },
     {
       "nombre":"Chivo expiatorio",
-    "type":"Secretos",
+    "type":"Secreto",
     "vida":0,
     "ataque":0,
     "coste":150,
@@ -290,7 +290,7 @@
   },
   {
     "nombre":"Finalizador",
-    "type":"Secretos",
+    "type":"Secreto",
     "vida":0,
     "ataque":0,
     "coste":200,
@@ -298,7 +298,7 @@
   },
   {
     "nombre":"Hidromiel",
-    "type":"Secretos",
+    "type":"Secreto",
     "vida":0,
     "ataque":0,
     "coste":500,
@@ -306,7 +306,7 @@
   },
   {
     "nombre":"Varita de poder",
-    "type":"Secretos",
+    "type":"Secreto",
     "vida":0,
     "ataque":0,
     "coste":1000,

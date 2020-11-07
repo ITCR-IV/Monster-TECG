@@ -29,22 +29,22 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="nameLabel" layoutX="76.0" layoutY="10.0" prefHeight="18.0" prefWidth="195.0" text="Minotauro de diez mil cabezas">
+      <Label fx:id="nameLabel" layoutX="80.0" layoutY="10.0" prefHeight="18.0" prefWidth="195.0" text="Minotauro de diez mil cabezas">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="typeLabel" layoutX="52.0" layoutY="35.0" prefHeight="18.0" prefWidth="195.0" text="Esbirro">
+      <Label fx:id="typeLabel" layoutX="55.0" layoutY="35.0" prefHeight="18.0" prefWidth="195.0" text="Esbirro">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="manaLabel" layoutX="59.0" layoutY="60.0" prefHeight="18.0" prefWidth="195.0" text="1000">
+      <Label fx:id="manaLabel" layoutX="63.0" layoutY="60.0" prefHeight="18.0" prefWidth="195.0" text="1000">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="descriptionLabel" alignment="TOP_LEFT" layoutX="90.0" layoutY="85.0" maxHeight="70.0" maxWidth="195.0" prefHeight="70.0" prefWidth="195.0" text="hace una cosa" wrapText="true">
+      <Label fx:id="descriptionLabel" alignment="TOP_LEFT" layoutX="94.0" layoutY="85.0" maxHeight="70.0" maxWidth="195.0" prefHeight="70.0" prefWidth="195.0" text="hace una cosa" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>

@@ -35,7 +35,7 @@ public class InfoController {
         typeLabel.setText(card.getType());
         manaLabel.setText(String.valueOf(card.getCoste()));
 
-        if (card.getType().equals("Esbirros")) {
+        if (card.getType().equals("Esbirro")) {
             descriptionLabel.setText(card.getNombre()+" con " + card.getVida() + " de vida y "+ card.getAtaque() +" de ataque." );
         } else {
             descriptionLabel.setText(card.getDescripcion());

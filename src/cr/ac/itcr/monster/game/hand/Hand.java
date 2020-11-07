@@ -40,6 +40,17 @@ public class Hand { //hand is indexed starting at 0
         this.size++;
     }
 
+    public Card getCard(int position) {
+        HandCard current = this.head;
+        if (current == null) {
+            System.out.println("Error: getCard called on empty hand"); //for possible bugfixing purposes
+        }
+        for (int i = 1; i < position; i++) { //hand is indexed starting at 1
+            current = current.getNext();
+        }
+        return current.getInfo();
+    }
+
     public Card removeCard(int position) {
         HandCard current = this.head;
 

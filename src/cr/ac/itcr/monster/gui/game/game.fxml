@@ -333,7 +333,7 @@
 
       <Button fx:id="endTurnButton" layoutX="725.0" layoutY="279.0" mnemonicParsing="false" onAction="#switchTurn" text="Terminar&#10;turno&#10;" textAlignment="CENTER" />
       <Button fx:id="playCardButton" layoutX="11.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Usar Carta" />
-      <Button fx:id="infoButton" layoutX="98.0" layoutY="456.0" mnemonicParsing="false" prefWidth="101.0" text="Ver información" />
+      <Button fx:id="infoButton" layoutX="98.0" layoutY="456.0" mnemonicParsing="false" prefWidth="101.0" text="Ver información" onAction="#displayInfo" />
 
    </children>
 </Pane>

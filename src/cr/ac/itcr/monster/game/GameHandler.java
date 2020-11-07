@@ -34,6 +34,10 @@ public class GameHandler {
         }
     }
 
+    public Card getPlayerCard(int pos) {
+        return playerCards.getCard(pos);
+    }
+
     public Card drawCard() {
         Card drawnCard = playerDeck.draw();
         playerCards.addCard(drawnCard);
