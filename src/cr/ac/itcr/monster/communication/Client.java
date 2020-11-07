@@ -13,7 +13,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class Client implements Runnable {
+public class Client implements Runnable,Messenger {
     private static volatile Client instance;
 
     private String host;
@@ -62,7 +62,7 @@ public class Client implements Runnable {
     }
 
     private void handleMsg(String incomingMsg) {
-        String[] parts = incomingMsg.split("-", 2);
+        String[] parts = incomingMsg.split("-", 3);
 
         String type = parts[0];
         String info = parts[1];
@@ -83,9 +83,12 @@ public class Client implements Runnable {
             case "ACTION":
                 switch (info){
                     case "switch turn":
-                            Platform.runLater(() -> {
-                                GameController.getInstance().endTurnButton.setDisable(false);
-                                GameController.getInstance().endTurnButton.fire();});
+                        Platform.runLater(() -> {
+                            GameController.getInstance().endTurnButton.setDisable(false);
+                            GameController.getInstance().endTurnButton.fire();});
+                        break;
+                    case "draw":
+                        Platform.runLater(() -> GameController.getInstance().enemyDraw(parts[2]));
                         break;
                 }
                 break;

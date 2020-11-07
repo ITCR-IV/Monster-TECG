@@ -13,7 +13,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
-public class Host implements Runnable {
+public class Host implements Runnable, Messenger{
 
     private static volatile Host instance;
 
@@ -61,7 +61,7 @@ public class Host implements Runnable {
     }
 
     private void handleMsg(String incomingMsg) throws IOException {
-        String[] parts = incomingMsg.split("-", 2);
+        String[] parts = incomingMsg.split("-", 3);
 
         String type = parts[0];
         String info = parts[1];
@@ -86,6 +86,9 @@ public class Host implements Runnable {
                         Platform.runLater(() -> {
                             GameController.getInstance().endTurnButton.setDisable(false);
                             GameController.getInstance().endTurnButton.fire();});
+                        break;
+                    case "draw":
+                        Platform.runLater(() -> GameController.getInstance().enemyDraw(parts[2]));
                         break;
                 }
                 break;

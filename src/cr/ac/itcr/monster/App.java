@@ -2,6 +2,7 @@ package cr.ac.itcr.monster;
 
 import cr.ac.itcr.monster.communication.Client;
 import cr.ac.itcr.monster.communication.Host;
+import cr.ac.itcr.monster.game.cards.Card;
 import cr.ac.itcr.monster.gui.game.GameController;
 import cr.ac.itcr.monster.gui.host.HostController;
 import javafx.application.Application;
@@ -68,6 +69,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        Card.loadCards();
         launch(args);
     }
 }
