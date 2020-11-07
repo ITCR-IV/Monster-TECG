@@ -1,6 +1,7 @@
 package cr.ac.itcr.monster.communication;
 
 import cr.ac.itcr.monster.App;
+import cr.ac.itcr.monster.game.cards.Card;
 import cr.ac.itcr.monster.gui.game.GameController;
 import cr.ac.itcr.monster.gui.join.JoinWindow;
 import javafx.application.Platform;
@@ -91,6 +92,9 @@ public class Client implements Runnable,Messenger {
                         Platform.runLater(() -> GameController.getInstance().enemyDraw(parts[2]));
                         break;
                 }
+                break;
+            case "ESBIRRO":
+                Platform.runLater(() -> GameController.getInstance().addMinion(Card.getCardByName(parts[1]), "enemy"));
                 break;
         }
 

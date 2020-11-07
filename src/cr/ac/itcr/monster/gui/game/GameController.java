@@ -239,6 +239,7 @@ public class GameController {
                 guiMinion = playerMinions.get(position);
             } else if (player.equals("enemy")) {
                 guiMinion = enemyMinions.get(position);
+                removeEnemyCard();
             }
 
             ObservableList<Node> elements = guiMinion.getChildren();
@@ -301,6 +302,16 @@ public class GameController {
                 handSize--;
         } else {
         }
-        gameHandler.removeCard(index);
+        gameHandler.removeCard(index,"player");
+    }
+
+    public void removeEnemyCard() {
+        for (Node item : enemyCards.get(enemyHandSize-1).getChildren()) {
+            Shape shape = (Shape) item;
+            shape.setStroke(Color.rgb(244, 244, 244));
+            shape.setFill(Color.rgb(244, 244, 244));
+        }
+        gameHandler.removeCard(enemyHandSize,"enemy");
+        enemyHandSize--;
     }
 }

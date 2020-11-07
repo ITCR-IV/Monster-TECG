@@ -60,6 +60,7 @@ public class GameHandler {
                 }
             }
             playerMinions[i] = new Esbirro(card.getVida(), card.getAtaque());
+            messenger.sendMsg("ESBIRRO-"+card.getNombre());
         } else if (playerType == "enemy") {
             while (enemyMinions[i]!=null) {
                 i++;
@@ -76,10 +77,16 @@ public class GameHandler {
         return i;
     }
 
-    public void removeCard(int index) {
+    public void removeCard(int index,String player) {
         if (index<=10) {
-            Card card = playerCards.removeCard(index);
-            playerDeck.getDiscardPile().add(card);
+            if (player.equals("player")) {
+                Card card = playerCards.removeCard(index);
+                playerDeck.getDiscardPile().add(card);
+            } else if (player.equals("enemy")) {
+                enemyCards.removeCard(index);
+            } else{
+                System.out.println("Called removeCard in GameHandler with wrong player type specification");
+            }
         }
     }
 }
