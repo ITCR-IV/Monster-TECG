@@ -42,7 +42,7 @@ public class GameController {
 
     //Buttons
     @FXML
-    private Button playCardButton, infoButton;
+    private Button playCardButton,infoButton;
     public Button endTurnButton;
 
     //logical variables
@@ -68,6 +68,7 @@ public class GameController {
             this.turn = false;
             System.out.println("It's not your turn :(");
             endTurnButton.setDisable(true);
+            playCardButton.setDisable(true);
         }
         gameHandler = new GameHandler(playerType);
 
@@ -122,9 +123,11 @@ public class GameController {
         this.turn = !turn;
             if (turn) { //empezar turno
                 endTurnButton.setDisable(false);
+                playCardButton.setDisable(false);
                 drawCard();
             } else { //terminar turno
                 endTurnButton.setDisable(true);
+                playCardButton.setDisable(true);
                 if (playerType.equals("host")) {
                     Host.getHost().sendMsg("ACTION-switch turn");
                 } else if (playerType.equals("client")) {
