@@ -273,7 +273,7 @@
     "descripcion":"Si la vida llega a un 10% de esta se regenerará hasta llegar a un 50%"
   },
   {
-    "nombre":"Fuente de la juventud",
+    "nombre":"Fuente de juventud",
     "type":"Secretos",
     "vida":0,
     "ataque":0,

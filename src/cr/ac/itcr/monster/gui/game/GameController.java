@@ -82,7 +82,7 @@ public class GameController {
         }
         gameHandler = new GameHandler(playerType);
 
-        int i = 0;
+        int i = 1;
         for (StackPane stackPane : playerCards) {
             int forI = i; //variable must be copied to effectively final variable for it to work
             stackPane.setOnMouseClicked(event -> selectCard(forI));
@@ -110,7 +110,7 @@ public class GameController {
                 shape.setFill(Color.rgb(159, 159, 159));
             }
         }
-        i = 0;
+        i = 1;
         for (StackPane stackPane : enemyMinions) {
             int finalI = i;
             stackPane.setOnMouseClicked(event -> targetMinon(finalI));
@@ -131,11 +131,10 @@ public class GameController {
     @FXML
     public void switchTurn(ActionEvent actionEvent) {
         this.turn = !turn;
-            if (turn) {
-                System.out.println("It's your turn again!");
+            if (turn) { //empezar turno
                 endTurnButton.setDisable(false);
-            } else {
-                System.out.println("It's no longer your turn :/");
+                drawCard();
+            } else { //terminar turno
                 endTurnButton.setDisable(true);
                 if (playerType.equals("host")) {
                     Host.getHost().sendMsg("ACTION-switch turn");
@@ -143,6 +142,7 @@ public class GameController {
                     Client.getClient().sendMsg("ACTION-switch turn");
                 }
             }
+        resetCardSelection();
     }
 
     public void drawCard() {
@@ -186,17 +186,36 @@ public class GameController {
     }
 
     public void selectCard(int index) {
-        if (index < 10) { //cartas de mano
-            if (index >= handSize) {
+        Rectangle rect;
+        if (index <= 10) { //cartas de mano
+            if (index > handSize) {
                 return;
             }
+            rect = (Rectangle) playerCards.get(index-1).getChildren().get(0);
         } else{ //minions
-            if (index-10 >= friendlyMinionsSize) {
+            if (index-10 > friendlyMinionsSize) {
                 return;
             }
+            rect = (Rectangle) playerMinions.get(index-11).getChildren().get(0);
         }
+        rect.setStroke(Color.DEEPSKYBLUE);
+
+        resetCardSelection();
         this.cardSelection = index;
         System.out.println(index);
+    }
+
+    public void resetCardSelection() {
+        Rectangle rect;
+        if (cardSelection > 0) {
+            if (this.cardSelection < 10) {
+                rect = (Rectangle) playerCards.get(cardSelection - 1).getChildren().get(0);
+            } else {
+                rect = (Rectangle) playerMinions.get(cardSelection - 11).getChildren().get(0);
+            }
+            rect.setStroke(Color.BLACK);
+        }
+        this.cardSelection = 0;
     }
 
     public void targetMinon(int index) {

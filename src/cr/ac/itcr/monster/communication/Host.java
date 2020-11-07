@@ -61,7 +61,7 @@ public class Host implements Runnable, Messenger{
     }
 
     private void handleMsg(String incomingMsg) throws IOException {
-        String[] parts = incomingMsg.split("-", 2);
+        String[] parts = incomingMsg.split("-", 3);
 
         String type = parts[0];
         String info = parts[1];

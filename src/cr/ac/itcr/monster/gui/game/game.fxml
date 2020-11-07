@@ -9,6 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 <?import java.util.ArrayList?>
+<?import javafx.scene.effect.ColorAdjust?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.gui.game.GameController">
    <children>
       <Rectangle fill="#9f9f9f" height="300.0" layoutY="150.0" stroke="TRANSPARENT" strokeType="INSIDE" width="800.0" />
@@ -121,7 +122,11 @@
       <Pane fx:id="enemy" prefHeight="150.0" prefWidth="207.0">
          <children>
             <Rectangle onMouseClicked="#targetEnemy" arcHeight="5.0" arcWidth="5.0" fill="#da5e5e" height="42.0" layoutX="43.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
-            <ProgressBar layoutX="15.0" layoutY="71.0" prefHeight="18.0" prefWidth="127.0" progress="1.0" />
+            <ProgressBar layoutX="15.0" layoutY="71.0" prefHeight="18.0" prefWidth="127.0" progress="1.0">
+               <effect>
+                  <ColorAdjust hue="0.80"/>
+               </effect>
+            </ProgressBar>
             <ProgressBar layoutX="15.0" layoutY="118.0" prefHeight="18.0" prefWidth="127.0" progress="0.2" />
             <Text layoutX="15.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" />
             <Text layoutX="142.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000/1000" />
@@ -136,7 +141,11 @@
 
       <Pane fx:id="player" layoutY="450.0" prefHeight="150.0" prefWidth="207.0">
          <children>
-            <ProgressBar layoutX="15.0" layoutY="71.0" prefHeight="18.0" prefWidth="127.0" progress="1.0" />
+            <ProgressBar layoutX="15.0" layoutY="71.0" prefHeight="18.0" prefWidth="127.0" progress="1.0">
+               <effect>
+                  <ColorAdjust hue="0.80"/>
+               </effect>
+            </ProgressBar>
             <ProgressBar layoutX="15.0" layoutY="118.0" prefHeight="18.0" prefWidth="127.0" progress="0.2" />
             <Text layoutX="15.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" />
             <Text layoutX="142.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000/1000" />

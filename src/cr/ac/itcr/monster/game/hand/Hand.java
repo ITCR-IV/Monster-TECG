@@ -18,9 +18,9 @@ public class Hand { //hand is indexed starting at 0
     public void addCard(Card card) {
         HandCard newHandCard = new HandCard(card);
 
-        if (this.size == 9) { //max 10 cards in hand
+        if (this.size == 10) { //max 10 cards in hand
             return;
-        } else if (this.size > 9) {
+        } else if (this.size > 10) {
             System.out.println("Error: Maximum hand capacity surpassed"); //esto es solo para que nos demos cuenta si hicimos algo mal
             return;
         }
@@ -40,18 +40,18 @@ public class Hand { //hand is indexed starting at 0
         this.size++;
     }
 
-    public Object removeCard(int position) {
+    public Card removeCard(int position) {
         HandCard current = this.head;
 
         if (current == null) {
             System.out.println("Error: removeCard called on empty hand"); //for possible bugfixing purposes
-        } else if (position==0) { //in case it's the first one
+        } else if (position==1) { //in case it's the first one
             this.head = current.getNext();
             this.head.setPrevious(null);
             return current.getInfo();
         }
 
-        for (int i = 0; i < position; i++) { //hand is indexed starting at 0
+        for (int i = 1; i < position; i++) { //hand is indexed starting at 1
             current = current.getNext();
         }
 

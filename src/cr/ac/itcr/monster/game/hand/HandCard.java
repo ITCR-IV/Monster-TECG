@@ -5,7 +5,7 @@ import cr.ac.itcr.monster.game.cards.Card;
 
 public class HandCard {
 
-    private Object info;
+    private Card info;
 
     private HandCard next;
     private HandCard previous;
@@ -30,7 +30,7 @@ public class HandCard {
         this.previous = previous;
     }
 
-    public Object getInfo() {
+    public Card getInfo() {
         return info;
     }
 }
