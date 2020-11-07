@@ -136,6 +136,7 @@ public class Host implements Runnable, Messenger{
                     case "Asesinar":
                         Platform.runLater(()->GameController.getInstance().killMinion(Integer.parseInt(other),"player"));
                         break;
+
                 }
                 break;
             case "ATAQUE":

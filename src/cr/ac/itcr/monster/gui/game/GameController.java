@@ -627,6 +627,9 @@ public class GameController {
                             case "Destrucción":
                                 break;
                             case "Refill":
+                                drawCard();
+                                drawCard();
+                                drawCard();
                                 break;
                             case "Conversión":
                                 break;
