@@ -318,6 +318,9 @@ public class GameController {
                 case "Esbirro":
                     addMinion(card,"player");
                     break;
+                case "Hechizo":
+                    gameHandler.spellplayed(card);
+                    break;
             }
         }
         removeCard(cardSelection);

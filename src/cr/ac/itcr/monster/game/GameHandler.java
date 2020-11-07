@@ -94,8 +94,24 @@ public class GameHandler {
         }
         return null;
     }
+    public void spellplayed(Card card) {
+        if (card.getCoste() < player.getMana()) {
+            System.out.println("Not enough mana");
+        } else {
+            switch (card.getNombre()) {
+                case "Bola de Fuego":
+                    break;
+                case "Congelar":
+                    break;
 
-    public Player getPlayer() {
+                case "Heal":
+                    player.recuperaVida((int) (Math.random()*500));
+                    break;
+
+            }
+        }
+    }
+        public Player getPlayer() {
         return player;
     }
 
