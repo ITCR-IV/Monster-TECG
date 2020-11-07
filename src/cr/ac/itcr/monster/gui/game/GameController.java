@@ -1,5 +1,6 @@
 package cr.ac.itcr.monster.gui.game;
 
+import cr.ac.itcr.monster.App;
 import cr.ac.itcr.monster.communication.Client;
 import cr.ac.itcr.monster.communication.Host;
 import cr.ac.itcr.monster.game.GameHandler;
@@ -253,12 +254,18 @@ public class GameController {
 
             lifeBar.setProgress(life/1000);
             lifeText.setText((int) life+"/1000");
+            if (life == 0) {
+                App.endGame();
+            }
         } else if (playerType.equals("enemy")) {
             ProgressBar lifeBar = (ProgressBar) enemy.getChildren().get(0);
             Text lifeText = (Text) enemy.getChildren().get(2);
             double life = gameHandler.getEnemy().pierdeVida(damageDealt);
             lifeBar.setProgress(life/1000);
             lifeText.setText((int) life+"/1000");
+            if (life == 0) {
+                App.endGame();
+            }
         } else {
             System.out.println("Llamada con playerType incorrecto a takeDamage en GameController");
         }

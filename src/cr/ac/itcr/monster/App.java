@@ -4,15 +4,11 @@ import cr.ac.itcr.monster.communication.Client;
 import cr.ac.itcr.monster.communication.Host;
 import cr.ac.itcr.monster.game.cards.Card;
 import cr.ac.itcr.monster.gui.game.GameController;
-import cr.ac.itcr.monster.gui.host.HostController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-
-import java.net.ServerSocket;
 
 public class App extends Application {
     private static Stage stage;
@@ -63,6 +59,15 @@ public class App extends Application {
             gameController.setup("client");
         }
 
+    }
+
+    public static void endGame(){
+        Host.getHost().terminate();
+        Client client = Client.getClient();
+        if (client != null) {
+            client.terminate();
+        }
+        stage.setScene(menuScene);
     }
 
     public static Stage getStage() {
