@@ -131,4 +131,12 @@ public class GameHandler {
         enemyMinions[minionIndex - 1] = null;
 
     }
+
+    public Messenger getMessenger() {
+        return messenger;
+    }
+
+    public Deck getPlayerDeck() {
+        return playerDeck;
+    }
 }

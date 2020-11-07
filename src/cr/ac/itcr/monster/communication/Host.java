@@ -96,6 +96,13 @@ public class Host implements Runnable, Messenger{
             case "ESBIRRO":
                 Platform.runLater(() -> GameController.getInstance().addMinion(Card.getCardByName(parts[1]), "enemy"));
                 break;
+            case "HECHIZO":
+                switch (info){
+                    case"freeze":
+                        Platform.runLater(()->GameController.getInstance().Freeze(true));
+                        break;
+                }
+                break;
         }
     }
 

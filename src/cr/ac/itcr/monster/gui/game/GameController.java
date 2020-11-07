@@ -201,7 +201,6 @@ public class GameController {
             System.out.println("Llamada con playerType incorrecto a heal en GameController");
         }
     }
-
     public void killMinion(int minionIndex, String playerType) {
         if (playerType.equals("player")) {
             for (Node item: playerMinions.get(minionIndex-1).getChildren()) {
@@ -364,7 +363,31 @@ public class GameController {
             String type = card.getType();
             switch (type) {
                 case "Hechizo":
-                    //Aquí va lo que sucede con los hechizos targeted
+                    switch (card.getNombre()) {
+                        case "Bola de Fuego":
+                            damageMinion(card.getAtaque(),index,"enemy");
+                            break;
+                        case "Congelar":
+                            break;
+                        case "Curar":
+                            break;
+                        case "Poder Supremo":
+                            break;
+                        case "Robar Carta":
+                            break;
+                        case "Recuperar Cartas":
+                            break;
+                        case "Asesinar":
+                            damageMinion(gameHandler.getPlayerMinion(index).getVidaTotal(),index,"enemy");
+                            break;
+                        case "Destrucción":
+                            break;
+                        case "Refill":
+                            break;
+                        case "Conversión":
+                            break;
+
+                    }
                     break;
             }
         } else { //este else siginifica que se ataca con un esbirro
@@ -388,7 +411,30 @@ public class GameController {
             String type = card.getType();
             switch (type) {
                 case "Hechizo":
-                    //Aquí va lo que sucede con los hechizos targeted
+                    switch (card.getNombre()) {
+                        case "Bola de Fuego":
+                            takeDamage(card.getAtaque(),"enemy");
+                            break;
+                        case "Congelar":
+                            break;
+                        case "Curar":
+                            break;
+                        case "Poder Supremo":
+                            break;
+                        case "Robar Carta":
+                            break;
+                        case "Recuperar Cartas":
+                            break;
+                        case "Asesinar":
+                            break;
+                        case "Destrucción":
+                            break;
+                        case "Refill":
+                            break;
+                        case "Conversión":
+                            break;
+
+                    }
                     break;
             }
         } else { //este else siginifica que se ataca con un esbirro
@@ -459,7 +505,7 @@ public class GameController {
                             case "Bola de Fuego":
                                 break;
                             case "Congelar":
-                                Freeze(true);
+                                gameHandler.getMessenger().sendMsg("HECHIZO-freeze");
                                 break;
                             case "Curar":
                                 heal((int) Math.random()*501,"player");
@@ -474,7 +520,6 @@ public class GameController {
                                 break;
 
                             case "Recuperar Cartas":
-
                                 break;
                             case "Asesinar":
                                 break;
