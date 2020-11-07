@@ -92,7 +92,6 @@ public class Client implements Runnable,Messenger {
 
         String type = parts[0];
         String info = parts[1];
-        String other = parts[2];
 
         switch (type) {
             case "CONNECTION SUCCESFUL":
@@ -109,31 +108,36 @@ public class Client implements Runnable,Messenger {
                 break;
             case "ACTION":
                 switch (info){
-                    case"freeze":
-                        Platform.runLater(()->GameController.getInstance().Freeze(true));
+                    case "switch turn":
+                        Platform.runLater(() -> {
+                            GameController.getInstance().endTurnButton.setDisable(false);
+                            GameController.getInstance().endTurnButton.fire();});
                         break;
-                    case "Curar":
-                        Platform.runLater(()->GameController.getInstance().heal(Integer.parseInt(other),"enemy"));
-                        break;
-                    case "Bola de Fuego":
-                        if (other==""){
-                            Platform.runLater(()->GameController.getInstance().takeDamage(200,"player"));
-                        }else{
-                            Platform.runLater(()->GameController.getInstance().damageMinion(200,Integer.parseInt(other),"player"));
-                        }
-                        break;
-                    case "Asesinar":
-                        Platform.runLater(()->GameController.getInstance().killMinion(Integer.parseInt(other),"player"));
+                    case "draw":
+                        Platform.runLater(() -> GameController.getInstance().enemyDraw(parts[2]));
                         break;
                 }
                 break;
             case "ESBIRRO":
                 Platform.runLater(() -> GameController.getInstance().addMinion(Card.getCardByName(parts[1]), "enemy"));
                 break;
-            case"HECHIZO":
+            case "HECHIZO":
                 switch (info){
-                    case "freeze":
+                    case"freeze":
                         Platform.runLater(()->GameController.getInstance().Freeze(true));
+                        break;
+                    case "Curar":
+                        Platform.runLater(()->GameController.getInstance().heal(Integer.parseInt(parts[2]),"enemy"));
+                        break;
+                    case "Bola de Fuego":
+                        if (parts[2]=="enemigo"){
+                            Platform.runLater(()->GameController.getInstance().takeDamage(200,"player"));
+                        }else{
+                            Platform.runLater(()->GameController.getInstance().damageMinion(200,Integer.parseInt(parts[2]),"player"));
+                        }
+                        break;
+                    case "Asesinar":
+                        Platform.runLater(()->GameController.getInstance().killMinion(Integer.parseInt(parts[2]),"player"));
                         break;
 
                 }
@@ -144,12 +148,14 @@ public class Client implements Runnable,Messenger {
                         Platform.runLater(()-> {
                             int damage = Card.getCardByName(parts[2]).getAtaque();
                             GameController.getInstance().takeDamage(damage,"player");
+                            GameController.getInstance().getGameHandler().getHistory().addEvent(incomingMsg);
                         });
                         break;
                     default:
                         Platform.runLater(()-> {
                             int damage = Card.getCardByName(parts[2]).getAtaque();
                             GameController.getInstance().damageMinion(damage, Integer.parseInt(info),"player");
+                            GameController.getInstance().getGameHandler().getHistory().addEvent(incomingMsg);
                         });
                         break;
                 }

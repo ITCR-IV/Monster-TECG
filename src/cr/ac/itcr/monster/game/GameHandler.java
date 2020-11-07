@@ -6,6 +6,7 @@ import cr.ac.itcr.monster.communication.Messenger;
 import cr.ac.itcr.monster.game.cards.Card;
 import cr.ac.itcr.monster.game.cards.Esbirro;
 import cr.ac.itcr.monster.game.hand.Hand;
+import cr.ac.itcr.monster.game.history.History;
 
 /**
  * Clase que controla toda la logística detrás del Juego, maneja los decks y las
@@ -13,6 +14,7 @@ import cr.ac.itcr.monster.game.hand.Hand;
  */
 public class GameHandler {
     private Messenger messenger;
+    private History history;
 
     private Deck playerDeck;
     private Hand playerCards;
@@ -27,6 +29,7 @@ public class GameHandler {
      * @param playerType
      */
     public GameHandler(String playerType) {
+        history = new History();
         playerDeck = new Deck();
         playerCards = new Hand();
         enemyCards = new Hand();
@@ -223,5 +226,9 @@ public class GameHandler {
 
     public void minionAttackMinion(Esbirro esbirro, int index) {
         messenger.sendMsg("ATAQUE-"+index+"-"+esbirro.getNombre());
+    }
+
+    public History getHistory() {
+        return history;
     }
 }
