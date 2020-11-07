@@ -637,6 +637,9 @@ public class GameController {
                         }
             }
         } else { //este else siginifica que se juega un esbirro
+            if (this.freeze) {
+                return;
+            }
             Rectangle rect = (Rectangle) playerMinions.get(cardSelection-11).getChildren().get(0);
             rect.setStroke(Color.CRIMSON);
             targeting = true;
