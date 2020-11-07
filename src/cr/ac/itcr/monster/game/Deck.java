@@ -60,7 +60,7 @@ public class Deck {
         Random random = new Random(); //instance of random class
             for (int i = 0; i < 7; i++) {
                 Card hechizo = (Card.getHechizos()[random.nextInt(10)]);
-                if (!(hechizo.getNombre().equals("Poder Supremo") || hechizo.getNombre().equals("Refill") || hechizo.getNombre().equals("Conversión") || hechizo.getNombre().equals("Destrucción"))) {
+                if (!(hechizo.getNombre().equals("Poder Supremo") || hechizo.getNombre().equals("Conversión") || hechizo.getNombre().equals("Destrucción") || hechizo.getNombre().equals("Bola de Fuego")|| hechizo.getNombre().equals("Robar Carta")|| hechizo.getNombre().equals("Recuperar cartas")|| hechizo.getNombre().equals("Asesinar"))) {
                     push(hechizo);
                 } else {
                     i--;
