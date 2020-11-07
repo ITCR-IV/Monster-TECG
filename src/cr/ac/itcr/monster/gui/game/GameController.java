@@ -126,6 +126,7 @@ public class GameController {
     public void switchTurn(ActionEvent actionEvent) {
         this.turn = !turn;
             if (turn) { //empezar turno
+                gameHandler.resetMinionsCD();
                 endTurnButton.setDisable(false);
                 playCardButton.setDisable(false);
                 drawCard();
@@ -275,6 +276,9 @@ public class GameController {
             if (index-10 > friendlyMinionsSize) {
                 return;
             }
+            if(gameHandler.getPlayerMinion(index).isCD()){
+                return;
+            }
             rect = (Rectangle) playerMinions.get(index-11).getChildren().get(0);
         }
         rect.setStroke(Color.DEEPSKYBLUE);
@@ -327,6 +331,7 @@ public class GameController {
         } else { //este else siginifica que se ataca con un esbirro
             Esbirro esbirro = gameHandler.getPlayerMinion(cardSelection);
             takeDamage(esbirro.getAtaque(),"enemy");
+            gameHandler.getPlayerMinion(cardSelection).setCD(true);
         }
         resetCardSelection();
     }

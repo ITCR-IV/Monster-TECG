@@ -117,4 +117,12 @@ public class GameHandler {
     public Esbirro getPlayerMinion(int cardSelection) {
         return playerMinions[cardSelection - 11];
     }
+
+    public void resetMinionsCD() {
+        for (Esbirro minion:playerMinions) {
+            if (minion != null) {
+                minion.setCD(false);
+            }
+        }
+    }
 }
