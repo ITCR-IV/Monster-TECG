@@ -48,9 +48,13 @@ public class GameController {
     public Button endTurnButton;
 
     //logical variables
+    private GameHandler gameHandler;
+    public GameHandler getGameHandler() {
+        return gameHandler;
+    }
+
     private static boolean turn;
     private String playerType;
-    private GameHandler gameHandler;
     private int deckSize=20;
     private int enemyDeckSize=20;
     private int friendlyMinionsSize;
@@ -224,8 +228,8 @@ public class GameController {
     public void damageMinion(int damageDealt, int minionIndex, String playerType) {
         if (playerType.equals("player")) {
             Text lifeText = (Text) playerMinions.get(minionIndex - 1).getChildren().get(3);
-            int totalLife = gameHandler.getPlayerMinion(minionIndex).getVidaTotal();
-            double life = gameHandler.getPlayerMinion(minionIndex).damage(damageDealt);
+            int totalLife = gameHandler.getPlayerMinion(minionIndex+10).getVidaTotal();
+            double life = gameHandler.getPlayerMinion(minionIndex+10).damage(damageDealt);
 
             lifeText.setText((int) life+"/"+totalLife);
 

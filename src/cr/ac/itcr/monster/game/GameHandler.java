@@ -141,10 +141,10 @@ public class GameHandler {
     }
 
     public void minionAttackEnemy(Esbirro esbirro) {
-        messenger.sendMsg("ATAQUE-"+esbirro.getNombre()+"-enemigo");
+        messenger.sendMsg("ATAQUE-enemigo-"+esbirro.getNombre());
     }
 
     public void minionAttackMinion(Esbirro esbirro, int index) {
-        messenger.sendMsg("ATAQUE-"+esbirro.getNombre()+"-"+index);
+        messenger.sendMsg("ATAQUE-"+index+"-"+esbirro.getNombre());
     }
 }

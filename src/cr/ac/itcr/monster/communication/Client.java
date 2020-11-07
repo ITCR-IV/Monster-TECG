@@ -103,6 +103,22 @@ public class Client implements Runnable,Messenger {
                         break;
                 }
                 break;
+            case "ATAQUE":
+                switch (info) {
+                    case "enemigo":
+                        Platform.runLater(()-> {
+                            int damage = Card.getCardByName(parts[2]).getAtaque();
+                            GameController.getInstance().takeDamage(damage,"player");
+                        });
+                        break;
+                    default:
+                        Platform.runLater(()-> {
+                            int damage = Card.getCardByName(parts[2]).getAtaque();
+                            GameController.getInstance().damageMinion(damage, Integer.parseInt(info),"player");
+                        });
+                        break;
+                }
+                break;
         }
 
     }

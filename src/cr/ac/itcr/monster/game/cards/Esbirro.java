@@ -12,6 +12,7 @@ public class Esbirro {
         this.vidaTotal = vida;
         this.ataque = ataque;
         this.CD = false;
+        this.nombre = nombre;
     }
 
     public double damage(int damageDealt) {
