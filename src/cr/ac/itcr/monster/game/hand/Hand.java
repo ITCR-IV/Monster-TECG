@@ -68,9 +68,9 @@ public class Hand { //hand is indexed starting at 0
             return current.getInfo();
         }
         if (position==1) { //in case it's the first one
-            this.head = current.getNext();
+            this.head = this.head.getNext();
             this.head.setPrevious(current.getPrevious().getPrevious());
-            this.head.getPrevious().setNext(this.head);
+            this.head.getPrevious().getPrevious().setNext(this.head);
             this.size--;
             return current.getInfo();
         }
