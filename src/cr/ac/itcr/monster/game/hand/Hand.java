@@ -27,17 +27,21 @@ public class Hand { //hand is indexed starting at 0
 
         if (this.head == null) {
             this.head = newHandCard;
+            this.head.setNext(this.head);
+            this.head.setPrevious(this.head);
             this.size++;
             return;
         }
 
         HandCard current = this.head;
-        while (current.getNext() != null) {
+        for (int i = 1; i < size; i++) {
             current = current.getNext();
         }
 
         newHandCard.setPrevious(current);
         current.setNext(newHandCard);
+        newHandCard.setNext(this.head);
+        this.head.setPrevious(newHandCard);
         this.size++;
     }
 
@@ -58,9 +62,15 @@ public class Hand { //hand is indexed starting at 0
         if (current == null) {
             System.out.println("Error: removeCard called on empty hand"); //for possible bugfixing purposes
         }
+        if (size == 1) {
+            this.head = null;
+            size--;
+            return current.getInfo();
+        }
         if (position==1) { //in case it's the first one
             this.head = current.getNext();
-            this.head.setPrevious(null);
+            current.getPrevious().setNext(current.getNext());
+            current.getNext().setPrevious(current.getPrevious());
             this.size--;
             return current.getInfo();
         }
@@ -69,13 +79,7 @@ public class Hand { //hand is indexed starting at 0
             current = current.getNext();
         }
 
-        if (position == this.size) { //in case it's the last one
-            current.getPrevious().setNext(null);
-            this.size--;
-            return current.getInfo();
-        }
-
-        //if it's a card in the middle
+        //if it's a card in the middle (it's a circular list, all cards are in the middle)
         current.getPrevious().setNext(current.getNext());
         current.getNext().setPrevious(current.getPrevious());
         this.size--;

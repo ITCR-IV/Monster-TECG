@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
 <?import java.util.ArrayList?>
-<?import javafx.scene.effect.ColorAdjust?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.itcr.monster.gui.game.GameController">
    <children>
       <Rectangle fill="#9f9f9f" height="300.0" layoutY="150.0" stroke="TRANSPARENT" strokeType="INSIDE" width="800.0" />
@@ -121,18 +118,18 @@
 
       <Pane fx:id="enemy" prefHeight="150.0" prefWidth="207.0">
          <children>
-            <Rectangle onMouseClicked="#targetEnemy" arcHeight="5.0" arcWidth="5.0" fill="#da5e5e" height="42.0" layoutX="43.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
             <ProgressBar layoutX="15.0" layoutY="71.0" prefHeight="18.0" prefWidth="127.0" progress="1.0">
                <effect>
-                  <ColorAdjust hue="0.80"/>
+                  <ColorAdjust hue="0.80" />
                </effect>
             </ProgressBar>
             <ProgressBar layoutX="15.0" layoutY="118.0" prefHeight="18.0" prefWidth="127.0" progress="0.2" />
-            <Text layoutX="15.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" />
             <Text layoutX="142.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000/1000" />
-            <Text layoutX="16.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" />
             <Text layoutX="142.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200/1000" textAlignment="RIGHT" wrappingWidth="56.42578125" />
-            <Text onMouseClicked="#targetEnemy" layoutX="75.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemigo" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da5e5e" height="42.0" layoutX="43.0" layoutY="6.0" onMouseClicked="#targetEnemy" stroke="BLACK" strokeType="INSIDE" width="110.0" />
+            <Text layoutX="15.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" />
+            <Text layoutX="16.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" />
+            <Text layoutX="75.0" layoutY="32.0" onMouseClicked="#targetEnemy" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemigo" />
          </children>
       </Pane>
 
@@ -143,14 +140,14 @@
          <children>
             <ProgressBar layoutX="15.0" layoutY="71.0" prefHeight="18.0" prefWidth="127.0" progress="1.0">
                <effect>
-                  <ColorAdjust hue="0.80"/>
+                  <ColorAdjust hue="0.80" />
                </effect>
             </ProgressBar>
             <ProgressBar layoutX="15.0" layoutY="118.0" prefHeight="18.0" prefWidth="127.0" progress="0.2" />
-            <Text layoutX="15.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" />
             <Text layoutX="142.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000/1000" />
-            <Text layoutX="16.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" />
             <Text layoutX="142.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200/1000" textAlignment="RIGHT" wrappingWidth="56.42578125" />
+            <Text layoutX="15.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vida" />
+            <Text layoutX="16.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" />
          </children>
       </Pane>
 
@@ -331,9 +328,9 @@
 
       <Button layoutX="727.0" layoutY="341.0" mnemonicParsing="false" text="Historial" />
 
-      <Button fx:id="endTurnButton" onAction="#switchTurn" layoutX="725.0" layoutY="279.0" mnemonicParsing="false" text="Terminar&#10;turno&#10;" textAlignment="CENTER" />
-      <Button fx:id="playCardButton" onAction="#playCard" layoutX="11.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Usar Carta" />
-      <Button fx:id="infoButton" onAction="#displayInfo" layoutX="98.0" layoutY="456.0" mnemonicParsing="false" prefWidth="101.0" text="Ver información" />
+      <Button fx:id="endTurnButton" layoutX="725.0" layoutY="279.0" mnemonicParsing="false" onAction="#switchTurn" text="Terminar&#10;turno&#10;" textAlignment="CENTER" />
+      <Button fx:id="playCardButton" layoutX="11.0" layoutY="456.0" mnemonicParsing="false" onAction="#playCard" prefHeight="25.0" prefWidth="80.0" text="Usar Carta" />
+      <Button fx:id="infoButton" layoutX="98.0" layoutY="456.0" mnemonicParsing="false" onAction="#displayInfo" prefWidth="101.0" text="Ver información" />
 
    </children>
 </Pane>

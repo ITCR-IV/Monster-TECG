@@ -10,12 +10,19 @@ import javafx.event.ActionEvent;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+/**
+ * Clase encargada de manejar logísticamente la ventana del cliente por unirse
+ */
 public class JoinController {
     @FXML
     private Button cancelButton,connectButton;
     @FXML
     private TextField IPBox,PortBox;
 
+    /**
+     * Devuelve al menú principal desde la ventana del Join
+     * @param actionEvent
+     */
     //Vuelve al menú
     @FXML
     private void cancelButtonAction(ActionEvent actionEvent) {
@@ -23,6 +30,10 @@ public class JoinController {
         stage.close();
     }
 
+    /**
+     * Botón para conectar a un Host una vez se haya escrito la dirección IP y el puerto
+     * @param actionEvent
+     */
     @FXML
     private void connectButtonAction(ActionEvent actionEvent){
 

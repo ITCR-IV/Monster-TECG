@@ -1,6 +1,7 @@
 package cr.ac.itcr.monster.communication;
 
 import cr.ac.itcr.monster.App;
+import cr.ac.itcr.monster.game.cards.Card;
 import cr.ac.itcr.monster.gui.game.GameController;
 import cr.ac.itcr.monster.gui.host.HostWindow;
 import javafx.application.Platform;
@@ -13,16 +14,21 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
+/**
+ * Clase encargada de la logística de un Host y su manejo
+ */
 public class Host implements Runnable, Messenger{
 
     private static volatile Host instance;
-
     private String client;
     private ServerSocket ss;
     private DataOutputStream dos;
     private DataInputStream dis;
     private boolean flag =true;
 
+    /**
+     * Builder de Host
+     */
     private Host(){
         //singleton!! :D
         Thread t = new Thread(this); //thread so that it's permanently checking for sockets
@@ -34,6 +40,10 @@ public class Host implements Runnable, Messenger{
         }
     }
 
+    /**
+     * Da la instancia de Host
+     * @return Host
+     */
     public static synchronized Host getHost() {
         if (instance!=  null){
             return instance;
@@ -42,6 +52,9 @@ public class Host implements Runnable, Messenger{
         return instance;
     }
 
+    /**
+     * Sucede si el Host se desconecta o cuando termina el juego
+     */
     public void terminate(){
         this.flag = false;
         try {
@@ -52,6 +65,10 @@ public class Host implements Runnable, Messenger{
         instance = null;
     }
 
+    /**
+     * Módulo que envía mensajes para la comunicación entre el cliente y el host
+     * @param msg
+     */
     public void sendMsg(String msg) {
         try {
             dos.writeUTF(msg);
@@ -60,11 +77,17 @@ public class Host implements Runnable, Messenger{
         }
     }
 
+    /**
+     * Modulo que recibe e interpreta el mensaje obtenido del cliente
+     * @param incomingMsg
+     * @throws IOException
+     */
     private void handleMsg(String incomingMsg) throws IOException {
         String[] parts = incomingMsg.split("-", 3);
 
         String type = parts[0];
         String info = parts[1];
+        String other = parts[2];
 
         switch (type) {
             case "ESTABLISH CONNECTION":
@@ -92,6 +115,47 @@ public class Host implements Runnable, Messenger{
                         break;
                 }
                 break;
+            case "ESBIRRO":
+                Platform.runLater(() -> GameController.getInstance().addMinion(Card.getCardByName(parts[1]), "enemy"));
+                break;
+            case "HECHIZO":
+                switch (info){
+                    case"freeze":
+                        Platform.runLater(()->GameController.getInstance().Freeze(true));
+                        break;
+                    case "Curar":
+                        Platform.runLater(()->GameController.getInstance().heal(Integer.parseInt(other),"enemy"));
+                        break;
+                    case "Bola de Fuego":
+                        if (other==""){
+                            Platform.runLater(()->GameController.getInstance().takeDamage(200,"player"));
+                        }else{
+                            Platform.runLater(()->GameController.getInstance().damageMinion(200,Integer.parseInt(other),"player"));
+                        }
+                        break;
+                    case "Asesinar":
+                        Platform.runLater(()->GameController.getInstance().killMinion(Integer.parseInt(other),"player"));
+                        break;
+
+                }
+                break;
+            case "ATAQUE":
+                switch (info) {
+                    case "enemigo":
+                        Platform.runLater(()-> {
+                            int damage = Card.getCardByName(parts[2]).getAtaque();
+                            GameController.getInstance().takeDamage(damage,"player");
+                        });
+                        break;
+                    default:
+                        Platform.runLater(()-> {
+                            int damage = Card.getCardByName(parts[2]).getAtaque();
+                            GameController.getInstance().damageMinion(damage, Integer.parseInt(info),"player");
+                        });
+                        break;
+                }
+                break;
+
         }
     }
 
