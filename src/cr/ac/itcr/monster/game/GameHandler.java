@@ -18,8 +18,8 @@ public class GameHandler {
     private Deck playerDeck;
     private Hand playerCards;
     private Hand enemyCards;
-    private ArrayList<Esbirro> playerMinions;
-    private ArrayList<Esbirro> enemyMinions;
+    private Esbirro[] playerMinions = new Esbirro[5];
+    private Esbirro[] enemyMinions = new Esbirro[5];
     private Player enemy;
     private Player player;
 
@@ -48,5 +48,31 @@ public class GameHandler {
     public void enemyDraw(String cardName) {
         Card drawnCard = Card.getCardByName(cardName);
         enemyCards.addCard(drawnCard);
+    }
+
+    public int addMinion(Card card, String playerType) {
+        int i=0;
+        if (playerType=="player") {
+            while (playerMinions[i]!=null) {
+                i++;
+                if (i>=5) {
+                    return i;
+                }
+            }
+            playerMinions[i] = new Esbirro(card.getVida(), card.getAtaque());
+        } else if (playerType == "enemy") {
+            while (enemyMinions[i]!=null) {
+                i++;
+                if (i>=5) {
+                    return i;
+                }
+            }
+            enemyMinions[i] = new Esbirro(card.getVida(), card.getAtaque());
+        }
+        else{
+            System.out.println("Se llamó addMinion en GameHandler sin dar un playerType válido");
+            return 6;
+        }
+        return i;
     }
 }

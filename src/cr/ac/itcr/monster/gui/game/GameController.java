@@ -1,13 +1,10 @@
 package cr.ac.itcr.monster.gui.game;
 
-import com.sun.javafx.fxml.builder.JavaFXSceneBuilder;
 import cr.ac.itcr.monster.communication.Client;
 import cr.ac.itcr.monster.communication.Host;
-import cr.ac.itcr.monster.communication.Messenger;
 import cr.ac.itcr.monster.game.GameHandler;
 import cr.ac.itcr.monster.game.cards.Card;
 import cr.ac.itcr.monster.gui.game.info.InfoWindow;
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +18,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class GameController {
@@ -103,7 +99,7 @@ public class GameController {
         i = 1;
         for (StackPane stackPane : enemyMinions) {
             int finalI = i;
-            stackPane.setOnMouseClicked(event -> targetMinon(finalI));
+            stackPane.setOnMouseClicked(event -> targetMinion(finalI));
             i++;
             for (Node item: stackPane.getChildren()) {
                 Shape shape = (Shape) item;
@@ -208,7 +204,7 @@ public class GameController {
         this.cardSelection = 0;
     }
 
-    public void targetMinon(int index) {
+    public void targetMinion(int index) {
         System.out.println("estripado el enemigo"+ index);
     }
 
@@ -219,6 +215,49 @@ public class GameController {
     public void displayInfo(ActionEvent actionEvent) {
         if (cardSelection>0 && cardSelection<=10) {
             InfoWindow info = new InfoWindow(gameHandler.getPlayerCard(cardSelection));
+        }
+    }
+
+    public void addMinion(Card card,String player) {
+        int position = 6;
+        position = gameHandler.addMinion(card,player);
+
+        if (position<5) {
+            StackPane guiMinion = null;
+            if (player.equals("player")) {
+                guiMinion = playerMinions.get(position);
+            } else if (player.equals("enemy")) {
+                guiMinion = enemyMinions.get(position);
+            }
+
+            ObservableList<Node> elements = guiMinion.getChildren();
+            for (Node item: elements) {
+                Shape shape = (Shape) item;
+                shape.setStroke(Color.BLACK);
+                shape.setFill(Color.BLACK);
+            }
+            Rectangle rect = (Rectangle) elements.get(0);
+            Text name = (Text) elements.get(1);
+            Text attack = (Text) elements.get(2);
+            Text life = (Text) elements.get(3);
+            rect.setFill(Color.rgb(255, 241, 221));
+            name.setText(card.getNombre().replaceAll(" ","\n"));
+            attack.setText(String.valueOf(card.getAtaque()));
+            attack.setFill(Color.rgb(29, 22, 232));
+            life.setText(card.getVida()+"/"+card.getVida());
+            life.setFill(Color.rgb(221, 53, 53));
+        }
+    }
+
+    public void playCard(ActionEvent actionEvent) {
+        if (cardSelection>0 && cardSelection<=10) {
+            Card card = gameHandler.getPlayerCard(cardSelection);
+            String type = card.getType();
+            switch (type) {
+                case "Esbirro":
+                    addMinion(card,"player");
+                    break;
+            }
         }
     }
 }
