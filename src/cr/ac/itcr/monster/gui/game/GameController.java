@@ -8,7 +8,9 @@ import cr.ac.itcr.monster.gui.game.info.InfoWindow;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -18,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameController {
@@ -132,6 +135,9 @@ public class GameController {
     }
 
     public void drawCard() {
+        if (handSize >= 10) {
+            return;
+        }
         Card drawnCard = gameHandler.drawCard();
 
         StackPane guiCard = playerCards.get(handSize);
@@ -156,6 +162,9 @@ public class GameController {
     }
 
     public void enemyDraw(String cardName) {
+        if (enemyHandSize >= 10) {
+            return;
+        }
         gameHandler.enemyDraw(cardName);
 
         StackPane guiCard = enemyCards.get(enemyHandSize);
@@ -194,12 +203,14 @@ public class GameController {
     public void resetCardSelection() {
         Rectangle rect;
         if (cardSelection > 0) {
-            if (this.cardSelection < 10) {
+            if (this.cardSelection <= 10) {
                 rect = (Rectangle) playerCards.get(cardSelection - 1).getChildren().get(0);
             } else {
                 rect = (Rectangle) playerMinions.get(cardSelection - 11).getChildren().get(0);
             }
-            rect.setStroke(Color.BLACK);
+            if (cardSelection != handSize + 1) { //para eliminar caso donde uno usa la última carta
+                rect.setStroke(Color.BLACK);
+            }
         }
         this.cardSelection = 0;
     }
@@ -262,18 +273,32 @@ public class GameController {
                     break;
             }
         }
+        removeCard(cardSelection);
+        resetCardSelection();
     }
 
     public void removeCard(int index) {
+
         if (index <= 10) {
-            for (int i = index; index < 10; index++) {
-                playerCards.set(i - 1, playerCards.get(i));
+            for (int i = index; i < handSize; i++) {
+
+                ObservableList<Node> children = playerCards.get(i).getChildren();
+                StackPane stackPane = playerCards.get(i - 1);
+                stackPane.getChildren().setAll(children);
+                FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("childrenCard.fxml"));
+                try {
+                    StackPane clone = cardLoader.load();
+                    children.addAll(clone.getChildren());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            for (Node item : playerCards.get(index - 1).getChildren()) {
+            for (Node item : playerCards.get(handSize-1).getChildren()) {
                 Shape shape = (Shape) item;
                 shape.setStroke(Color.rgb(244, 244, 244));
                 shape.setFill(Color.rgb(244, 244, 244));
             }
+                handSize--;
         } else {
         }
         gameHandler.removeCard(index);

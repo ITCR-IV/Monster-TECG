@@ -27,6 +27,7 @@ public class Hand { //hand is indexed starting at 0
 
         if (this.head == null) {
             this.head = newHandCard;
+            this.size++;
             return;
         }
 
@@ -56,9 +57,11 @@ public class Hand { //hand is indexed starting at 0
 
         if (current == null) {
             System.out.println("Error: removeCard called on empty hand"); //for possible bugfixing purposes
-        } else if (position==1) { //in case it's the first one
+        }
+        if (position==1) { //in case it's the first one
             this.head = current.getNext();
             this.head.setPrevious(null);
+            this.size--;
             return current.getInfo();
         }
 
@@ -68,12 +71,14 @@ public class Hand { //hand is indexed starting at 0
 
         if (position == this.size) { //in case it's the last one
             current.getPrevious().setNext(null);
+            this.size--;
             return current.getInfo();
         }
 
         //if it's a card in the middle
         current.getPrevious().setNext(current.getNext());
         current.getNext().setPrevious(current.getPrevious());
+        this.size--;
         return current.getInfo();
     }
 

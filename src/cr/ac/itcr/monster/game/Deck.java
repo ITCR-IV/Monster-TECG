@@ -9,7 +9,7 @@ import java.util.Random;
 public class Deck {
     private int top = 0;
     private Card[] deck = new Card[20];
-    private ArrayList<Card> discardPile;
+    private ArrayList<Card> discardPile = new ArrayList<Card>();
 
     public Deck() {
         refill();

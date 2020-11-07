@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane prefHeight="65.0" prefWidth="65.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="65.0" stroke="#f4f4f4" strokeType="INSIDE" width="65.0" />
+        <Text fill="#f4f4f4" strokeType="OUTSIDE" strokeWidth="0.0" text="Bola&#10;de Fuego" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
+        <Text fill="#f4f4f4" strokeType="OUTSIDE" strokeWidth="0.0" text="Coste:" StackPane.alignment="BOTTOM_LEFT" />
+        <Text fill="#f4f4f4" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" StackPane.alignment="BOTTOM_RIGHT" />
+    </children>
+</StackPane>
