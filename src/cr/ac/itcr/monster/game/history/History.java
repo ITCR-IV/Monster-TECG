@@ -8,6 +8,9 @@ import cr.ac.itcr.monster.gui.game.GameController;
 import cr.ac.itcr.monster.gui.host.HostWindow;
 import javafx.application.Platform;
 
+/**
+ * Clase que crea la lista de histrial para poder navegar a través de las jugadas
+ */
 public class History {
     private static volatile GameController instance;
     public static synchronized GameController getInstance() {
@@ -17,15 +20,24 @@ public class History {
     private Event head;
     private int size;
 
+    /**
+     * Builder de la lista doblemente enlazada
+     */
     public History() {
         this.head = null;
         this.size = 0;
     }
-
+/**
+ * Getter del tamaño de la lista doblemente enlazada
+ */
     public int getSize() {
         return size;
     }
 
+    /**
+     * Añadir un evento a la lista doblemente enlazada
+     * @param data
+     */
     public void addEvent(String data) {
         String info = parseData(data);
         Event newEvent = new Event(info);
@@ -47,6 +59,11 @@ public class History {
 
     }
 
+    /**
+     * Recibe el String de datos,lo interpreta y lo convierte en una descripción de jugada.
+     * @param data
+     * @return
+     */
     private String parseData(String data) {
         String[] parts = data.split("-", 3);
 
